@@ -1,0 +1,22 @@
+=head2 Fri Oct 23 21:43:55 2009: C<Module> L<Git|Git>
+
+=over 4
+
+=item *
+
+C<installed into: /home/cc/cs61a/fa09/class/cs61a-pc/common/lib/site_perl>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.01>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
