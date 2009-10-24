@@ -1,0 +1,30 @@
+gnode.lo gnode.o: gnode.c glib.h ./glibconfig.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/limits.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/syslimits.h \
+  /usr/include/sys/feature_tests.h /usr/include/sys/ccompile.h \
+  /usr/include/sys/isa_defs.h /usr/include/iso/limits_iso.h \
+  /usr/include/sys/int_limits.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/float.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h
+
+glib.h:
+
+./glibconfig.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/limits.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/syslimits.h:
+
+/usr/include/sys/feature_tests.h:
+
+/usr/include/sys/ccompile.h:
+
+/usr/include/sys/isa_defs.h:
+
+/usr/include/iso/limits_iso.h:
+
+/usr/include/sys/int_limits.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/float.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h:

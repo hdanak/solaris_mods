@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GUnixFDMessage">
+<refmeta>
+<refentrytitle role="top_of_page" id="GUnixFDMessage.top_of_page">GUnixFDMessage</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GUnixFDMessage</refname>
+<refpurpose>A GSocketControlMessage containing a list of
+file descriptors</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GUnixFDMessage.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GUnixFDMessage-struct">GUnixFDMessage</link>;
+<link linkend="GSocketControlMessage">GSocketControlMessage</link> * <link linkend="g-unix-fd-message-new">g_unix_fd_message_new</link>           (void);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-unix-fd-message-append-fd">g_unix_fd_message_append_fd</link>         (<link linkend="GUnixFDMessage">GUnixFDMessage</link> *message,
+                                                         <link linkend="gint">gint</link> fd,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gint">gint</link> *              <link linkend="g-unix-fd-message-steal-fds">g_unix_fd_message_steal_fds</link>         (<link linkend="GUnixFDMessage">GUnixFDMessage</link> *message,
+                                                         <link linkend="gint">gint</link> *length);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GUnixFDMessage.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GSocketControlMessage">GSocketControlMessage</link>
+         +----GUnixFDMessage
+</synopsis>
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="GUnixFDMessage.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This <link linkend="GSocketControlMessage"><type>GSocketControlMessage</type></link> contains a list of file descriptors.
+It may be sent using <link linkend="g-socket-send-message"><function>g_socket_send_message()</function></link> and received using
+<link linkend="g-socket-receive-message"><function>g_socket_receive_message()</function></link> over UNIX sockets (ie: sockets in the
+<link linkend="G-SOCKET-ADDRESS-UNIX--CAPS"><literal>G_SOCKET_ADDRESS_UNIX</literal></link> family).
+</para>
+<para>
+For an easier way to send and receive file descriptors over
+stream-oriented UNIX sockets, see <link linkend="g-unix-connection-send-fd"><function>g_unix_connection_send_fd()</function></link> and
+<link linkend="g-unix-connection-receive-fd"><function>g_unix_connection_receive_fd()</function></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GUnixFDMessage.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GUnixFDMessage-struct" role="struct">
+<title>GUnixFDMessage</title>
+<indexterm zone="GUnixFDMessage-struct"><primary sortas="UnixFDMessage">GUnixFDMessage</primary></indexterm><programlisting>typedef struct _GUnixFDMessage GUnixFDMessage;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="g-unix-fd-message-new" role="function" condition="since:2.22">
+<title>g_unix_fd_message_new ()</title>
+<indexterm zone="g-unix-fd-message-new" role="2.22"><primary sortas="unix_fd_message_new">g_unix_fd_message_new</primary></indexterm><programlisting><link linkend="GSocketControlMessage">GSocketControlMessage</link> * g_unix_fd_message_new           (void);</programlisting>
+<para>
+Creates a new <link linkend="GUnixFDMessage"><type>GUnixFDMessage</type></link> containing no file descriptors.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GUnixFDMessage"><type>GUnixFDMessage</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-unix-fd-message-append-fd" role="function" condition="since:2.22">
+<title>g_unix_fd_message_append_fd ()</title>
+<indexterm zone="g-unix-fd-message-append-fd" role="2.22"><primary sortas="unix_fd_message_append_fd">g_unix_fd_message_append_fd</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_unix_fd_message_append_fd         (<link linkend="GUnixFDMessage">GUnixFDMessage</link> *message,
+                                                         <link linkend="gint">gint</link> fd,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Adds a file descriptor to <parameter>message</parameter>.
+</para>
+<para>
+The file descriptor is duplicated using <link linkend="dup"><function>dup()</function></link>. You keep your copy
+of the descriptor and the copy contained in <parameter>message</parameter> will be closed
+when <parameter>message</parameter> is finalized.
+</para>
+<para>
+A possible cause of failure is exceeding the per-process or
+system-wide file descriptor limit.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GUnixFDMessage"><type>GUnixFDMessage</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>fd</parameter>&#160;:</term>
+<listitem><simpara> a valid open file descriptor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link> pointer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> in case of success, else <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> (and <parameter>error</parameter> is set)
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-unix-fd-message-steal-fds" role="function" condition="since:2.22">
+<title>g_unix_fd_message_steal_fds ()</title>
+<indexterm zone="g-unix-fd-message-steal-fds" role="2.22"><primary sortas="unix_fd_message_steal_fds">g_unix_fd_message_steal_fds</primary></indexterm><programlisting><link linkend="gint">gint</link> *              g_unix_fd_message_steal_fds         (<link linkend="GUnixFDMessage">GUnixFDMessage</link> *message,
+                                                         <link linkend="gint">gint</link> *length);</programlisting>
+<para>
+Returns the array of file descriptors that is contained in this
+object.
+</para>
+<para>
+After this call, the descriptors are no longer contained in
+<parameter>message</parameter>. Further calls will return an empty list (unless more
+descriptors have been added).
+</para>
+<para>
+The return result of this function must be freed with <link linkend="g-free"><function>g_free()</function></link>.
+The caller is also responsible for closing all of the file
+descriptors.
+</para>
+<para>
+If <parameter>length</parameter> is non-<link linkend="NULL--CAPS"><literal>NULL</literal></link> then it is set to the number of file
+descriptors in the returned array. The returned array is also
+terminated with -1.
+</para>
+<para>
+This function never returns <link linkend="NULL--CAPS"><literal>NULL</literal></link>. In case there are no file
+descriptors contained in <parameter>message</parameter>, an empty array is returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GUnixFDMessage"><type>GUnixFDMessage</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> pointer to the length of the returned array, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> an array of file descriptors
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+
+
+
+<refsect1 id="GUnixFDMessage.see-also">
+<title>See Also</title>
+#GUnixConnection
+</refsect1>
+
+</refentry>

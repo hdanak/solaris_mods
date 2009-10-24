@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE indexdiv PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<indexdiv>
+<indexdiv><title>F</title>
+<indexentry><primaryie linkends="G-FILE-ATTRIBUTE-MOUNTABLE-UNIX-DEVICE-FILE--CAPS"><link linkend="G-FILE-ATTRIBUTE-MOUNTABLE-UNIX-DEVICE-FILE--CAPS">G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE_FILE</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>S</title>
+<indexentry><primaryie linkends="g-socket-speaks-ipv4"><link linkend="g-socket-speaks-ipv4">g_socket_speaks_ipv4</link></primaryie></indexentry>
+</indexdiv>
+</indexdiv>

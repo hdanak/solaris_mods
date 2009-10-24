@@ -1,0 +1,481 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GInetAddress">
+<refmeta>
+<refentrytitle role="top_of_page" id="GInetAddress.top_of_page">GInetAddress</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GInetAddress</refname>
+<refpurpose>An IPv4/IPv6 address</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GInetAddress.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GInetAddress-struct">GInetAddress</link>;
+<link linkend="GInetAddress">GInetAddress</link> *      <link linkend="g-inet-address-new-from-string">g_inet_address_new_from_string</link>      (const <link linkend="gchar">gchar</link> *string);
+<link linkend="GInetAddress">GInetAddress</link> *      <link linkend="g-inet-address-new-from-bytes">g_inet_address_new_from_bytes</link>       (const <link linkend="guint8">guint8</link> *bytes,
+                                                         <link linkend="GSocketFamily">GSocketFamily</link> family);
+<link linkend="GInetAddress">GInetAddress</link> *      <link linkend="g-inet-address-new-any">g_inet_address_new_any</link>              (<link linkend="GSocketFamily">GSocketFamily</link> family);
+<link linkend="GInetAddress">GInetAddress</link> *      <link linkend="g-inet-address-new-loopback">g_inet_address_new_loopback</link>         (<link linkend="GSocketFamily">GSocketFamily</link> family);
+const <link linkend="guint8">guint8</link> *      <link linkend="g-inet-address-to-bytes">g_inet_address_to_bytes</link>             (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gsize">gsize</link>               <link linkend="g-inet-address-get-native-size">g_inet_address_get_native_size</link>      (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gchar">gchar</link> *             <link linkend="g-inet-address-to-string">g_inet_address_to_string</link>            (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="GSocketFamily">GSocketFamily</link>       <link linkend="g-inet-address-get-family">g_inet_address_get_family</link>           (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-inet-address-get-is-any">g_inet_address_get_is_any</link>           (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-inet-address-get-is-loopback">g_inet_address_get_is_loopback</link>      (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-inet-address-get-is-link-local">g_inet_address_get_is_link_local</link>    (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-inet-address-get-is-site-local">g_inet_address_get_is_site_local</link>    (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-inet-address-get-is-multicast">g_inet_address_get_is_multicast</link>     (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-inet-address-get-is-mc-link-local">g_inet_address_get_is_mc_link_local</link> (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-inet-address-get-is-mc-node-local">g_inet_address_get_is_mc_node_local</link> (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-inet-address-get-is-mc-site-local">g_inet_address_get_is_mc_site_local</link> (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-inet-address-get-is-mc-org-local">g_inet_address_get_is_mc_org_local</link>  (<link linkend="GInetAddress">GInetAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-inet-address-get-is-mc-global">g_inet_address_get_is_mc_global</link>     (<link linkend="GInetAddress">GInetAddress</link> *address);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GInetAddress.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GInetAddress
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="GInetAddress.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GInetAddress--bytes">bytes</link>&quot;                    <link linkend="gpointer">gpointer</link>              : Read / Write / Construct Only
+  &quot;<link linkend="GInetAddress--family">family</link>&quot;                   <link linkend="GSocketFamily">GSocketFamily</link>         : Read / Write / Construct Only
+  &quot;<link linkend="GInetAddress--is-any">is-any</link>&quot;                   <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="GInetAddress--is-link-local">is-link-local</link>&quot;            <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="GInetAddress--is-loopback">is-loopback</link>&quot;              <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="GInetAddress--is-mc-global">is-mc-global</link>&quot;             <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="GInetAddress--is-mc-link-local">is-mc-link-local</link>&quot;         <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="GInetAddress--is-mc-node-local">is-mc-node-local</link>&quot;         <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="GInetAddress--is-mc-org-local">is-mc-org-local</link>&quot;          <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="GInetAddress--is-mc-site-local">is-mc-site-local</link>&quot;         <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="GInetAddress--is-multicast">is-multicast</link>&quot;             <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="GInetAddress--is-site-local">is-site-local</link>&quot;            <link linkend="gboolean">gboolean</link>              : Read
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GInetAddress.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="GInetAddress"><type>GInetAddress</type></link> represents an IPv4 or IPv6 internet address. Use
+<link linkend="g-resolver-lookup-by-name"><function>g_resolver_lookup_by_name()</function></link> or <link linkend="g-resolver-lookup-by-name-async"><function>g_resolver_lookup_by_name_async()</function></link> to
+look up the <link linkend="GInetAddress"><type>GInetAddress</type></link> for a hostname. Use
+<link linkend="g-resolver-lookup-by-address"><function>g_resolver_lookup_by_address()</function></link> or
+<link linkend="g-resolver-lookup-by-address-async"><function>g_resolver_lookup_by_address_async()</function></link> to look up the hostname for a
+<link linkend="GInetAddress"><type>GInetAddress</type></link>.
+</para>
+<para>
+To actually connect to a remote host, you will need a
+<link linkend="GInetSocketAddress"><type>GInetSocketAddress</type></link> (which includes a <link linkend="GInetAddress"><type>GInetAddress</type></link> as well as a
+port number).</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GInetAddress.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GInetAddress-struct" role="struct">
+<title>GInetAddress</title>
+<indexterm zone="GInetAddress-struct"><primary sortas="InetAddress">GInetAddress</primary></indexterm><programlisting>typedef struct _GInetAddress GInetAddress;</programlisting>
+<para>
+An IPv4 or IPv6 internet address.</para>
+<para>
+</para></refsect2>
+<refsect2 id="g-inet-address-new-from-string" role="function" condition="since:2.22">
+<title>g_inet_address_new_from_string ()</title>
+<indexterm zone="g-inet-address-new-from-string" role="2.22"><primary sortas="inet_address_new_from_string">g_inet_address_new_from_string</primary></indexterm><programlisting><link linkend="GInetAddress">GInetAddress</link> *      g_inet_address_new_from_string      (const <link linkend="gchar">gchar</link> *string);</programlisting>
+<para>
+Parses <parameter>string</parameter> as an IP address and creates a new <link linkend="GInetAddress"><type>GInetAddress</type></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>string</parameter>&#160;:</term>
+<listitem><simpara> a string representation of an IP address
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GInetAddress"><type>GInetAddress</type></link> corresponding to <parameter>string</parameter>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> if
+<parameter>string</parameter> could not be parsed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-new-from-bytes" role="function" condition="since:2.22">
+<title>g_inet_address_new_from_bytes ()</title>
+<indexterm zone="g-inet-address-new-from-bytes" role="2.22"><primary sortas="inet_address_new_from_bytes">g_inet_address_new_from_bytes</primary></indexterm><programlisting><link linkend="GInetAddress">GInetAddress</link> *      g_inet_address_new_from_bytes       (const <link linkend="guint8">guint8</link> *bytes,
+                                                         <link linkend="GSocketFamily">GSocketFamily</link> family);</programlisting>
+<para>
+Creates a new <link linkend="GInetAddress"><type>GInetAddress</type></link> from the given <parameter>family</parameter> and <parameter>bytes</parameter>.
+<parameter>bytes</parameter> should be 4 bytes for <link linkend="G-INET-ADDRESS-IPV4--CAPS"><literal>G_INET_ADDRESS_IPV4</literal></link> and 16 bytes for
+<link linkend="G-INET-ADDRESS-IPV6--CAPS"><literal>G_INET_ADDRESS_IPV6</literal></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>bytes</parameter>&#160;:</term>
+<listitem><simpara> raw address data
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>family</parameter>&#160;:</term>
+<listitem><simpara> the address family of <parameter>bytes</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GInetAddress"><type>GInetAddress</type></link> corresponding to <parameter>family</parameter> and <parameter>bytes</parameter>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-new-any" role="function" condition="since:2.22">
+<title>g_inet_address_new_any ()</title>
+<indexterm zone="g-inet-address-new-any" role="2.22"><primary sortas="inet_address_new_any">g_inet_address_new_any</primary></indexterm><programlisting><link linkend="GInetAddress">GInetAddress</link> *      g_inet_address_new_any              (<link linkend="GSocketFamily">GSocketFamily</link> family);</programlisting>
+<para>
+Creates a <link linkend="GInetAddress"><type>GInetAddress</type></link> for the "any" address (unassigned/"don't
+care") for <parameter>family</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>family</parameter>&#160;:</term>
+<listitem><simpara> the address family
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GInetAddress"><type>GInetAddress</type></link> corresponding to the "any" address
+for <parameter>family</parameter>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-new-loopback" role="function" condition="since:2.22">
+<title>g_inet_address_new_loopback ()</title>
+<indexterm zone="g-inet-address-new-loopback" role="2.22"><primary sortas="inet_address_new_loopback">g_inet_address_new_loopback</primary></indexterm><programlisting><link linkend="GInetAddress">GInetAddress</link> *      g_inet_address_new_loopback         (<link linkend="GSocketFamily">GSocketFamily</link> family);</programlisting>
+<para>
+Creates a <link linkend="GInetAddress"><type>GInetAddress</type></link> for the loopback address for <parameter>family</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>family</parameter>&#160;:</term>
+<listitem><simpara> the address family
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GInetAddress"><type>GInetAddress</type></link> corresponding to the loopback address
+for <parameter>family</parameter>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-to-bytes" role="function" condition="since:2.22">
+<title>g_inet_address_to_bytes ()</title>
+<indexterm zone="g-inet-address-to-bytes" role="2.22"><primary sortas="inet_address_to_bytes">g_inet_address_to_bytes</primary></indexterm><programlisting>const <link linkend="guint8">guint8</link> *      g_inet_address_to_bytes             (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Gets the raw binary address data from <parameter>address</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a pointer to an internal array of the bytes in <parameter>address</parameter>,
+which should not be modified, stored, or freed. The size of this
+array can be gotten with <link linkend="g-inet-address-get-native-size"><function>g_inet_address_get_native_size()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-native-size" role="function" condition="since:2.22">
+<title>g_inet_address_get_native_size ()</title>
+<indexterm zone="g-inet-address-get-native-size" role="2.22"><primary sortas="inet_address_get_native_size">g_inet_address_get_native_size</primary></indexterm><programlisting><link linkend="gsize">gsize</link>               g_inet_address_get_native_size      (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Gets the size of the native raw binary address for <parameter>address</parameter>. This
+is the size of the data that you get from <link linkend="g-inet-address-to-bytes"><function>g_inet_address_to_bytes()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the number of bytes used for the native version of <parameter>address</parameter>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-to-string" role="function" condition="since:2.22">
+<title>g_inet_address_to_string ()</title>
+<indexterm zone="g-inet-address-to-string" role="2.22"><primary sortas="inet_address_to_string">g_inet_address_to_string</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             g_inet_address_to_string            (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Converts <parameter>address</parameter> to string form.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a representation of <parameter>address</parameter> as a string, which should be
+freed after use.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-family" role="function" condition="since:2.22">
+<title>g_inet_address_get_family ()</title>
+<indexterm zone="g-inet-address-get-family" role="2.22"><primary sortas="inet_address_get_family">g_inet_address_get_family</primary></indexterm><programlisting><link linkend="GSocketFamily">GSocketFamily</link>       g_inet_address_get_family           (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Gets <parameter>address</parameter>'s family</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <parameter>address</parameter>'s family
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-is-any" role="function" condition="since:2.22">
+<title>g_inet_address_get_is_any ()</title>
+<indexterm zone="g-inet-address-get-is-any" role="2.22"><primary sortas="inet_address_get_is_any">g_inet_address_get_is_any</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_inet_address_get_is_any           (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Tests whether <parameter>address</parameter> is the "any" address for its family.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>address</parameter> is the "any" address for its family.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-is-loopback" role="function" condition="since:2.22">
+<title>g_inet_address_get_is_loopback ()</title>
+<indexterm zone="g-inet-address-get-is-loopback" role="2.22"><primary sortas="inet_address_get_is_loopback">g_inet_address_get_is_loopback</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_inet_address_get_is_loopback      (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Tests whether <parameter>address</parameter> is the loopback address for its family.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>address</parameter> is the loopback address for its family.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-is-link-local" role="function" condition="since:2.22">
+<title>g_inet_address_get_is_link_local ()</title>
+<indexterm zone="g-inet-address-get-is-link-local" role="2.22"><primary sortas="inet_address_get_is_link_local">g_inet_address_get_is_link_local</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_inet_address_get_is_link_local    (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Tests whether <parameter>address</parameter> is a link-local address (that is, if it
+identifies a host on a local network that is not connected to the
+Internet).</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>address</parameter> is a link-local address.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-is-site-local" role="function" condition="since:2.22">
+<title>g_inet_address_get_is_site_local ()</title>
+<indexterm zone="g-inet-address-get-is-site-local" role="2.22"><primary sortas="inet_address_get_is_site_local">g_inet_address_get_is_site_local</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_inet_address_get_is_site_local    (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Tests whether <parameter>address</parameter> is a site-local address such as 10.0.0.1
+(that is, the address identifies a host on a local network that can
+not be reached directly from the Internet, but which may have
+outgoing Internet connectivity via a NAT or firewall).</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>address</parameter> is a site-local address.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-is-multicast" role="function" condition="since:2.22">
+<title>g_inet_address_get_is_multicast ()</title>
+<indexterm zone="g-inet-address-get-is-multicast" role="2.22"><primary sortas="inet_address_get_is_multicast">g_inet_address_get_is_multicast</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_inet_address_get_is_multicast     (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Tests whether <parameter>address</parameter> is a multicast address.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>address</parameter> is a multicast address.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-is-mc-link-local" role="function" condition="since:2.22">
+<title>g_inet_address_get_is_mc_link_local ()</title>
+<indexterm zone="g-inet-address-get-is-mc-link-local" role="2.22"><primary sortas="inet_address_get_is_mc_link_local">g_inet_address_get_is_mc_link_local</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_inet_address_get_is_mc_link_local (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Tests whether <parameter>address</parameter> is a link-local multicast address.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>address</parameter> is a link-local multicast address.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-is-mc-node-local" role="function" condition="since:2.22">
+<title>g_inet_address_get_is_mc_node_local ()</title>
+<indexterm zone="g-inet-address-get-is-mc-node-local" role="2.22"><primary sortas="inet_address_get_is_mc_node_local">g_inet_address_get_is_mc_node_local</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_inet_address_get_is_mc_node_local (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Tests whether <parameter>address</parameter> is a node-local multicast address.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>address</parameter> is a node-local multicast address.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-is-mc-site-local" role="function" condition="since:2.22">
+<title>g_inet_address_get_is_mc_site_local ()</title>
+<indexterm zone="g-inet-address-get-is-mc-site-local" role="2.22"><primary sortas="inet_address_get_is_mc_site_local">g_inet_address_get_is_mc_site_local</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_inet_address_get_is_mc_site_local (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Tests whether <parameter>address</parameter> is a site-local multicast address.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>address</parameter> is a site-local multicast address.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-is-mc-org-local" role="function" condition="since:2.22">
+<title>g_inet_address_get_is_mc_org_local ()</title>
+<indexterm zone="g-inet-address-get-is-mc-org-local" role="2.22"><primary sortas="inet_address_get_is_mc_org_local">g_inet_address_get_is_mc_org_local</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_inet_address_get_is_mc_org_local  (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Tests whether <parameter>address</parameter> is an organization-local multicast address.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>address</parameter> is an organization-local multicast address.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-address-get-is-mc-global" role="function" condition="since:2.22">
+<title>g_inet_address_get_is_mc_global ()</title>
+<indexterm zone="g-inet-address-get-is-mc-global" role="2.22"><primary sortas="inet_address_get_is_mc_global">g_inet_address_get_is_mc_global</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_inet_address_get_is_mc_global     (<link linkend="GInetAddress">GInetAddress</link> *address);</programlisting>
+<para>
+Tests whether <parameter>address</parameter> is a global multicast address.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>address</parameter> is a global multicast address.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+<refsect1 id="GInetAddress.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GInetAddress--bytes" role="property"><title>The <literal>&quot;bytes&quot;</literal> property</title>
+<indexterm zone="GInetAddress--bytes"><primary sortas="InetAddress:bytes">GInetAddress:bytes</primary></indexterm><programlisting>  &quot;bytes&quot;                    <link linkend="gpointer">gpointer</link>              : Read / Write / Construct Only</programlisting>
+<para>The raw address data.</para></refsect2>
+<refsect2 id="GInetAddress--family" role="property"><title>The <literal>&quot;family&quot;</literal> property</title>
+<indexterm zone="GInetAddress--family"><primary sortas="InetAddress:family">GInetAddress:family</primary></indexterm><programlisting>  &quot;family&quot;                   <link linkend="GSocketFamily">GSocketFamily</link>         : Read / Write / Construct Only</programlisting>
+<para>The address family (IPv4 or IPv6).</para><para>Default value: G_SOCKET_FAMILY_INVALID</para>
+</refsect2>
+<refsect2 id="GInetAddress--is-any" role="property"><title>The <literal>&quot;is-any&quot;</literal> property</title>
+<indexterm zone="GInetAddress--is-any" role="2.22"><primary sortas="InetAddress:is-any">GInetAddress:is-any</primary></indexterm><programlisting>  &quot;is-any&quot;                   <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether this is the "any" address for its family.
+See <link linkend="g-inet-address-get-is-any"><function>g_inet_address_get_is_any()</function></link>.</para>
+<para>
+</para><para>Default value: FALSE</para>
+<para>Since 2.22</para>
+</refsect2>
+<refsect2 id="GInetAddress--is-link-local" role="property"><title>The <literal>&quot;is-link-local&quot;</literal> property</title>
+<indexterm zone="GInetAddress--is-link-local" role="2.22"><primary sortas="InetAddress:is-link-local">GInetAddress:is-link-local</primary></indexterm><programlisting>  &quot;is-link-local&quot;            <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether this is a link-local address.
+See <link linkend="g-inet-address-get-is-link-local"><function>g_inet_address_get_is_link_local()</function></link>.</para>
+<para>
+</para><para>Default value: FALSE</para>
+<para>Since 2.22</para>
+</refsect2>
+<refsect2 id="GInetAddress--is-loopback" role="property"><title>The <literal>&quot;is-loopback&quot;</literal> property</title>
+<indexterm zone="GInetAddress--is-loopback" role="2.22"><primary sortas="InetAddress:is-loopback">GInetAddress:is-loopback</primary></indexterm><programlisting>  &quot;is-loopback&quot;              <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether this is the loopback address for its family.
+See <link linkend="g-inet-address-get-is-loopback"><function>g_inet_address_get_is_loopback()</function></link>.</para>
+<para>
+</para><para>Default value: FALSE</para>
+<para>Since 2.22</para>
+</refsect2>
+<refsect2 id="GInetAddress--is-mc-global" role="property"><title>The <literal>&quot;is-mc-global&quot;</literal> property</title>
+<indexterm zone="GInetAddress--is-mc-global" role="2.22"><primary sortas="InetAddress:is-mc-global">GInetAddress:is-mc-global</primary></indexterm><programlisting>  &quot;is-mc-global&quot;             <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether this is a global multicast address.
+See <link linkend="g-inet-address-get-is-mc-global"><function>g_inet_address_get_is_mc_global()</function></link>.</para>
+<para>
+</para><para>Default value: FALSE</para>
+<para>Since 2.22</para>
+</refsect2>
+<refsect2 id="GInetAddress--is-mc-link-local" role="property"><title>The <literal>&quot;is-mc-link-local&quot;</literal> property</title>
+<indexterm zone="GInetAddress--is-mc-link-local" role="2.22"><primary sortas="InetAddress:is-mc-link-local">GInetAddress:is-mc-link-local</primary></indexterm><programlisting>  &quot;is-mc-link-local&quot;         <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether this is a link-local multicast address.
+See <link linkend="g-inet-address-get-is-mc-link-local"><function>g_inet_address_get_is_mc_link_local()</function></link>.</para>
+<para>
+</para><para>Default value: FALSE</para>
+<para>Since 2.22</para>
+</refsect2>
+<refsect2 id="GInetAddress--is-mc-node-local" role="property"><title>The <literal>&quot;is-mc-node-local&quot;</literal> property</title>
+<indexterm zone="GInetAddress--is-mc-node-local" role="2.22"><primary sortas="InetAddress:is-mc-node-local">GInetAddress:is-mc-node-local</primary></indexterm><programlisting>  &quot;is-mc-node-local&quot;         <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether this is a node-local multicast address.
+See <link linkend="g-inet-address-get-is-mc-node-local"><function>g_inet_address_get_is_mc_node_local()</function></link>.</para>
+<para>
+</para><para>Default value: FALSE</para>
+<para>Since 2.22</para>
+</refsect2>
+<refsect2 id="GInetAddress--is-mc-org-local" role="property"><title>The <literal>&quot;is-mc-org-local&quot;</literal> property</title>
+<indexterm zone="GInetAddress--is-mc-org-local" role="2.22"><primary sortas="InetAddress:is-mc-org-local">GInetAddress:is-mc-org-local</primary></indexterm><programlisting>  &quot;is-mc-org-local&quot;          <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether this is an organization-local multicast address.
+See <link linkend="g-inet-address-get-is-mc-org-local"><function>g_inet_address_get_is_mc_org_local()</function></link>.</para>
+<para>
+</para><para>Default value: FALSE</para>
+<para>Since 2.22</para>
+</refsect2>
+<refsect2 id="GInetAddress--is-mc-site-local" role="property"><title>The <literal>&quot;is-mc-site-local&quot;</literal> property</title>
+<indexterm zone="GInetAddress--is-mc-site-local" role="2.22"><primary sortas="InetAddress:is-mc-site-local">GInetAddress:is-mc-site-local</primary></indexterm><programlisting>  &quot;is-mc-site-local&quot;         <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether this is a site-local multicast address.
+See <link linkend="g-inet-address-get-is-mc-site-local"><function>g_inet_address_get_is_mc_site_local()</function></link>.</para>
+<para>
+</para><para>Default value: FALSE</para>
+<para>Since 2.22</para>
+</refsect2>
+<refsect2 id="GInetAddress--is-multicast" role="property"><title>The <literal>&quot;is-multicast&quot;</literal> property</title>
+<indexterm zone="GInetAddress--is-multicast" role="2.22"><primary sortas="InetAddress:is-multicast">GInetAddress:is-multicast</primary></indexterm><programlisting>  &quot;is-multicast&quot;             <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether this is a multicast address.
+See <link linkend="g-inet-address-get-is-multicast"><function>g_inet_address_get_is_multicast()</function></link>.</para>
+<para>
+</para><para>Default value: FALSE</para>
+<para>Since 2.22</para>
+</refsect2>
+<refsect2 id="GInetAddress--is-site-local" role="property"><title>The <literal>&quot;is-site-local&quot;</literal> property</title>
+<indexterm zone="GInetAddress--is-site-local" role="2.22"><primary sortas="InetAddress:is-site-local">GInetAddress:is-site-local</primary></indexterm><programlisting>  &quot;is-site-local&quot;            <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether this is a site-local address.
+See <link linkend="g-inet-address-get-is-loopback"><function>g_inet_address_get_is_loopback()</function></link>.</para>
+<para>
+</para><para>Default value: FALSE</para>
+<para>Since 2.22</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>

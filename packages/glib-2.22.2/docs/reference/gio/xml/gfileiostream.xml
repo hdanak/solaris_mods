@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GFileIOStream">
+<refmeta>
+<refentrytitle role="top_of_page" id="GFileIOStream.top_of_page">GFileIOStream</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GFileIOStream</refname>
+<refpurpose>File read and write streaming operations</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GFileIOStream.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;gio/gio.h&gt;
+
+                    <link linkend="GFileIOStream-struct">GFileIOStream</link>;
+<link linkend="char">char</link> *              <link linkend="g-file-io-stream-get-etag">g_file_io_stream_get_etag</link>           (<link linkend="GFileIOStream">GFileIOStream</link> *stream);
+<link linkend="GFileInfo">GFileInfo</link> *         <link linkend="g-file-io-stream-query-info">g_file_io_stream_query_info</link>         (<link linkend="GFileIOStream">GFileIOStream</link> *stream,
+                                                         const <link linkend="char">char</link> *attributes,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="g-file-io-stream-query-info-async">g_file_io_stream_query_info_async</link>   (<link linkend="GFileIOStream">GFileIOStream</link> *stream,
+                                                         const <link linkend="char">char</link> *attributes,
+                                                         <link linkend="int">int</link> io_priority,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GFileInfo">GFileInfo</link> *         <link linkend="g-file-io-stream-query-info-finish">g_file_io_stream_query_info_finish</link>  (<link linkend="GFileIOStream">GFileIOStream</link> *stream,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **error);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GFileIOStream.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GIOStream">GIOStream</link>
+         +----GFileIOStream
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GFileIOStream.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GFileIOStream implements
+ <link linkend="GSeekable">GSeekable</link>.</para>
+</refsect1>
+
+
+
+
+
+<refsect1 id="GFileIOStream.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+GFileIOStream provides io streams that both read and write to the same
+file handle.
+</para>
+<para>
+GFileIOStream implements <link linkend="GSeekable"><type>GSeekable</type></link>, which allows the io
+stream to jump to arbitrary positions in the file and to truncate
+the file, provided the filesystem of the file supports these
+operations.
+</para>
+<para>
+To find the position of a file io stream, use
+<link linkend="g-seekable-tell"><function>g_seekable_tell()</function></link>.
+</para>
+<para>
+To find out if a file io stream supports seeking, use <link linkend="g-seekable-can-seek"><function>g_seekable_can_seek()</function></link>.
+To position a file io stream, use <link linkend="g-seekable-seek"><function>g_seekable_seek()</function></link>.
+To find out if a file io stream supports truncating, use
+<link linkend="g-seekable-can-truncate"><function>g_seekable_can_truncate()</function></link>. To truncate a file io
+stream, use <link linkend="g-seekable-truncate"><function>g_seekable_truncate()</function></link>.
+</para>
+<para>
+The default implementation of all the <link linkend="GFileIOStream"><type>GFileIOStream</type></link> operations
+and the implementation of <link linkend="GSeekable"><type>GSeekable</type></link> just call into the same operations
+on the output stream.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GFileIOStream.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GFileIOStream-struct" role="struct">
+<title>GFileIOStream</title>
+<indexterm zone="GFileIOStream-struct"><primary sortas="FileIOStream">GFileIOStream</primary></indexterm><programlisting>typedef struct _GFileIOStream GFileIOStream;</programlisting>
+<para>
+A subclass of GIOStream for opened files. This adds
+a few file-specific operations and seeking and truncating.
+</para>
+<para>
+<link linkend="GFileIOStream"><type>GFileIOStream</type></link> implements GSeekable.</para>
+<para>
+</para></refsect2>
+<refsect2 id="g-file-io-stream-get-etag" role="function" condition="since:2.22">
+<title>g_file_io_stream_get_etag ()</title>
+<indexterm zone="g-file-io-stream-get-etag" role="2.22"><primary sortas="file_io_stream_get_etag">g_file_io_stream_get_etag</primary></indexterm><programlisting><link linkend="char">char</link> *              g_file_io_stream_get_etag           (<link linkend="GFileIOStream">GFileIOStream</link> *stream);</programlisting>
+<para>
+Gets the entity tag for the file when it has been written.
+This must be called after the stream has been written
+and closed, as the etag can change while writing.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GFileIOStream"><type>GFileIOStream</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the entity tag for the stream.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-file-io-stream-query-info" role="function" condition="since:2.22">
+<title>g_file_io_stream_query_info ()</title>
+<indexterm zone="g-file-io-stream-query-info" role="2.22"><primary sortas="file_io_stream_query_info">g_file_io_stream_query_info</primary></indexterm><programlisting><link linkend="GFileInfo">GFileInfo</link> *         g_file_io_stream_query_info         (<link linkend="GFileIOStream">GFileIOStream</link> *stream,
+                                                         const <link linkend="char">char</link> *attributes,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Queries a file io stream for the given <parameter>attributes</parameter>.
+This function blocks while querying the stream. For the asynchronous
+version of this function, see <link linkend="g-file-io-stream-query-info-async"><function>g_file_io_stream_query_info_async()</function></link>.
+While the stream is blocked, the stream will set the pending flag
+internally, and any other operations on the stream will fail with
+<link linkend="G-IO-ERROR-PENDING--CAPS"><literal>G_IO_ERROR_PENDING</literal></link>.
+</para>
+<para>
+Can fail if the stream was already closed (with <parameter>error</parameter> being set to
+<link linkend="G-IO-ERROR-CLOSED--CAPS"><literal>G_IO_ERROR_CLOSED</literal></link>), the stream has pending operations (with <parameter>error</parameter> being
+set to <link linkend="G-IO-ERROR-PENDING--CAPS"><literal>G_IO_ERROR_PENDING</literal></link>), or if querying info is not supported for
+the stream's interface (with <parameter>error</parameter> being set to <link linkend="G-IO-ERROR-NOT-SUPPORTED--CAPS"><literal>G_IO_ERROR_NOT_SUPPORTED</literal></link>). I
+all cases of failure, <link linkend="NULL--CAPS"><literal>NULL</literal></link> will be returned.
+</para>
+<para>
+If <parameter>cancellable</parameter> is not <link linkend="NULL--CAPS"><literal>NULL</literal></link>, then the operation can be cancelled by
+triggering the cancellable object from another thread. If the operation
+was cancelled, the error <link linkend="G-IO-ERROR-CANCELLED--CAPS"><literal>G_IO_ERROR_CANCELLED</literal></link> will be set, and <link linkend="NULL--CAPS"><literal>NULL</literal></link> will
+be returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GFileIOStream"><type>GFileIOStream</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> a file attribute query string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link>, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GFileInfo"><type>GFileInfo</type></link> for the <parameter>stream</parameter>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-file-io-stream-query-info-async" role="function" condition="since:2.22">
+<title>g_file_io_stream_query_info_async ()</title>
+<indexterm zone="g-file-io-stream-query-info-async" role="2.22"><primary sortas="file_io_stream_query_info_async">g_file_io_stream_query_info_async</primary></indexterm><programlisting><link linkend="void">void</link>                g_file_io_stream_query_info_async   (<link linkend="GFileIOStream">GFileIOStream</link> *stream,
+                                                         const <link linkend="char">char</link> *attributes,
+                                                         <link linkend="int">int</link> io_priority,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Asynchronously queries the <parameter>stream</parameter> for a <link linkend="GFileInfo"><type>GFileInfo</type></link>. When completed,
+<parameter>callback</parameter> will be called with a <link linkend="GAsyncResult"><type>GAsyncResult</type></link> which can be used to
+finish the operation with <link linkend="g-file-io-stream-query-info-finish"><function>g_file_io_stream_query_info_finish()</function></link>.
+</para>
+<para>
+For the synchronous version of this function, see
+<link linkend="g-file-io-stream-query-info"><function>g_file_io_stream_query_info()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GFileIOStream"><type>GFileIOStream</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> a file attribute query string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>io_priority</parameter>&#160;:</term>
+<listitem><simpara> the <link linkend="gio-GIOScheduler">I/O priority</link>
+    of the request.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> callback to call when the request is satisfied
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> the data to pass to callback function
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-file-io-stream-query-info-finish" role="function" condition="since:2.22">
+<title>g_file_io_stream_query_info_finish ()</title>
+<indexterm zone="g-file-io-stream-query-info-finish" role="2.22"><primary sortas="file_io_stream_query_info_finish">g_file_io_stream_query_info_finish</primary></indexterm><programlisting><link linkend="GFileInfo">GFileInfo</link> *         g_file_io_stream_query_info_finish  (<link linkend="GFileIOStream">GFileIOStream</link> *stream,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Finalizes the asynchronous query started
+by <link linkend="g-file-io-stream-query-info-async"><function>g_file_io_stream_query_info_async()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GFileIOStream"><type>GFileIOStream</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GAsyncResult"><type>GAsyncResult</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link>, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A <link linkend="GFileInfo"><type>GFileInfo</type></link> for the finished query.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+
+
+
+<refsect1 id="GFileIOStream.see-also">
+<title>See Also</title>
+#GIOStream, <link linkend="GFileInputStream"><type>GFileInputStream</type></link>, <link linkend="GFileOutputStream"><type>GFileOutputStream</type></link>, <link linkend="GSeekable"><type>GSeekable</type></link>
+</refsect1>
+
+</refentry>

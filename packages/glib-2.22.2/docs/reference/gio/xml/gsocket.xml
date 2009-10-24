@@ -1,0 +1,1571 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GSocket">
+<refmeta>
+<refentrytitle role="top_of_page" id="GSocket.top_of_page">GSocket</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GSocket</refname>
+<refpurpose>Low-level socket object</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GSocket.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;gio/gio.h&gt;
+
+                    <link linkend="GSocket-struct">GSocket</link>;
+<link linkend="gboolean">gboolean</link>            (<link linkend="GSocketSourceFunc">*GSocketSourceFunc</link>)                (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GIOCondition">GIOCondition</link> condition,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+enum                <link linkend="GSocketType">GSocketType</link>;
+enum                <link linkend="GSocketProtocol">GSocketProtocol</link>;
+enum                <link linkend="GSocketMsgFlags">GSocketMsgFlags</link>;
+                    <link linkend="GInputVector">GInputVector</link>;
+                    <link linkend="GOutputVector">GOutputVector</link>;
+<link linkend="GSocket">GSocket</link> *           <link linkend="g-socket-new">g_socket_new</link>                        (<link linkend="GSocketFamily">GSocketFamily</link> family,
+                                                         <link linkend="GSocketType">GSocketType</link> type,
+                                                         <link linkend="GSocketProtocol">GSocketProtocol</link> protocol,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="GSocket">GSocket</link> *           <link linkend="g-socket-new-from-fd">g_socket_new_from_fd</link>                (<link linkend="gint">gint</link> fd,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-bind">g_socket_bind</link>                       (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> *address,
+                                                         <link linkend="gboolean">gboolean</link> allow_reuse,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-listen">g_socket_listen</link>                     (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="GSocket">GSocket</link> *           <link linkend="g-socket-accept">g_socket_accept</link>                     (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-connect">g_socket_connect</link>                    (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> *address,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-check-connect-result">g_socket_check_connect_result</link>       (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gssize">gssize</link>              <link linkend="g-socket-receive">g_socket_receive</link>                    (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="gchar">gchar</link> *buffer,
+                                                         <link linkend="gsize">gsize</link> size,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gssize">gssize</link>              <link linkend="g-socket-receive-from">g_socket_receive_from</link>               (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> **address,
+                                                         <link linkend="gchar">gchar</link> *buffer,
+                                                         <link linkend="gsize">gsize</link> size,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gssize">gssize</link>              <link linkend="g-socket-receive-message">g_socket_receive_message</link>            (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> **address,
+                                                         <link linkend="GInputVector">GInputVector</link> *vectors,
+                                                         <link linkend="gint">gint</link> num_vectors,
+                                                         <link linkend="GSocketControlMessage">GSocketControlMessage</link> ***messages,
+                                                         <link linkend="gint">gint</link> *num_messages,
+                                                         <link linkend="gint">gint</link> *flags,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gssize">gssize</link>              <link linkend="g-socket-send">g_socket_send</link>                       (<link linkend="GSocket">GSocket</link> *socket,
+                                                         const <link linkend="gchar">gchar</link> *buffer,
+                                                         <link linkend="gsize">gsize</link> size,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gssize">gssize</link>              <link linkend="g-socket-send-to">g_socket_send_to</link>                    (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> *address,
+                                                         const <link linkend="gchar">gchar</link> *buffer,
+                                                         <link linkend="gsize">gsize</link> size,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gssize">gssize</link>              <link linkend="g-socket-send-message">g_socket_send_message</link>               (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> *address,
+                                                         <link linkend="GOutputVector">GOutputVector</link> *vectors,
+                                                         <link linkend="gint">gint</link> num_vectors,
+                                                         <link linkend="GSocketControlMessage">GSocketControlMessage</link> **messages,
+                                                         <link linkend="gint">gint</link> num_messages,
+                                                         <link linkend="gint">gint</link> flags,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-close">g_socket_close</link>                      (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-is-closed">g_socket_is_closed</link>                  (<link linkend="GSocket">GSocket</link> *socket);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-shutdown">g_socket_shutdown</link>                   (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="gboolean">gboolean</link> shutdown_read,
+                                                         <link linkend="gboolean">gboolean</link> shutdown_write,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-is-connected">g_socket_is_connected</link>               (<link linkend="GSocket">GSocket</link> *socket);
+<link linkend="GSource">GSource</link> *           <link linkend="g-socket-create-source">g_socket_create_source</link>              (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GIOCondition">GIOCondition</link> condition,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable);
+<link linkend="GIOCondition">GIOCondition</link>        <link linkend="g-socket-condition-check">g_socket_condition_check</link>            (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GIOCondition">GIOCondition</link> condition);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-condition-wait">g_socket_condition_wait</link>             (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GIOCondition">GIOCondition</link> condition,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="g-socket-set-listen-backlog">g_socket_set_listen_backlog</link>         (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="gint">gint</link> backlog);
+<link linkend="gint">gint</link>                <link linkend="g-socket-get-listen-backlog">g_socket_get_listen_backlog</link>         (<link linkend="GSocket">GSocket</link> *socket);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-get-blocking">g_socket_get_blocking</link>               (<link linkend="GSocket">GSocket</link> *socket);
+<link linkend="void">void</link>                <link linkend="g-socket-set-blocking">g_socket_set_blocking</link>               (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="gboolean">gboolean</link> blocking);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-get-keepalive">g_socket_get_keepalive</link>              (<link linkend="GSocket">GSocket</link> *socket);
+<link linkend="void">void</link>                <link linkend="g-socket-set-keepalive">g_socket_set_keepalive</link>              (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="gboolean">gboolean</link> keepalive);
+<link linkend="GSocketFamily">GSocketFamily</link>       <link linkend="g-socket-get-family">g_socket_get_family</link>                 (<link linkend="GSocket">GSocket</link> *socket);
+<link linkend="int">int</link>                 <link linkend="g-socket-get-fd">g_socket_get_fd</link>                     (<link linkend="GSocket">GSocket</link> *socket);
+<link linkend="GSocketAddress">GSocketAddress</link> *    <link linkend="g-socket-get-local-address">g_socket_get_local_address</link>          (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="GSocketProtocol">GSocketProtocol</link>     <link linkend="g-socket-get-protocol">g_socket_get_protocol</link>               (<link linkend="GSocket">GSocket</link> *socket);
+<link linkend="GSocketAddress">GSocketAddress</link> *    <link linkend="g-socket-get-remote-address">g_socket_get_remote_address</link>         (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="GSocketType">GSocketType</link>         <link linkend="g-socket-get-socket-type">g_socket_get_socket_type</link>            (<link linkend="GSocket">GSocket</link> *socket);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-socket-speaks-ipv4">g_socket_speaks_ipv4</link>                (<link linkend="GSocket">GSocket</link> *socket);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GSocket.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GSocket
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GSocket.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GSocket implements
+ <link linkend="GInitable">GInitable</link>.</para>
+</refsect1>
+
+
+<refsect1 id="GSocket.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GSocket--blocking">blocking</link>&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="GSocket--family">family</link>&quot;                   <link linkend="GSocketFamily">GSocketFamily</link>         : Read / Write / Construct Only
+  &quot;<link linkend="GSocket--fd">fd</link>&quot;                       <link linkend="gint">gint</link>                  : Read / Write / Construct Only
+  &quot;<link linkend="GSocket--keepalive">keepalive</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="GSocket--listen-backlog">listen-backlog</link>&quot;           <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="GSocket--local-address">local-address</link>&quot;            <link linkend="GSocketAddress">GSocketAddress</link>*       : Read
+  &quot;<link linkend="GSocket--protocol">protocol</link>&quot;                 <link linkend="GSocketProtocol">GSocketProtocol</link>       : Read / Write / Construct Only
+  &quot;<link linkend="GSocket--remote-address">remote-address</link>&quot;           <link linkend="GSocketAddress">GSocketAddress</link>*       : Read
+  &quot;<link linkend="GSocket--type">type</link>&quot;                     <link linkend="GSocketType">GSocketType</link>           : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GSocket.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A <link linkend="GSocket"><type>GSocket</type></link> is a low-level networking primitive. It is a more or less
+direct mapping of the BSD socket API in a portable GObject based API.
+It supports both the UNIX socket implementations and winsock2 on Windows.
+</para>
+<para>
+<link linkend="GSocket"><type>GSocket</type></link> is the platform independent base upon which the higher level
+network primitives are based. Applications are not typically meant to
+use it directly, but rather through classes like <link linkend="GSocketClient"><type>GSocketClient</type></link>,
+<link linkend="GSocketService"><type>GSocketService</type></link> and <link linkend="GSocketConnection"><type>GSocketConnection</type></link>. However there may be cases where
+direct use of <link linkend="GSocket"><type>GSocket</type></link> is useful.
+</para>
+<para>
+<link linkend="GSocket"><type>GSocket</type></link> implements the <link linkend="GInitable"><type>GInitable</type></link> interface, so if it is manually constructed
+by e.g. <link linkend="g-object-new"><function>g_object_new()</function></link> you must call <link linkend="g-initable-init"><function>g_initable_init()</function></link> and check the
+results before using the object. This is done automatically in
+<link linkend="g-socket-new"><function>g_socket_new()</function></link> and <link linkend="g-socket-new-from-fd"><function>g_socket_new_from_fd()</function></link>, so these functions can return
+<link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</para>
+<para>
+Sockets operate in two general modes, blocking or non-blocking. When
+in blocking mode all operations block until the requested operation
+is finished or there is an error. In non-blocking mode all calls that
+would block return immediately with a <link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link> error.
+To know when a call would successfully run you can call <link linkend="g-socket-condition-check"><function>g_socket_condition_check()</function></link>,
+or <link linkend="g-socket-condition-wait"><function>g_socket_condition_wait()</function></link>. You can also use <link linkend="g-socket-create-source"><function>g_socket_create_source()</function></link> and
+attach it to a <link linkend="GMainContext"><type>GMainContext</type></link> to get callbacks when I/O is possible.
+Note that all sockets are always set to non blocking mode in the system, and
+blocking mode is emulated in GSocket.
+</para>
+<para>
+When working in non-blocking mode applications should always be able to
+handle getting a <link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link> error even when some other
+function said that I/O was possible. This can easily happen in case
+of a race condition in the application, but it can also happen for other
+reasons. For instance, on Windows a socket is always seen as writable
+until a write returns <link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link>.
+</para>
+<para>
+<link linkend="GSocket"><type>GSocket</type></link><!-- -->s can be either connection oriented or datagram based.
+For connection oriented types you must first establish a connection by
+either connecting to an address or accepting a connection from another
+address. For connectionless socket types the target/source address is
+specified or received in each I/O operation.
+</para>
+<para>
+All socket file descriptors are set to be close-on-exec.
+</para>
+<para>
+Note that creating a <link linkend="GSocket"><type>GSocket</type></link> causes the signal <link linkend="SIGPIPE--CAPS"><literal>SIGPIPE</literal></link> to be
+ignored for the remainder of the program. If you are writing a
+command-line utility that uses <link linkend="GSocket"><type>GSocket</type></link>, you may need to take into
+account the fact that your program will not automatically be killed
+if it tries to write to <link linkend="stdout"><literal>stdout</literal></link> after it has been closed.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GSocket.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GSocket-struct" role="struct">
+<title>GSocket</title>
+<indexterm zone="GSocket-struct" role="2.22"><primary sortas="Socket">GSocket</primary></indexterm><programlisting>typedef struct _GSocket GSocket;</programlisting>
+<para>
+A lowlevel network socket object.</para>
+<para>
+</para><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="GSocketSourceFunc" role="function" condition="since:2.22">
+<title>GSocketSourceFunc ()</title>
+<indexterm zone="GSocketSourceFunc" role="2.22"><primary sortas="SocketSourceFunc">GSocketSourceFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GSocketSourceFunc)                (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GIOCondition">GIOCondition</link> condition,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+This is the function type of the callback used for the <link linkend="GSource"><type>GSource</type></link>
+returned by <link linkend="g-socket-create-source"><function>g_socket_create_source()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> the <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>condition</parameter>&#160;:</term>
+<listitem><simpara> the current condition at the source fired.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> data passed in by the user.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> it should return <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> if the source should be removed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="GSocketType" role="enum" condition="since:2.22">
+<title>enum GSocketType</title>
+<indexterm zone="GSocketType" role="2.22"><primary sortas="SocketType">GSocketType</primary></indexterm><programlisting>typedef enum
+{
+  G_SOCKET_TYPE_INVALID,
+  G_SOCKET_TYPE_STREAM,
+  G_SOCKET_TYPE_DATAGRAM,
+  G_SOCKET_TYPE_SEQPACKET
+} GSocketType;
+</programlisting>
+<para>
+Flags used when creating a <link linkend="GSocket"><type>GSocket</type></link>. Some protocols may not implement
+all the socket types.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="G-SOCKET-TYPE-INVALID--CAPS" role="constant">
+<term><literal>G_SOCKET_TYPE_INVALID</literal></term>
+<listitem><simpara> Type unknown or wrong
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="G-SOCKET-TYPE-STREAM--CAPS" role="constant">
+<term><literal>G_SOCKET_TYPE_STREAM</literal></term>
+<listitem><simpara> Reliable connection-based byte streams (e.g. TCP).
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="G-SOCKET-TYPE-DATAGRAM--CAPS" role="constant">
+<term><literal>G_SOCKET_TYPE_DATAGRAM</literal></term>
+<listitem><simpara> Connectionless, unreliable datagram passing.
+    (e.g. UDP)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="G-SOCKET-TYPE-SEQPACKET--CAPS" role="constant">
+<term><literal>G_SOCKET_TYPE_SEQPACKET</literal></term>
+<listitem><simpara> Reliable connection-based passing of datagrams
+    of fixed maximum length (e.g. SCTP).
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="GSocketProtocol" role="enum" condition="since:2.22">
+<title>enum GSocketProtocol</title>
+<indexterm zone="GSocketProtocol" role="2.22"><primary sortas="SocketProtocol">GSocketProtocol</primary></indexterm><programlisting>typedef enum {
+  G_SOCKET_PROTOCOL_UNKNOWN = -1,
+  G_SOCKET_PROTOCOL_DEFAULT = 0,
+  G_SOCKET_PROTOCOL_TCP     = 6,
+  G_SOCKET_PROTOCOL_UDP     = 17,
+  G_SOCKET_PROTOCOL_SCTP    = 132
+} GSocketProtocol;
+</programlisting>
+<para>
+A protocol identifier is specified when creating a <link linkend="GSocket"><type>GSocket</type></link>, which is a
+family/type specific identifier, where 0 means the default protocol for
+the particular family/type.
+</para>
+<para>
+This enum contains a set of commonly available and used protocols. You
+can also pass any other identifiers handled by the platform in order to
+use protocols not listed here.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="G-SOCKET-PROTOCOL-UNKNOWN--CAPS" role="constant">
+<term><literal>G_SOCKET_PROTOCOL_UNKNOWN</literal></term>
+<listitem><simpara> The protocol type is unknown
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="G-SOCKET-PROTOCOL-DEFAULT--CAPS" role="constant">
+<term><literal>G_SOCKET_PROTOCOL_DEFAULT</literal></term>
+<listitem><simpara> The default protocol for the family/type
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="G-SOCKET-PROTOCOL-TCP--CAPS" role="constant">
+<term><literal>G_SOCKET_PROTOCOL_TCP</literal></term>
+<listitem><simpara> TCP over IP
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="G-SOCKET-PROTOCOL-UDP--CAPS" role="constant">
+<term><literal>G_SOCKET_PROTOCOL_UDP</literal></term>
+<listitem><simpara> UDP over IP
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="G-SOCKET-PROTOCOL-SCTP--CAPS" role="constant">
+<term><literal>G_SOCKET_PROTOCOL_SCTP</literal></term>
+<listitem><simpara> SCTP over IP
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="GSocketMsgFlags" role="enum" condition="since:2.22">
+<title>enum GSocketMsgFlags</title>
+<indexterm zone="GSocketMsgFlags" role="2.22"><primary sortas="SocketMsgFlags">GSocketMsgFlags</primary></indexterm><programlisting>typedef enum
+{
+  G_SOCKET_MSG_NONE,
+  G_SOCKET_MSG_OOB = GLIB_SYSDEF_MSG_OOB,
+  G_SOCKET_MSG_PEEK = GLIB_SYSDEF_MSG_PEEK,
+  G_SOCKET_MSG_DONTROUTE = GLIB_SYSDEF_MSG_DONTROUTE
+} GSocketMsgFlags;
+</programlisting>
+<para>
+Flags used in <link linkend="g-socket-receive-message"><function>g_socket_receive_message()</function></link> and <link linkend="g-socket-send-message"><function>g_socket_send_message()</function></link>.
+The flags listed in the enum are some commonly available flags, but the
+values used for them are the same as on the platform, and any other flags
+are passed in/out as is. So to use a platform specific flag, just include
+the right system header and pass in the flag.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="G-SOCKET-MSG-NONE--CAPS" role="constant">
+<term><literal>G_SOCKET_MSG_NONE</literal></term>
+<listitem><simpara> No flags.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="G-SOCKET-MSG-OOB--CAPS" role="constant">
+<term><literal>G_SOCKET_MSG_OOB</literal></term>
+<listitem><simpara> Request to send/receive out of band data.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="G-SOCKET-MSG-PEEK--CAPS" role="constant">
+<term><literal>G_SOCKET_MSG_PEEK</literal></term>
+<listitem><simpara> Read data from the socket without removing it from
+    the queue.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="G-SOCKET-MSG-DONTROUTE--CAPS" role="constant">
+<term><literal>G_SOCKET_MSG_DONTROUTE</literal></term>
+<listitem><simpara> Don't use a gateway to send out the packet,
+    only send to hosts on directly connected networks.
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="GInputVector" role="struct" condition="since:2.22">
+<title>GInputVector</title>
+<indexterm zone="GInputVector" role="2.22"><primary sortas="InputVector">GInputVector</primary></indexterm><programlisting>typedef struct {
+  gpointer buffer;
+  gsize size;
+} GInputVector;
+</programlisting>
+<para>
+Structure used for scatter/gather data input.
+You generally pass in an array of <link linkend="GInputVector"><type>GInputVector</type></link><!-- -->s
+and the operation will store the read data starting in the
+first buffer, switching to the next as needed.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="gpointer">gpointer</link>&#160;<structfield>buffer</structfield>;</term>
+<listitem><simpara> Pointer to a buffer where data will be written.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gsize">gsize</link>&#160;<structfield>size</structfield>;</term>
+<listitem><simpara> the available size in <parameter>buffer</parameter>.
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="GOutputVector" role="struct" condition="since:2.22">
+<title>GOutputVector</title>
+<indexterm zone="GOutputVector" role="2.22"><primary sortas="OutputVector">GOutputVector</primary></indexterm><programlisting>typedef struct {
+  gconstpointer buffer;
+  gsize size;
+} GOutputVector;
+</programlisting>
+<para>
+Structure used for scatter/gather data output.
+You generally pass in an array of <link linkend="GOutputVector"><type>GOutputVector</type></link><!-- -->s
+and the operation will use all the buffers as if they were
+one buffer.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="gconstpointer">gconstpointer</link>&#160;<structfield>buffer</structfield>;</term>
+<listitem><simpara> Pointer to a buffer of data to read.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gsize">gsize</link>&#160;<structfield>size</structfield>;</term>
+<listitem><simpara> the size of <parameter>buffer</parameter>.
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-new" role="function" condition="since:2.22">
+<title>g_socket_new ()</title>
+<indexterm zone="g-socket-new" role="2.22"><primary sortas="socket_new">g_socket_new</primary></indexterm><programlisting><link linkend="GSocket">GSocket</link> *           g_socket_new                        (<link linkend="GSocketFamily">GSocketFamily</link> family,
+                                                         <link linkend="GSocketType">GSocketType</link> type,
+                                                         <link linkend="GSocketProtocol">GSocketProtocol</link> protocol,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Creates a new <link linkend="GSocket"><type>GSocket</type></link> with the defined family, type and protocol.
+If <parameter>protocol</parameter> is 0 (<link linkend="G-SOCKET-PROTOCOL-DEFAULT--CAPS"><literal>G_SOCKET_PROTOCOL_DEFAULT</literal></link>) the default protocol type
+for the family and type is used.
+</para>
+<para>
+The <parameter>protocol</parameter> is a family and type specific int that specifies what
+kind of protocol to use. <link linkend="GSocketProtocol"><type>GSocketProtocol</type></link> lists several common ones.
+Many families only support one protocol, and use 0 for this, others
+support several and using 0 means to use the default protocol for
+the family and type.
+</para>
+<para>
+The protocol id is passed directly to the operating
+system, so you can use protocols not listed in <link linkend="GSocketProtocol"><type>GSocketProtocol</type></link> if you
+know the protocol number used for it.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>family</parameter>&#160;:</term>
+<listitem><simpara> the socket family to use, e.g. <link linkend="G-SOCKET-FAMILY-IPV4--CAPS"><literal>G_SOCKET_FAMILY_IPV4</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> the socket type to use.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>protocol</parameter>&#160;:</term>
+<listitem><simpara> the id of the protocol to use, or 0 for default.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+    Free the returned object with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-new-from-fd" role="function" condition="since:2.22">
+<title>g_socket_new_from_fd ()</title>
+<indexterm zone="g-socket-new-from-fd" role="2.22"><primary sortas="socket_new_from_fd">g_socket_new_from_fd</primary></indexterm><programlisting><link linkend="GSocket">GSocket</link> *           g_socket_new_from_fd                (<link linkend="gint">gint</link> fd,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Creates a new <link linkend="GSocket"><type>GSocket</type></link> from a native file descriptor
+or winsock SOCKET handle.
+</para>
+<para>
+This reads all the settings from the file descriptor so that
+all properties should work. Note that the file descriptor
+will be set to non-blocking mode, independent on the blocking
+mode of the <link linkend="GSocket"><type>GSocket</type></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>fd</parameter>&#160;:</term>
+<listitem><simpara> a native socket file descriptor.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+    Free the returned object with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-bind" role="function" condition="since:2.22">
+<title>g_socket_bind ()</title>
+<indexterm zone="g-socket-bind" role="2.22"><primary sortas="socket_bind">g_socket_bind</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_bind                       (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> *address,
+                                                         <link linkend="gboolean">gboolean</link> allow_reuse,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+When a socket is created it is attached to an address family, but it
+doesn't have an address in this family. <link linkend="g-socket-bind"><function>g_socket_bind()</function></link> assigns the
+address (sometimes called name) of the socket.
+</para>
+<para>
+It is generally required to bind to a local address before you can
+receive connections. (See <link linkend="g-socket-listen"><function>g_socket_listen()</function></link> and <link linkend="g-socket-accept"><function>g_socket_accept()</function></link> ).
+In certain situations, you may also want to bind a socket that will be
+used to initiate connections, though this is not normally required.
+</para>
+<para>
+<parameter>allow_reuse</parameter> should be <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> for server sockets (sockets that you will
+eventually call <link linkend="g-socket-accept"><function>g_socket_accept()</function></link> on), and <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> for client sockets.
+(Specifically, if it is <link linkend="TRUE--CAPS"><literal>TRUE</literal></link>, then <link linkend="g-socket-bind"><function>g_socket_bind()</function></link> will set the
+<link linkend="SO-REUSEADDR--CAPS"><literal>SO_REUSEADDR</literal></link> flag on the socket, allowing it to bind <parameter>address</parameter> even if
+that address was previously used by another socket that has not yet been
+fully cleaned-up by the kernel. Failing to set this flag on a server
+socket may cause the bind call to return <link linkend="G-IO-ERROR-ADDRESS-IN-USE--CAPS"><literal>G_IO_ERROR_ADDRESS_IN_USE</literal></link> if
+the server program is stopped and then immediately restarted.)</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> specifying the local address.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>allow_reuse</parameter>&#160;:</term>
+<listitem><simpara> whether to allow reusing this address
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> on success, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-listen" role="function" condition="since:2.22">
+<title>g_socket_listen ()</title>
+<indexterm zone="g-socket-listen" role="2.22"><primary sortas="socket_listen">g_socket_listen</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_listen                     (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Marks the socket as a server socket, i.e. a socket that is used
+to accept incoming requests using <link linkend="g-socket-accept"><function>g_socket_accept()</function></link>.
+</para>
+<para>
+Before calling this the socket must be bound to a local address using
+<link linkend="g-socket-bind"><function>g_socket_bind()</function></link>.
+</para>
+<para>
+To set the maximum amount of outstanding clients, use
+<link linkend="g-socket-set-listen-backlog"><function>g_socket_set_listen_backlog()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> on success, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-accept" role="function" condition="since:2.22">
+<title>g_socket_accept ()</title>
+<indexterm zone="g-socket-accept" role="2.22"><primary sortas="socket_accept">g_socket_accept</primary></indexterm><programlisting><link linkend="GSocket">GSocket</link> *           g_socket_accept                     (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Accept incoming connections on a connection-based socket. This removes
+the first outstanding connection request from the listening socket and
+creates a <link linkend="GSocket"><type>GSocket</type></link> object for it.
+</para>
+<para>
+The <parameter>socket</parameter> must be bound to a local address with <link linkend="g-socket-bind"><function>g_socket_bind()</function></link> and
+must be listening for incoming connections (<link linkend="g-socket-listen"><function>g_socket_listen()</function></link>).
+</para>
+<para>
+If there are no outstanding connections then the operation will block
+or return <link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link> if non-blocking I/O is enabled.
+To be notified of an incoming connection, wait for the <link linkend="G-IO-IN--CAPS"><literal>G_IO_IN</literal></link> condition.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><literal>GCancellable</literal></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GSocket"><type>GSocket</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+    Free the returned object with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-connect" role="function" condition="since:2.22">
+<title>g_socket_connect ()</title>
+<indexterm zone="g-socket-connect" role="2.22"><primary sortas="socket_connect">g_socket_connect</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_connect                    (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> *address,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Connect the socket to the specified remote address.
+</para>
+<para>
+For connection oriented socket this generally means we attempt to make
+a connection to the <parameter>address</parameter>. For a connection-less socket it sets
+the default address for <link linkend="g-socket-send"><function>g_socket_send()</function></link> and discards all incoming datagrams
+from other sources.
+</para>
+<para>
+Generally connection oriented sockets can only connect once, but
+connection-less sockets can connect multiple times to change the
+default address.
+</para>
+<para>
+If the connect call needs to do network I/O it will block, unless
+non-blocking I/O is enabled. Then <link linkend="G-IO-ERROR-PENDING--CAPS"><literal>G_IO_ERROR_PENDING</literal></link> is returned
+and the user can be notified of the connection finishing by waiting
+for the G_IO_OUT condition. The result of the connection can then be
+checked with <link linkend="g-socket-check-connect-result"><function>g_socket_check_connect_result()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> specifying the remote address.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><literal>GCancellable</literal></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if connected, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-check-connect-result" role="function" condition="since:2.22">
+<title>g_socket_check_connect_result ()</title>
+<indexterm zone="g-socket-check-connect-result" role="2.22"><primary sortas="socket_check_connect_result">g_socket_check_connect_result</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_check_connect_result       (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Checks and resets the pending connect error for the socket.
+This is used to check for errors when <link linkend="g-socket-connect"><function>g_socket_connect()</function></link> is
+used in non-blocking mode.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if no error, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise, setting <parameter>error</parameter> to the error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-receive" role="function" condition="since:2.22">
+<title>g_socket_receive ()</title>
+<indexterm zone="g-socket-receive" role="2.22"><primary sortas="socket_receive">g_socket_receive</primary></indexterm><programlisting><link linkend="gssize">gssize</link>              g_socket_receive                    (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="gchar">gchar</link> *buffer,
+                                                         <link linkend="gsize">gsize</link> size,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Receive data (up to <parameter>size</parameter> bytes) from a socket. This is mainly used by
+connection-oriented sockets; it is identical to <link linkend="g-socket-receive-from"><function>g_socket_receive_from()</function></link>
+with <parameter>address</parameter> set to <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</para>
+<para>
+For <link linkend="G-SOCKET-TYPE-DATAGRAM--CAPS"><literal>G_SOCKET_TYPE_DATAGRAM</literal></link> and <link linkend="G-SOCKET-TYPE-SEQPACKET--CAPS"><literal>G_SOCKET_TYPE_SEQPACKET</literal></link> sockets,
+<link linkend="g-socket-receive"><function>g_socket_receive()</function></link> will always read either 0 or 1 complete messages from
+the socket. If the received message is too large to fit in <parameter>buffer</parameter>, then
+the data beyond <parameter>size</parameter> bytes will be discarded, without any explicit
+indication that this has occurred.
+</para>
+<para>
+For <link linkend="G-SOCKET-TYPE-STREAM--CAPS"><literal>G_SOCKET_TYPE_STREAM</literal></link> sockets, <link linkend="g-socket-receive"><function>g_socket_receive()</function></link> can return any
+number of bytes, up to <parameter>size</parameter>. If more than <parameter>size</parameter> bytes have been
+received, the additional data will be returned in future calls to
+<link linkend="g-socket-receive"><function>g_socket_receive()</function></link>.
+</para>
+<para>
+If the socket is in blocking mode the call will block until there is
+some data to receive or there is an error. If there is no data available
+and the socket is in non-blocking mode, a <link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link> error
+will be returned. To be notified when data is available, wait for the
+<link linkend="G-IO-IN--CAPS"><literal>G_IO_IN</literal></link> condition.
+</para>
+<para>
+On error -1 is returned and <parameter>error</parameter> is set accordingly.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> a buffer to read data into (which should be at least <parameter>size</parameter>
+    bytes long).
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&#160;:</term>
+<listitem><simpara> the number of bytes you want to read from the socket
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><literal>GCancellable</literal></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Number of bytes read, or -1 on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-receive-from" role="function" condition="since:2.22">
+<title>g_socket_receive_from ()</title>
+<indexterm zone="g-socket-receive-from" role="2.22"><primary sortas="socket_receive_from">g_socket_receive_from</primary></indexterm><programlisting><link linkend="gssize">gssize</link>              g_socket_receive_from               (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> **address,
+                                                         <link linkend="gchar">gchar</link> *buffer,
+                                                         <link linkend="gsize">gsize</link> size,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Receive data (up to <parameter>size</parameter> bytes) from a socket.
+</para>
+<para>
+If <parameter>address</parameter> is non-<link linkend="NULL--CAPS"><literal>NULL</literal></link> then <parameter>address</parameter> will be set equal to the
+source address of the received packet.
+<parameter>address</parameter> is owned by the caller.
+</para>
+<para>
+See <link linkend="g-socket-receive"><function>g_socket_receive()</function></link> for additional information.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a pointer to a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> pointer, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> a buffer to read data into (which should be at least <parameter>size</parameter>
+    bytes long).
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&#160;:</term>
+<listitem><simpara> the number of bytes you want to read from the socket
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><literal>GCancellable</literal></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Number of bytes read, or -1 on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-receive-message" role="function" condition="since:2.22">
+<title>g_socket_receive_message ()</title>
+<indexterm zone="g-socket-receive-message" role="2.22"><primary sortas="socket_receive_message">g_socket_receive_message</primary></indexterm><programlisting><link linkend="gssize">gssize</link>              g_socket_receive_message            (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> **address,
+                                                         <link linkend="GInputVector">GInputVector</link> *vectors,
+                                                         <link linkend="gint">gint</link> num_vectors,
+                                                         <link linkend="GSocketControlMessage">GSocketControlMessage</link> ***messages,
+                                                         <link linkend="gint">gint</link> *num_messages,
+                                                         <link linkend="gint">gint</link> *flags,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Receive data from a socket.  This is the most complicated and
+fully-featured version of this call. For easier use, see
+<link linkend="g-socket-receive"><function>g_socket_receive()</function></link> and <link linkend="g-socket-receive-from"><function>g_socket_receive_from()</function></link>.
+</para>
+<para>
+If <parameter>address</parameter> is non-<link linkend="NULL--CAPS"><literal>NULL</literal></link> then <parameter>address</parameter> will be set equal to the
+source address of the received packet.
+<parameter>address</parameter> is owned by the caller.
+</para>
+<para>
+<parameter>vector</parameter> must point to an array of <link linkend="GInputVector"><type>GInputVector</type></link> structs and
+<parameter>num_vectors</parameter> must be the length of this array.  These structs
+describe the buffers that received data will be scattered into.
+If <parameter>num_vectors</parameter> is -1, then <parameter>vectors</parameter> is assumed to be terminated
+by a <link linkend="GInputVector"><type>GInputVector</type></link> with a <link linkend="NULL--CAPS"><literal>NULL</literal></link> buffer pointer.
+</para>
+<para>
+As a special case, if <parameter>num_vectors</parameter> is 0 (in which case, <parameter>vectors</parameter>
+may of course be <link linkend="NULL--CAPS"><literal>NULL</literal></link>), then a single byte is received and
+discarded. This is to facilitate the common practice of sending a
+single '\0' byte for the purposes of transferring ancillary data.
+</para>
+<para>
+<parameter>messages</parameter>, if non-<link linkend="NULL--CAPS"><literal>NULL</literal></link>, will be set to point to a newly-allocated
+array of <link linkend="GSocketControlMessage"><type>GSocketControlMessage</type></link> instances. These correspond to the
+control messages received from the kernel, one
+<link linkend="GSocketControlMessage"><type>GSocketControlMessage</type></link> per message from the kernel. This array is
+<link linkend="NULL--CAPS"><literal>NULL</literal></link>-terminated and must be freed by the caller using <link linkend="g-free"><function>g_free()</function></link>. If
+<parameter>messages</parameter> is <link linkend="NULL--CAPS"><literal>NULL</literal></link>, any control messages received will be
+discarded.
+</para>
+<para>
+<parameter>num_messages</parameter>, if non-<link linkend="NULL--CAPS"><literal>NULL</literal></link>, will be set to the number of control
+messages received.
+</para>
+<para>
+If both <parameter>messages</parameter> and <parameter>num_messages</parameter> are non-<link linkend="NULL--CAPS"><literal>NULL</literal></link>, then
+<parameter>num_messages</parameter> gives the number of <link linkend="GSocketControlMessage"><type>GSocketControlMessage</type></link> instances
+in <parameter>messages</parameter> (ie: not including the <link linkend="NULL--CAPS"><literal>NULL</literal></link> terminator).
+</para>
+<para>
+<parameter>flags</parameter> is an in/out parameter. The commonly available arguments
+for this are available in the <link linkend="GSocketMsgFlags"><type>GSocketMsgFlags</type></link> enum, but the
+values there are the same as the system values, and the flags
+are passed in as-is, so you can pass in system-specific flags too
+(and <link linkend="g-socket-receive-message"><function>g_socket_receive_message()</function></link> may pass system-specific flags out).
+</para>
+<para>
+As with <link linkend="g-socket-receive"><function>g_socket_receive()</function></link>, data may be discarded if <parameter>socket</parameter> is
+<link linkend="G-SOCKET-TYPE-DATAGRAM--CAPS"><literal>G_SOCKET_TYPE_DATAGRAM</literal></link> or <link linkend="G-SOCKET-TYPE-SEQPACKET--CAPS"><literal>G_SOCKET_TYPE_SEQPACKET</literal></link> and you do not
+provide enough buffer space to read a complete message. You can pass
+<link linkend="G-SOCKET-MSG-PEEK--CAPS"><literal>G_SOCKET_MSG_PEEK</literal></link> in <parameter>flags</parameter> to peek at the current message without
+removing it from the receive queue, but there is no portable way to find
+out the length of the message other than by reading it into a
+sufficiently-large buffer.
+</para>
+<para>
+If the socket is in blocking mode the call will block until there
+is some data to receive or there is an error. If there is no data
+available and the socket is in non-blocking mode, a
+<link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link> error will be returned. To be notified when
+data is available, wait for the <link linkend="G-IO-IN--CAPS"><literal>G_IO_IN</literal></link> condition.
+</para>
+<para>
+On error -1 is returned and <parameter>error</parameter> is set accordingly.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a pointer to a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> pointer, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>vectors</parameter>&#160;:</term>
+<listitem><simpara> an array of <link linkend="GInputVector"><type>GInputVector</type></link> structs
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>num_vectors</parameter>&#160;:</term>
+<listitem><simpara> the number of elements in <parameter>vectors</parameter>, or -1
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>messages</parameter>&#160;:</term>
+<listitem><simpara> a pointer which will be filled with an array of
+    <link linkend="GSocketControlMessages"><type>GSocketControlMessages</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>num_messages</parameter>&#160;:</term>
+<listitem><simpara> a pointer which will be filled with the number of
+   elements in <parameter>messages</parameter>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara> a pointer to an int containing <link linkend="GSocketMsgFlags"><type>GSocketMsgFlags</type></link> flags
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><literal>GCancellable</literal></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link> pointer, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Number of bytes read, or -1 on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-send" role="function" condition="since:2.22">
+<title>g_socket_send ()</title>
+<indexterm zone="g-socket-send" role="2.22"><primary sortas="socket_send">g_socket_send</primary></indexterm><programlisting><link linkend="gssize">gssize</link>              g_socket_send                       (<link linkend="GSocket">GSocket</link> *socket,
+                                                         const <link linkend="gchar">gchar</link> *buffer,
+                                                         <link linkend="gsize">gsize</link> size,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Tries to send <parameter>size</parameter> bytes from <parameter>buffer</parameter> on the socket. This is
+mainly used by connection-oriented sockets; it is identical to
+<link linkend="g-socket-send-to"><function>g_socket_send_to()</function></link> with <parameter>address</parameter> set to <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</para>
+<para>
+If the socket is in blocking mode the call will block until there is
+space for the data in the socket queue. If there is no space available
+and the socket is in non-blocking mode a <link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link> error
+will be returned. To be notified when space is available, wait for the
+<link linkend="G-IO-OUT--CAPS"><literal>G_IO_OUT</literal></link> condition. Note though that you may still receive
+<link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link> from <link linkend="g-socket-send"><function>g_socket_send()</function></link> even if you were previously
+notified of a <link linkend="G-IO-OUT--CAPS"><literal>G_IO_OUT</literal></link> condition. (On Windows in particular, this is
+very common due to the way the underlying APIs work.)
+</para>
+<para>
+On error -1 is returned and <parameter>error</parameter> is set accordingly.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer containing the data to send.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&#160;:</term>
+<listitem><simpara> the number of bytes to send
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><literal>GCancellable</literal></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Number of bytes written (which may be less than <parameter>size</parameter>), or -1
+on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-send-to" role="function" condition="since:2.22">
+<title>g_socket_send_to ()</title>
+<indexterm zone="g-socket-send-to" role="2.22"><primary sortas="socket_send_to">g_socket_send_to</primary></indexterm><programlisting><link linkend="gssize">gssize</link>              g_socket_send_to                    (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> *address,
+                                                         const <link linkend="gchar">gchar</link> *buffer,
+                                                         <link linkend="gsize">gsize</link> size,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Tries to send <parameter>size</parameter> bytes from <parameter>buffer</parameter> to <parameter>address</parameter>. If <parameter>address</parameter> is
+<link linkend="NULL--CAPS"><literal>NULL</literal></link> then the message is sent to the default receiver (set by
+<link linkend="g-socket-connect"><function>g_socket_connect()</function></link>).
+</para>
+<para>
+See <link linkend="g-socket-send"><function>g_socket_send()</function></link> for additional information.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer containing the data to send.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&#160;:</term>
+<listitem><simpara> the number of bytes to send
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><literal>GCancellable</literal></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Number of bytes written (which may be less than <parameter>size</parameter>), or -1
+on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-send-message" role="function" condition="since:2.22">
+<title>g_socket_send_message ()</title>
+<indexterm zone="g-socket-send-message" role="2.22"><primary sortas="socket_send_message">g_socket_send_message</primary></indexterm><programlisting><link linkend="gssize">gssize</link>              g_socket_send_message               (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> *address,
+                                                         <link linkend="GOutputVector">GOutputVector</link> *vectors,
+                                                         <link linkend="gint">gint</link> num_vectors,
+                                                         <link linkend="GSocketControlMessage">GSocketControlMessage</link> **messages,
+                                                         <link linkend="gint">gint</link> num_messages,
+                                                         <link linkend="gint">gint</link> flags,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Send data to <parameter>address</parameter> on <parameter>socket</parameter>.  This is the most complicated and
+fully-featured version of this call. For easier use, see
+<link linkend="g-socket-send"><function>g_socket_send()</function></link> and <link linkend="g-socket-send-to"><function>g_socket_send_to()</function></link>.
+</para>
+<para>
+If <parameter>address</parameter> is <link linkend="NULL--CAPS"><literal>NULL</literal></link> then the message is sent to the default receiver
+(set by <link linkend="g-socket-connect"><function>g_socket_connect()</function></link>).
+</para>
+<para>
+<parameter>vectors</parameter> must point to an array of <link linkend="GOutputVector"><type>GOutputVector</type></link> structs and
+<parameter>num_vectors</parameter> must be the length of this array. (If <parameter>num_vectors</parameter> is -1,
+then <parameter>vectors</parameter> is assumed to be terminated by a <link linkend="GOutputVector"><type>GOutputVector</type></link> with a
+<link linkend="NULL--CAPS"><literal>NULL</literal></link> buffer pointer.) The <link linkend="GOutputVector"><type>GOutputVector</type></link> structs describe the buffers
+that the sent data will be gathered from. Using multiple
+<link linkend="GOutputVector"><type>GOutputVector</type></link><!-- -->s is more memory-efficient than manually copying
+data from multiple sources into a single buffer, and more
+network-efficient than making multiple calls to <link linkend="g-socket-send"><function>g_socket_send()</function></link>.
+</para>
+<para>
+<parameter>messages</parameter>, if non-<link linkend="NULL--CAPS"><literal>NULL</literal></link>, is taken to point to an array of <parameter>num_messages</parameter>
+<link linkend="GSocketControlMessage"><type>GSocketControlMessage</type></link> instances. These correspond to the control
+messages to be sent on the socket.
+If <parameter>num_messages</parameter> is -1 then <parameter>messages</parameter> is treated as a <link linkend="NULL--CAPS"><literal>NULL</literal></link>-terminated
+array.
+</para>
+<para>
+<parameter>flags</parameter> modify how the message is sent. The commonly available arguments
+for this are available in the <link linkend="GSocketMsgFlags"><type>GSocketMsgFlags</type></link> enum, but the
+values there are the same as the system values, and the flags
+are passed in as-is, so you can pass in system-specific flags too.
+</para>
+<para>
+If the socket is in blocking mode the call will block until there is
+space for the data in the socket queue. If there is no space available
+and the socket is in non-blocking mode a <link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link> error
+will be returned. To be notified when space is available, wait for the
+<link linkend="G-IO-OUT--CAPS"><literal>G_IO_OUT</literal></link> condition. Note though that you may still receive
+<link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link> from <link linkend="g-socket-send"><function>g_socket_send()</function></link> even if you were previously
+notified of a <link linkend="G-IO-OUT--CAPS"><literal>G_IO_OUT</literal></link> condition. (On Windows in particular, this is
+very common due to the way the underlying APIs work.)
+</para>
+<para>
+On error -1 is returned and <parameter>error</parameter> is set accordingly.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>vectors</parameter>&#160;:</term>
+<listitem><simpara> an array of <link linkend="GOutputVector"><type>GOutputVector</type></link> structs
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>num_vectors</parameter>&#160;:</term>
+<listitem><simpara> the number of elements in <parameter>vectors</parameter>, or -1
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>messages</parameter>&#160;:</term>
+<listitem><simpara> a pointer to an array of <link linkend="GSocketControlMessages"><type>GSocketControlMessages</type></link>, or
+  <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>num_messages</parameter>&#160;:</term>
+<listitem><simpara> number of elements in <parameter>messages</parameter>, or -1.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara> an int containing <link linkend="GSocketMsgFlags"><type>GSocketMsgFlags</type></link> flags
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><literal>GCancellable</literal></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Number of bytes written (which may be less than <parameter>size</parameter>), or -1
+on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-close" role="function" condition="since:2.22">
+<title>g_socket_close ()</title>
+<indexterm zone="g-socket-close" role="2.22"><primary sortas="socket_close">g_socket_close</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_close                      (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Closes the socket, shutting down any active connection.
+</para>
+<para>
+Closing a socket does not wait for all outstanding I/O operations
+to finish, so the caller should not rely on them to be guaranteed
+to complete even if the close returns with no error.
+</para>
+<para>
+Once the socket is closed, all other operations will return
+<link linkend="G-IO-ERROR-CLOSED--CAPS"><literal>G_IO_ERROR_CLOSED</literal></link>. Closing a socket multiple times will not
+return an error.
+</para>
+<para>
+Sockets will be automatically closed when the last reference
+is dropped, but you might want to call this function to make sure
+resources are released as early as possible.
+</para>
+<para>
+Beware that due to the way that TCP works, it is possible for
+recently-sent data to be lost if either you close a socket while the
+<link linkend="G-IO-IN--CAPS"><literal>G_IO_IN</literal></link> condition is set, or else if the remote connection tries to
+send something to you after you close the socket but before it has
+finished reading all of the data you sent. There is no easy generic
+way to avoid this problem; the easiest fix is to design the network
+protocol such that the client will never send data "out of turn".
+Another solution is for the server to half-close the connection by
+calling <link linkend="g-socket-shutdown"><function>g_socket_shutdown()</function></link> with only the <parameter>shutdown_write</parameter> flag set,
+and then wait for the client to notice this and close its side of the
+connection, after which the server can safely call <link linkend="g-socket-close"><function>g_socket_close()</function></link>.
+(This is what <link linkend="GTcpConnection"><type>GTcpConnection</type></link> does if you call
+<link linkend="g-tcp-connection-set-graceful-disconnect"><function>g_tcp_connection_set_graceful_disconnect()</function></link>. But of course, this
+only works if the client will close its connection after the server
+does.)</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> on success, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-is-closed" role="function" condition="since:2.22">
+<title>g_socket_is_closed ()</title>
+<indexterm zone="g-socket-is-closed" role="2.22"><primary sortas="socket_is_closed">g_socket_is_closed</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_is_closed                  (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Checks whether a socket is closed.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if socket is closed, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-shutdown" role="function" condition="since:2.22">
+<title>g_socket_shutdown ()</title>
+<indexterm zone="g-socket-shutdown" role="2.22"><primary sortas="socket_shutdown">g_socket_shutdown</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_shutdown                   (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="gboolean">gboolean</link> shutdown_read,
+                                                         <link linkend="gboolean">gboolean</link> shutdown_write,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Shut down part of a full-duplex connection.
+</para>
+<para>
+If <parameter>shutdown_read</parameter> is <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> then the recieving side of the connection
+is shut down, and further reading is disallowed.
+</para>
+<para>
+If <parameter>shutdown_write</parameter> is <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> then the sending side of the connection
+is shut down, and further writing is disallowed.
+</para>
+<para>
+It is allowed for both <parameter>shutdown_read</parameter> and <parameter>shutdown_write</parameter> to be <link linkend="TRUE--CAPS"><literal>TRUE</literal></link>.
+</para>
+<para>
+One example where this is used is graceful disconnect for TCP connections
+where you close the sending side, then wait for the other side to close
+the connection, thus ensuring that the other side saw all sent data.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>shutdown_read</parameter>&#160;:</term>
+<listitem><simpara> whether to shut down the read side
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>shutdown_write</parameter>&#160;:</term>
+<listitem><simpara> whether to shut down the write side
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> on success, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-is-connected" role="function" condition="since:2.22">
+<title>g_socket_is_connected ()</title>
+<indexterm zone="g-socket-is-connected" role="2.22"><primary sortas="socket_is_connected">g_socket_is_connected</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_is_connected               (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Check whether the socket is connected. This is only useful for
+connection-oriented sockets.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if socket is connected, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-create-source" role="function" condition="since:2.22">
+<title>g_socket_create_source ()</title>
+<indexterm zone="g-socket-create-source" role="2.22"><primary sortas="socket_create_source">g_socket_create_source</primary></indexterm><programlisting><link linkend="GSource">GSource</link> *           g_socket_create_source              (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GIOCondition">GIOCondition</link> condition,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable);</programlisting>
+<para>
+Creates a <link linkend="GSource"><literal>GSource</literal></link> that can be attached to a <link linkend="GMainContext"><literal>GMainContext</literal></link> to monitor
+for the availibility of the specified <parameter>condition</parameter> on the socket.
+</para>
+<para>
+The callback on the source is of the <link linkend="GSocketSourceFunc"><type>GSocketSourceFunc</type></link> type.
+</para>
+<para>
+It is meaningless to specify <link linkend="G-IO-ERR--CAPS"><literal>G_IO_ERR</literal></link> or <link linkend="G-IO-HUP--CAPS"><literal>G_IO_HUP</literal></link> in condition;
+these conditions will always be reported output if they are true.
+</para>
+<para>
+<parameter>cancellable</parameter> if not <link linkend="NULL--CAPS"><literal>NULL</literal></link> can be used to cancel the source, which will
+cause the source to trigger, reporting the current condition (which
+is likely 0 unless cancellation happened at the same time as a
+condition change). You can check for this in the callback using
+<link linkend="g-cancellable-is-cancelled"><function>g_cancellable_is_cancelled()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>condition</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GIOCondition"><type>GIOCondition</type></link> mask to monitor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><literal>GCancellable</literal></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a newly allocated <link linkend="GSource"><literal>GSource</literal></link>, free with <link linkend="g-source-unref"><function>g_source_unref()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-condition-check" role="function" condition="since:2.22">
+<title>g_socket_condition_check ()</title>
+<indexterm zone="g-socket-condition-check" role="2.22"><primary sortas="socket_condition_check">g_socket_condition_check</primary></indexterm><programlisting><link linkend="GIOCondition">GIOCondition</link>        g_socket_condition_check            (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GIOCondition">GIOCondition</link> condition);</programlisting>
+<para>
+Checks on the readiness of <parameter>socket</parameter> to perform operations.
+The operations specified in <parameter>condition</parameter> are checked for and masked
+against the currently-satisfied conditions on <parameter>socket</parameter>. The result
+is returned.
+</para>
+<para>
+It is meaningless to specify <link linkend="G-IO-ERR--CAPS"><literal>G_IO_ERR</literal></link> or <link linkend="G-IO-HUP--CAPS"><literal>G_IO_HUP</literal></link> in condition;
+these conditions will always be set in the output if they are true.
+</para>
+<para>
+This call never blocks.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>condition</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GIOCondition"><type>GIOCondition</type></link> mask to check
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the <parameter>GIOCondition</parameter> mask of the current state
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-condition-wait" role="function" condition="since:2.22">
+<title>g_socket_condition_wait ()</title>
+<indexterm zone="g-socket-condition-wait" role="2.22"><primary sortas="socket_condition_wait">g_socket_condition_wait</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_condition_wait             (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GIOCondition">GIOCondition</link> condition,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Waits for <parameter>condition</parameter> to become true on <parameter>socket</parameter>. When the condition
+is met, <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> is returned.
+</para>
+<para>
+If <parameter>cancellable</parameter> is cancelled before the condition is met then <link linkend="FALSE--CAPS"><literal>FALSE</literal></link>
+is returned and <parameter>error</parameter>, if non-<link linkend="NULL--CAPS"><literal>NULL</literal></link>, is set to <link linkend="G-IO-ERROR-CANCELLED--CAPS"><literal>G_IO_ERROR_CANCELLED</literal></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>condition</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GIOCondition"><type>GIOCondition</type></link> mask to wait for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><type>GCancellable</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link> pointer, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if the condition was met, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-set-listen-backlog" role="function" condition="since:2.22">
+<title>g_socket_set_listen_backlog ()</title>
+<indexterm zone="g-socket-set-listen-backlog" role="2.22"><primary sortas="socket_set_listen_backlog">g_socket_set_listen_backlog</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_set_listen_backlog         (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="gint">gint</link> backlog);</programlisting>
+<para>
+Sets the maximum number of outstanding connections allowed
+when listening on this socket. If more clients than this are
+connecting to the socket and the application is not handling them
+on time then the new connections will be refused.
+</para>
+<para>
+Note that this must be called before <link linkend="g-socket-listen"><function>g_socket_listen()</function></link> and has no
+effect if called after that.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>backlog</parameter>&#160;:</term>
+<listitem><simpara> the maximum number of pending connections.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-get-listen-backlog" role="function" condition="since:2.22">
+<title>g_socket_get_listen_backlog ()</title>
+<indexterm zone="g-socket-get-listen-backlog" role="2.22"><primary sortas="socket_get_listen_backlog">g_socket_get_listen_backlog</primary></indexterm><programlisting><link linkend="gint">gint</link>                g_socket_get_listen_backlog         (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Gets the listen backlog setting of the socket. For details on this,
+see <link linkend="g-socket-set-listen-backlog"><function>g_socket_set_listen_backlog()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the maximum number of pending connections.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-get-blocking" role="function" condition="since:2.22">
+<title>g_socket_get_blocking ()</title>
+<indexterm zone="g-socket-get-blocking" role="2.22"><primary sortas="socket_get_blocking">g_socket_get_blocking</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_get_blocking               (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Gets the blocking mode of the socket. For details on blocking I/O,
+see <link linkend="g-socket-set-blocking"><function>g_socket_set_blocking()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if blocking I/O is used, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-set-blocking" role="function" condition="since:2.22">
+<title>g_socket_set_blocking ()</title>
+<indexterm zone="g-socket-set-blocking" role="2.22"><primary sortas="socket_set_blocking">g_socket_set_blocking</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_set_blocking               (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="gboolean">gboolean</link> blocking);</programlisting>
+<para>
+Sets the blocking mode of the socket. In blocking mode
+all operations block until they succeed or there is an error. In
+non-blocking mode all functions return results immediately or
+with a <link linkend="G-IO-ERROR-WOULD-BLOCK--CAPS"><literal>G_IO_ERROR_WOULD_BLOCK</literal></link> error.
+</para>
+<para>
+All sockets are created in blocking mode. However, note that the
+platform level socket is always non-blocking, and blocking mode
+is a GSocket level feature.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>blocking</parameter>&#160;:</term>
+<listitem><simpara> Whether to use blocking I/O or not.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-get-keepalive" role="function" condition="since:2.22">
+<title>g_socket_get_keepalive ()</title>
+<indexterm zone="g-socket-get-keepalive" role="2.22"><primary sortas="socket_get_keepalive">g_socket_get_keepalive</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_get_keepalive              (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Gets the keepalive mode of the socket. For details on this,
+see <link linkend="g-socket-set-keepalive"><function>g_socket_set_keepalive()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if keepalive is active, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-set-keepalive" role="function" condition="since:2.22">
+<title>g_socket_set_keepalive ()</title>
+<indexterm zone="g-socket-set-keepalive" role="2.22"><primary sortas="socket_set_keepalive">g_socket_set_keepalive</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_set_keepalive              (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="gboolean">gboolean</link> keepalive);</programlisting>
+<para>
+Sets or unsets the <link linkend="SO-KEEPALIVE--CAPS"><literal>SO_KEEPALIVE</literal></link> flag on the underlying socket. When
+this flag is set on a socket, the system will attempt to verify that the
+remote socket endpoint is still present if a sufficiently long period of
+time passes with no data being exchanged. If the system is unable to
+verify the presence of the remote endpoint, it will automatically close
+the connection.
+</para>
+<para>
+This option is only functional on certain kinds of sockets. (Notably,
+<link linkend="G-SOCKET-PROTOCOL-TCP--CAPS"><literal>G_SOCKET_PROTOCOL_TCP</literal></link> sockets.)
+</para>
+<para>
+The exact time between pings is system- and protocol-dependent, but will
+normally be at least two hours. Most commonly, you would set this flag
+on a server socket if you want to allow clients to remain idle for long
+periods of time, but also want to ensure that connections are eventually
+garbage-collected if clients crash or become unreachable.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>keepalive</parameter>&#160;:</term>
+<listitem><simpara> Value for the keepalive flag
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-get-family" role="function" condition="since:2.22">
+<title>g_socket_get_family ()</title>
+<indexterm zone="g-socket-get-family" role="2.22"><primary sortas="socket_get_family">g_socket_get_family</primary></indexterm><programlisting><link linkend="GSocketFamily">GSocketFamily</link>       g_socket_get_family                 (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Gets the socket family of the socket.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketFamily"><type>GSocketFamily</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-get-fd" role="function" condition="since:2.22">
+<title>g_socket_get_fd ()</title>
+<indexterm zone="g-socket-get-fd" role="2.22"><primary sortas="socket_get_fd">g_socket_get_fd</primary></indexterm><programlisting><link linkend="int">int</link>                 g_socket_get_fd                     (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Returns the underlying OS socket object. On unix this
+is a socket file descriptor, and on windows this is
+a Winsock2 SOCKET handle. This may be useful for
+doing platform specific or otherwise unusual operations
+on the socket.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the file descriptor of the socket.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-get-local-address" role="function" condition="since:2.22">
+<title>g_socket_get_local_address ()</title>
+<indexterm zone="g-socket-get-local-address" role="2.22"><primary sortas="socket_get_local_address">g_socket_get_local_address</primary></indexterm><programlisting><link linkend="GSocketAddress">GSocketAddress</link> *    g_socket_get_local_address          (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Try to get the local address of a bound socket. This is only
+useful if the socket has been bound to a local address,
+either explicitly or implicitly when connecting.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+    Free the returned object with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-get-protocol" role="function" condition="since:2.22">
+<title>g_socket_get_protocol ()</title>
+<indexterm zone="g-socket-get-protocol" role="2.22"><primary sortas="socket_get_protocol">g_socket_get_protocol</primary></indexterm><programlisting><link linkend="GSocketProtocol">GSocketProtocol</link>     g_socket_get_protocol               (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Gets the socket protocol id the socket was created with.
+In case the protocol is unknown, -1 is returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a protocol id, or -1 if unknown
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-get-remote-address" role="function" condition="since:2.22">
+<title>g_socket_get_remote_address ()</title>
+<indexterm zone="g-socket-get-remote-address" role="2.22"><primary sortas="socket_get_remote_address">g_socket_get_remote_address</primary></indexterm><programlisting><link linkend="GSocketAddress">GSocketAddress</link> *    g_socket_get_remote_address         (<link linkend="GSocket">GSocket</link> *socket,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Try to get the remove address of a connected socket. This is only
+useful for connection oriented sockets that have been connected.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+    Free the returned object with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-get-socket-type" role="function" condition="since:2.22">
+<title>g_socket_get_socket_type ()</title>
+<indexterm zone="g-socket-get-socket-type" role="2.22"><primary sortas="socket_get_socket_type">g_socket_get_socket_type</primary></indexterm><programlisting><link linkend="GSocketType">GSocketType</link>         g_socket_get_socket_type            (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Gets the socket type of the socket.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketType"><type>GSocketType</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-speaks-ipv4" role="function" condition="since:2.22.">
+<title>g_socket_speaks_ipv4 ()</title>
+<indexterm zone="g-socket-speaks-ipv4" role="2.22."><primary sortas="socket_speaks_ipv4">g_socket_speaks_ipv4</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_socket_speaks_ipv4                (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Checks if a socket is capable of speaking IPv4.
+</para>
+<para>
+IPv4 sockets are capable of speaking IPv4.  On some operating systems
+and under some combinations of circumstances IPv6 sockets are also
+capable of speaking IPv4.  See RFC 3493 section 3.7 for more
+information.
+</para>
+<para>
+No other types of sockets are currently considered as being capable
+of speaking IPv4.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if this socket can be used with IPv4.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22.</para></refsect2>
+
+</refsect1>
+<refsect1 id="GSocket.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GSocket--blocking" role="property"><title>The <literal>&quot;blocking&quot;</literal> property</title>
+<indexterm zone="GSocket--blocking"><primary sortas="Socket:blocking">GSocket:blocking</primary></indexterm><programlisting>  &quot;blocking&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Whether or not I/O on this socket is blocking.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="GSocket--family" role="property"><title>The <literal>&quot;family&quot;</literal> property</title>
+<indexterm zone="GSocket--family"><primary sortas="Socket:family">GSocket:family</primary></indexterm><programlisting>  &quot;family&quot;                   <link linkend="GSocketFamily">GSocketFamily</link>         : Read / Write / Construct Only</programlisting>
+<para>The sockets address family.</para><para>Default value: G_SOCKET_FAMILY_INVALID</para>
+</refsect2>
+<refsect2 id="GSocket--fd" role="property"><title>The <literal>&quot;fd&quot;</literal> property</title>
+<indexterm zone="GSocket--fd"><primary sortas="Socket:fd">GSocket:fd</primary></indexterm><programlisting>  &quot;fd&quot;                       <link linkend="gint">gint</link>                  : Read / Write / Construct Only</programlisting>
+<para>The sockets file descriptor.</para><para>Default value: -1</para>
+</refsect2>
+<refsect2 id="GSocket--keepalive" role="property"><title>The <literal>&quot;keepalive&quot;</literal> property</title>
+<indexterm zone="GSocket--keepalive"><primary sortas="Socket:keepalive">GSocket:keepalive</primary></indexterm><programlisting>  &quot;keepalive&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Keep connection alive by sending periodic pings.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="GSocket--listen-backlog" role="property"><title>The <literal>&quot;listen-backlog&quot;</literal> property</title>
+<indexterm zone="GSocket--listen-backlog"><primary sortas="Socket:listen-backlog">GSocket:listen-backlog</primary></indexterm><programlisting>  &quot;listen-backlog&quot;           <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>Outstanding connections in the listen queue.</para><para>Allowed values: [0,128]</para>
+<para>Default value: 10</para>
+</refsect2>
+<refsect2 id="GSocket--local-address" role="property"><title>The <literal>&quot;local-address&quot;</literal> property</title>
+<indexterm zone="GSocket--local-address"><primary sortas="Socket:local-address">GSocket:local-address</primary></indexterm><programlisting>  &quot;local-address&quot;            <link linkend="GSocketAddress">GSocketAddress</link>*       : Read</programlisting>
+<para>The local address the socket is bound to.</para></refsect2>
+<refsect2 id="GSocket--protocol" role="property"><title>The <literal>&quot;protocol&quot;</literal> property</title>
+<indexterm zone="GSocket--protocol"><primary sortas="Socket:protocol">GSocket:protocol</primary></indexterm><programlisting>  &quot;protocol&quot;                 <link linkend="GSocketProtocol">GSocketProtocol</link>       : Read / Write / Construct Only</programlisting>
+<para>The id of the protocol to use, or -1 for unknown.</para><para>Default value: G_SOCKET_PROTOCOL_UNKNOWN</para>
+</refsect2>
+<refsect2 id="GSocket--remote-address" role="property"><title>The <literal>&quot;remote-address&quot;</literal> property</title>
+<indexterm zone="GSocket--remote-address"><primary sortas="Socket:remote-address">GSocket:remote-address</primary></indexterm><programlisting>  &quot;remote-address&quot;           <link linkend="GSocketAddress">GSocketAddress</link>*       : Read</programlisting>
+<para>The remote address the socket is connected to.</para></refsect2>
+<refsect2 id="GSocket--type" role="property"><title>The <literal>&quot;type&quot;</literal> property</title>
+<indexterm zone="GSocket--type"><primary sortas="Socket:type">GSocket:type</primary></indexterm><programlisting>  &quot;type&quot;                     <link linkend="GSocketType">GSocketType</link>           : Read / Write / Construct Only</programlisting>
+<para>The sockets type.</para><para>Default value: G_SOCKET_TYPE_STREAM</para>
+</refsect2>
+</refsect1>
+
+
+
+<refsect1 id="GSocket.see-also">
+<title>See Also</title>
+#GInitable
+</refsect1>
+
+</refentry>

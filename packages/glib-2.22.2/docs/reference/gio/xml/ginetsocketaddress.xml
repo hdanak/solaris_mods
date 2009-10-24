@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GInetSocketAddress">
+<refmeta>
+<refentrytitle role="top_of_page" id="GInetSocketAddress.top_of_page">GInetSocketAddress</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GInetSocketAddress</refname>
+<refpurpose>Internet GSocketAddress</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GInetSocketAddress.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GInetSocketAddress-struct">GInetSocketAddress</link>;
+<link linkend="GSocketAddress">GSocketAddress</link> *    <link linkend="g-inet-socket-address-new">g_inet_socket_address_new</link>           (<link linkend="GInetAddress">GInetAddress</link> *address,
+                                                         <link linkend="guint16">guint16</link> port);
+<link linkend="GInetAddress">GInetAddress</link> *      <link linkend="g-inet-socket-address-get-address">g_inet_socket_address_get_address</link>   (<link linkend="GInetSocketAddress">GInetSocketAddress</link> *address);
+<link linkend="guint16">guint16</link>             <link linkend="g-inet-socket-address-get-port">g_inet_socket_address_get_port</link>      (<link linkend="GInetSocketAddress">GInetSocketAddress</link> *address);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GInetSocketAddress.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GSocketAddress">GSocketAddress</link>
+         +----GInetSocketAddress
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GInetSocketAddress.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GInetSocketAddress implements
+ <link linkend="GSocketConnectable">GSocketConnectable</link>.</para>
+</refsect1>
+
+
+<refsect1 id="GInetSocketAddress.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GInetSocketAddress--address">address</link>&quot;                  <link linkend="GInetAddress">GInetAddress</link>*         : Read / Write / Construct Only
+  &quot;<link linkend="GInetSocketAddress--port">port</link>&quot;                     <link linkend="guint">guint</link>                 : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GInetSocketAddress.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+An IPv4 or IPv6 socket address; that is, the combination of a
+<link linkend="GInetAddress"><type>GInetAddress</type></link> and a port number.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GInetSocketAddress.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GInetSocketAddress-struct" role="struct">
+<title>GInetSocketAddress</title>
+<indexterm zone="GInetSocketAddress-struct"><primary sortas="InetSocketAddress">GInetSocketAddress</primary></indexterm><programlisting>typedef struct _GInetSocketAddress GInetSocketAddress;</programlisting>
+<para>
+An IPv4 or IPv6 socket address, corresponding to a <type>struct
+sockaddr_in</type> or <type>struct sockaddr_in6</type>.</para>
+<para>
+</para></refsect2>
+<refsect2 id="g-inet-socket-address-new" role="function" condition="since:2.22">
+<title>g_inet_socket_address_new ()</title>
+<indexterm zone="g-inet-socket-address-new" role="2.22"><primary sortas="inet_socket_address_new">g_inet_socket_address_new</primary></indexterm><programlisting><link linkend="GSocketAddress">GSocketAddress</link> *    g_inet_socket_address_new           (<link linkend="GInetAddress">GInetAddress</link> *address,
+                                                         <link linkend="guint16">guint16</link> port);</programlisting>
+<para>
+Creates a new <link linkend="GInetSocketAddress"><type>GInetSocketAddress</type></link> for <parameter>address</parameter> and <parameter>port</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetAddress"><type>GInetAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara> a port number
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GInetSocketAddress"><type>GInetSocketAddress</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-socket-address-get-address" role="function" condition="since:2.22">
+<title>g_inet_socket_address_get_address ()</title>
+<indexterm zone="g-inet-socket-address-get-address" role="2.22"><primary sortas="inet_socket_address_get_address">g_inet_socket_address_get_address</primary></indexterm><programlisting><link linkend="GInetAddress">GInetAddress</link> *      g_inet_socket_address_get_address   (<link linkend="GInetSocketAddress">GInetSocketAddress</link> *address);</programlisting>
+<para>
+Gets <parameter>address</parameter>'s <link linkend="GInetAddress"><type>GInetAddress</type></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetSocketAddress"><type>GInetSocketAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the <link linkend="GInetAddress"><type>GInetAddress</type></link> for <parameter>address</parameter>, which must be
+<link linkend="g-object-ref"><function>g_object_ref()</function></link>'d if it will be stored
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-inet-socket-address-get-port" role="function" condition="since:2.22">
+<title>g_inet_socket_address_get_port ()</title>
+<indexterm zone="g-inet-socket-address-get-port" role="2.22"><primary sortas="inet_socket_address_get_port">g_inet_socket_address_get_port</primary></indexterm><programlisting><link linkend="guint16">guint16</link>             g_inet_socket_address_get_port      (<link linkend="GInetSocketAddress">GInetSocketAddress</link> *address);</programlisting>
+<para>
+Gets <parameter>address</parameter>'s port.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetSocketAddress"><type>GInetSocketAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the port for <parameter>address</parameter>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+<refsect1 id="GInetSocketAddress.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GInetSocketAddress--address" role="property"><title>The <literal>&quot;address&quot;</literal> property</title>
+<indexterm zone="GInetSocketAddress--address"><primary sortas="InetSocketAddress:address">GInetSocketAddress:address</primary></indexterm><programlisting>  &quot;address&quot;                  <link linkend="GInetAddress">GInetAddress</link>*         : Read / Write / Construct Only</programlisting>
+<para>The address.</para></refsect2>
+<refsect2 id="GInetSocketAddress--port" role="property"><title>The <literal>&quot;port&quot;</literal> property</title>
+<indexterm zone="GInetSocketAddress--port"><primary sortas="InetSocketAddress:port">GInetSocketAddress:port</primary></indexterm><programlisting>  &quot;port&quot;                     <link linkend="guint">guint</link>                 : Read / Write / Construct Only</programlisting>
+<para>The port.</para><para>Allowed values: &lt;= 65535</para>
+<para>Default value: 0</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,74 @@
+gmodule.lo gmodule.o: gmodule.c gmodule.h ../glib.h ../glibconfig.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/limits.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/syslimits.h \
+  /usr/include/sys/feature_tests.h /usr/include/sys/ccompile.h \
+  /usr/include/sys/isa_defs.h /usr/include/iso/limits_iso.h \
+  /usr/include/sys/int_limits.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/float.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h \
+  gmoduleconf.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/string.h /usr/include/iso/string_iso.h gmodule-dl.c \
+  /usr/include/dlfcn.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/sys/types.h \
+  /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+  /usr/include/sys/select.h /usr/include/sys/time_impl.h \
+  /usr/include/sys/time.h /usr/include/time.h /usr/include/iso/time_iso.h \
+  /usr/include/sys/auxv.h /usr/include/sys/auxv_SPARC.h
+
+gmodule.h:
+
+../glib.h:
+
+../glibconfig.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/limits.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/syslimits.h:
+
+/usr/include/sys/feature_tests.h:
+
+/usr/include/sys/ccompile.h:
+
+/usr/include/sys/isa_defs.h:
+
+/usr/include/iso/limits_iso.h:
+
+/usr/include/sys/int_limits.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/float.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h:
+
+gmoduleconf.h:
+
+/usr/include/errno.h:
+
+/usr/include/sys/errno.h:
+
+/usr/include/string.h:
+
+/usr/include/iso/string_iso.h:
+
+gmodule-dl.c:
+
+/usr/include/dlfcn.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/sys/types.h:
+
+/usr/include/sys/machtypes.h:
+
+/usr/include/sys/int_types.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/sys/time_impl.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/time.h:
+
+/usr/include/iso/time_iso.h:
+
+/usr/include/sys/auxv.h:
+
+/usr/include/sys/auxv_SPARC.h:

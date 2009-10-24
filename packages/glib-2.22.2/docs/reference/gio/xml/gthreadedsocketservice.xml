@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GThreadedSocketService">
+<refmeta>
+<refentrytitle role="top_of_page" id="GThreadedSocketService.top_of_page">GThreadedSocketService</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GThreadedSocketService</refname>
+<refpurpose>A threaded GSocketService</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GThreadedSocketService.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GThreadedSocketService-struct">GThreadedSocketService</link>;
+<link linkend="GSocketService">GSocketService</link> *    <link linkend="g-threaded-socket-service-new">g_threaded_socket_service_new</link>       (<link linkend="int">int</link> max_threads);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GThreadedSocketService.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GSocketListener">GSocketListener</link>
+         +----<link linkend="GSocketService">GSocketService</link>
+               +----GThreadedSocketService
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="GThreadedSocketService.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GThreadedSocketService--max-threads">max-threads</link>&quot;              <link linkend="gint">gint</link>                  : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+<refsect1 id="GThreadedSocketService.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="GThreadedSocketService-run">run</link>&quot;                                            : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="GThreadedSocketService.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A <link linkend="GThreadedSocketService"><type>GThreadedSocketService</type></link> is a simple subclass of <link linkend="GSocketService"><type>GSocketService</type></link>
+that handles incoming connections by creating a worker thread and
+dispatching the connection to it by emitting the ::run signal in
+the new thread.
+</para>
+<para>
+The signal handler may perform blocking IO and need not return
+until the connection is closed.
+</para>
+<para>
+The service is implemented using a thread pool, so there is a
+limited amount of threads availible to serve incomming requests.
+The service automatically stops the <link linkend="GSocketService"><type>GSocketService</type></link> from accepting
+new connections when all threads are busy.
+</para>
+<para>
+As with <link linkend="GSocketService"><type>GSocketService</type></link>, you may connect to <link linkend="GThreadedSocketService--run"><type>"run"</type></link>,
+or subclass and override the default handler.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GThreadedSocketService.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GThreadedSocketService-struct" role="struct">
+<title>GThreadedSocketService</title>
+<indexterm zone="GThreadedSocketService-struct" role="2.22"><primary sortas="ThreadedSocketService">GThreadedSocketService</primary></indexterm><programlisting>typedef struct _GThreadedSocketService GThreadedSocketService;</programlisting>
+<para>
+A helper class for handling accepting incomming connections in the
+glib mainloop and handling them in a thread.</para>
+<para>
+</para><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-threaded-socket-service-new" role="function" condition="since:2.22">
+<title>g_threaded_socket_service_new ()</title>
+<indexterm zone="g-threaded-socket-service-new" role="2.22"><primary sortas="threaded_socket_service_new">g_threaded_socket_service_new</primary></indexterm><programlisting><link linkend="GSocketService">GSocketService</link> *    g_threaded_socket_service_new       (<link linkend="int">int</link> max_threads);</programlisting>
+<para>
+Creates a new <link linkend="GThreadedSocketService"><type>GThreadedSocketService</type></link> with no listeners. Listeners
+must be added with <link linkend="g-socket-service-add-listeners"><function>g_socket_service_add_listeners()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>max_threads</parameter>&#160;:</term>
+<listitem><simpara> the maximal number of threads to execute concurrently
+  handling incoming clients, -1 means no limit
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GSocketService"><type>GSocketService</type></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+<refsect1 id="GThreadedSocketService.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GThreadedSocketService--max-threads" role="property"><title>The <literal>&quot;max-threads&quot;</literal> property</title>
+<indexterm zone="GThreadedSocketService--max-threads"><primary sortas="ThreadedSocketService:max-threads">GThreadedSocketService:max-threads</primary></indexterm><programlisting>  &quot;max-threads&quot;              <link linkend="gint">gint</link>                  : Read / Write / Construct Only</programlisting>
+<para>The max number of threads handling clients for this service.</para><para>Allowed values: &gt;= G_MAXULONG</para>
+<para>Default value: 10</para>
+</refsect2>
+</refsect1>
+
+<refsect1 id="GThreadedSocketService.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="GThreadedSocketService-run" role="signal"><title>The <literal>&quot;run&quot;</literal> signal</title>
+<indexterm zone="GThreadedSocketService-run"><primary sortas="ThreadedSocketService::run">GThreadedSocketService::run</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="GThreadedSocketService">GThreadedSocketService</link> *service,
+                                                        <link linkend="GSocketConnection">GSocketConnection</link>      *connection,
+                                                        <link linkend="GObject">GObject</link>                *source_object,
+                                                        <link linkend="gpointer">gpointer</link>                user_data)          : Run Last</programlisting>
+<para>
+The ::run signal is emitted in a worker thread in response to an
+incoming connection. This thread is dedicated to handling
+<parameter>connection</parameter> and may perform blocking IO. The signal handler need
+not return until the connection is closed.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>service</parameter>&#160;:</term>
+<listitem><simpara> the <link linkend="GThreadedSocketService"><type>GThreadedSocketService</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>connection</parameter>&#160;:</term>
+<listitem><simpara> a new <link linkend="GSocketConnection"><type>GSocketConnection</type></link> object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>source_object</parameter>&#160;:</term>
+<listitem><simpara> the source_object passed to <link linkend="g-socket-listener-add-address"><function>g_socket_listener_add_address()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> to stope further signal handlers from being called
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+<refsect1 id="GThreadedSocketService.see-also">
+<title>See Also</title>
+#GSocketService.
+</refsect1>
+
+</refentry>

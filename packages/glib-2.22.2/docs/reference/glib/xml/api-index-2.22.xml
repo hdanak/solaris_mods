@@ -1,0 +1,56 @@
+<indexdiv>
+<indexdiv><title>A</title>
+<indexentry><primaryie linkends="g-array-get-element-size"><link linkend="g-array-get-element-size">g_array_get_element_size</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-array-ref"><link linkend="g-array-ref">g_array_ref</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-array-unref"><link linkend="g-array-unref">g_array_unref</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>B</title>
+<indexentry><primaryie linkends="g-byte-array-ref"><link linkend="g-byte-array-ref">g_byte_array_ref</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-byte-array-unref"><link linkend="g-byte-array-unref">g_byte_array_unref</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>D</title>
+<indexentry><primaryie linkends="g-double-equal"><link linkend="g-double-equal">g_double_equal</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-double-hash"><link linkend="g-double-hash">g_double_hash</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>E</title>
+<indexentry><primaryie linkends="g-error-new-valist"><link linkend="g-error-new-valist">g_error_new_valist</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>G</title>
+<indexentry><primaryie linkends="G-GINTPTR-FORMAT--CAPS"><link linkend="G-GINTPTR-FORMAT--CAPS">G_GINTPTR_FORMAT</link></primaryie></indexentry>
+<indexentry><primaryie linkends="G-GINTPTR-MODIFIER--CAPS"><link linkend="G-GINTPTR-MODIFIER--CAPS">G_GINTPTR_MODIFIER</link></primaryie></indexentry>
+<indexentry><primaryie linkends="G-GUINTPTR-FORMAT--CAPS"><link linkend="G-GUINTPTR-FORMAT--CAPS">G_GUINTPTR_FORMAT</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>H</title>
+<indexentry><primaryie linkends="g-hostname-is-ascii-encoded"><link linkend="g-hostname-is-ascii-encoded">g_hostname_is_ascii_encoded</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-hostname-is-ip-address"><link linkend="g-hostname-is-ip-address">g_hostname_is_ip_address</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-hostname-is-non-ascii"><link linkend="g-hostname-is-non-ascii">g_hostname_is_non_ascii</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-hostname-to-ascii"><link linkend="g-hostname-to-ascii">g_hostname_to_ascii</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-hostname-to-unicode"><link linkend="g-hostname-to-unicode">g_hostname_to_unicode</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>I</title>
+<indexentry><primaryie linkends="g-int64-equal"><link linkend="g-int64-equal">g_int64_equal</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-int64-hash"><link linkend="g-int64-hash">g_int64_hash</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>M</title>
+<indexentry><primaryie linkends="g-main-context-get-thread-default"><link linkend="g-main-context-get-thread-default">g_main_context_get_thread_default</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-main-context-pop-thread-default"><link linkend="g-main-context-pop-thread-default">g_main_context_pop_thread_default</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-main-context-push-thread-default"><link linkend="g-main-context-push-thread-default">g_main_context_push_thread_default</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-mapped-file-ref"><link linkend="g-mapped-file-ref">g_mapped_file_ref</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-mkstemp-full"><link linkend="g-mkstemp-full">g_mkstemp_full</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>P</title>
+<indexentry><primaryie linkends="g-ptr-array-new-with-free-func"><link linkend="g-ptr-array-new-with-free-func">g_ptr_array_new_with_free_func</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-ptr-array-ref"><link linkend="g-ptr-array-ref">g_ptr_array_ref</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-ptr-array-set-free-func"><link linkend="g-ptr-array-set-free-func">g_ptr_array_set_free_func</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-ptr-array-unref"><link linkend="g-ptr-array-unref">g_ptr_array_unref</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>R</title>
+<indexentry><primaryie linkends="g-reload-user-special-dirs-cache"><link linkend="g-reload-user-special-dirs-cache">g_reload_user_special_dirs_cache</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>T</title>
+<indexentry><primaryie linkends="GTestLogFatalFunc"><link linkend="GTestLogFatalFunc">GTestLogFatalFunc</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-test-log-set-fatal-handler"><link linkend="g-test-log-set-fatal-handler">g_test_log_set_fatal_handler</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-tree-ref"><link linkend="g-tree-ref">g_tree_ref</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-tree-unref"><link linkend="g-tree-unref">g_tree_unref</link></primaryie></indexentry>
+</indexdiv>
+</indexdiv>

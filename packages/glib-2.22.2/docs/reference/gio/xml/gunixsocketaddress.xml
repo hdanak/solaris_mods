@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GUnixSocketAddress">
+<refmeta>
+<refentrytitle role="top_of_page" id="GUnixSocketAddress.top_of_page">GUnixSocketAddress</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GUnixSocketAddress</refname>
+<refpurpose>UNIX GSocketAddress</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GUnixSocketAddress.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GUnixSocketAddress-struct">GUnixSocketAddress</link>;
+<link linkend="GSocketAddress">GSocketAddress</link> *    <link linkend="g-unix-socket-address-new">g_unix_socket_address_new</link>           (const <link linkend="gchar">gchar</link> *path);
+<link linkend="GSocketAddress">GSocketAddress</link> *    <link linkend="g-unix-socket-address-new-abstract">g_unix_socket_address_new_abstract</link>  (const <link linkend="gchar">gchar</link> *path,
+                                                         <link linkend="int">int</link> path_len);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-unix-socket-address-get-is-abstract">g_unix_socket_address_get_is_abstract</link>
+                                                        (<link linkend="GUnixSocketAddress">GUnixSocketAddress</link> *address);
+const <link linkend="char">char</link> *        <link linkend="g-unix-socket-address-get-path">g_unix_socket_address_get_path</link>      (<link linkend="GUnixSocketAddress">GUnixSocketAddress</link> *address);
+<link linkend="gsize">gsize</link>               <link linkend="g-unix-socket-address-get-path-len">g_unix_socket_address_get_path_len</link>  (<link linkend="GUnixSocketAddress">GUnixSocketAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-unix-socket-address-abstract-names-supported">g_unix_socket_address_abstract_names_supported</link>
+                                                        (void);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GUnixSocketAddress.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GSocketAddress">GSocketAddress</link>
+         +----GUnixSocketAddress
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GUnixSocketAddress.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GUnixSocketAddress implements
+ <link linkend="GSocketConnectable">GSocketConnectable</link>.</para>
+</refsect1>
+
+
+<refsect1 id="GUnixSocketAddress.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GUnixSocketAddress--abstract">abstract</link>&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
+  &quot;<link linkend="GUnixSocketAddress--path">path</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="GUnixSocketAddress--path-as-array">path-as-array</link>&quot;            <link linkend="GByteArray">GByteArray</link>*           : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GUnixSocketAddress.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Support for UNIX-domain (aka local) sockets.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GUnixSocketAddress.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GUnixSocketAddress-struct" role="struct">
+<title>GUnixSocketAddress</title>
+<indexterm zone="GUnixSocketAddress-struct"><primary sortas="UnixSocketAddress">GUnixSocketAddress</primary></indexterm><programlisting>typedef struct _GUnixSocketAddress GUnixSocketAddress;</programlisting>
+<para>
+A UNIX-domain (local) socket address, corresponding to a
+<type>struct sockaddr_un</type>.</para>
+<para>
+</para></refsect2>
+<refsect2 id="g-unix-socket-address-new" role="function" condition="since:2.22">
+<title>g_unix_socket_address_new ()</title>
+<indexterm zone="g-unix-socket-address-new" role="2.22"><primary sortas="unix_socket_address_new">g_unix_socket_address_new</primary></indexterm><programlisting><link linkend="GSocketAddress">GSocketAddress</link> *    g_unix_socket_address_new           (const <link linkend="gchar">gchar</link> *path);</programlisting>
+<para>
+Creates a new <link linkend="GUnixSocketAddress"><type>GUnixSocketAddress</type></link> for <parameter>path</parameter>.
+</para>
+<para>
+To create abstract socket addresses, on systems that support that,
+use <link linkend="g-unix-socket-address-new-abstract"><function>g_unix_socket_address_new_abstract()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&#160;:</term>
+<listitem><simpara> the socket path
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GUnixSocketAddress"><type>GUnixSocketAddress</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-unix-socket-address-new-abstract" role="function" condition="since:2.22">
+<title>g_unix_socket_address_new_abstract ()</title>
+<indexterm zone="g-unix-socket-address-new-abstract" role="2.22"><primary sortas="unix_socket_address_new_abstract">g_unix_socket_address_new_abstract</primary></indexterm><programlisting><link linkend="GSocketAddress">GSocketAddress</link> *    g_unix_socket_address_new_abstract  (const <link linkend="gchar">gchar</link> *path,
+                                                         <link linkend="int">int</link> path_len);</programlisting>
+<para>
+Creates a new abstract <link linkend="GUnixSocketAddress"><type>GUnixSocketAddress</type></link> for <parameter>path</parameter>.
+</para>
+<para>
+Unix domain sockets are generally visible in the filesystem. However, some
+systems support abstract socket name which are not visible in the
+filesystem and not affected by the filesystem permissions, visibility, etc.
+</para>
+<para>
+Note that not all systems (really only Linux) support abstract
+socket names, so if you use them on other systems function calls may
+return <link linkend="G-IO-ERROR-NOT-SUPPORTED--CAPS"><literal>G_IO_ERROR_NOT_SUPPORTED</literal></link> errors. You can use
+<link linkend="g-unix-socket-address-abstract-names-supported"><function>g_unix_socket_address_abstract_names_supported()</function></link> to see if abstract
+names are supported.
+</para>
+<para>
+If <parameter>path_len</parameter> is -1 then <parameter>path</parameter> is assumed to be a zero terminated
+string (although in general abstract names need not be zero terminated
+and can have embedded nuls). All bytes after <parameter>path_len</parameter> up to the max size
+of an abstract unix domain name is filled with zero bytes.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&#160;:</term>
+<listitem><simpara> the abstract name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>path_len</parameter>&#160;:</term>
+<listitem><simpara> the length of <parameter>path</parameter>, or -1
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GUnixSocketAddress"><type>GUnixSocketAddress</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-unix-socket-address-get-is-abstract" role="function" condition="since:2.22">
+<title>g_unix_socket_address_get_is_abstract ()</title>
+<indexterm zone="g-unix-socket-address-get-is-abstract" role="2.22"><primary sortas="unix_socket_address_get_is_abstract">g_unix_socket_address_get_is_abstract</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_unix_socket_address_get_is_abstract
+                                                        (<link linkend="GUnixSocketAddress">GUnixSocketAddress</link> *address);</programlisting>
+<para>
+Gets <parameter>address</parameter>'s path.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetSocketAddress"><type>GInetSocketAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if the address is abstract, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-unix-socket-address-get-path" role="function" condition="since:2.22">
+<title>g_unix_socket_address_get_path ()</title>
+<indexterm zone="g-unix-socket-address-get-path" role="2.22"><primary sortas="unix_socket_address_get_path">g_unix_socket_address_get_path</primary></indexterm><programlisting>const <link linkend="char">char</link> *        g_unix_socket_address_get_path      (<link linkend="GUnixSocketAddress">GUnixSocketAddress</link> *address);</programlisting>
+<para>
+Gets <parameter>address</parameter>'s path, or for abstract sockets the "name".
+</para>
+<para>
+Guaranteed to be zero-terminated, but an abstract socket
+may contain embedded zeros, and thus you should use
+<link linkend="g-unix-socket-address-get-path-len"><function>g_unix_socket_address_get_path_len()</function></link> to get the true length
+of this string.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetSocketAddress"><type>GInetSocketAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the path for <parameter>address</parameter>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-unix-socket-address-get-path-len" role="function" condition="since:2.22">
+<title>g_unix_socket_address_get_path_len ()</title>
+<indexterm zone="g-unix-socket-address-get-path-len" role="2.22"><primary sortas="unix_socket_address_get_path_len">g_unix_socket_address_get_path_len</primary></indexterm><programlisting><link linkend="gsize">gsize</link>               g_unix_socket_address_get_path_len  (<link linkend="GUnixSocketAddress">GUnixSocketAddress</link> *address);</programlisting>
+<para>
+Gets the length of <parameter>address</parameter>'s path.
+</para>
+<para>
+For details, see <link linkend="g-unix-socket-address-get-path"><function>g_unix_socket_address_get_path()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInetSocketAddress"><type>GInetSocketAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the length of the path
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-unix-socket-address-abstract-names-supported" role="function" condition="since:2.22">
+<title>g_unix_socket_address_abstract_names_supported ()</title>
+<indexterm zone="g-unix-socket-address-abstract-names-supported" role="2.22"><primary sortas="unix_socket_address_abstract_names_supported">g_unix_socket_address_abstract_names_supported</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_unix_socket_address_abstract_names_supported
+                                                        (void);</programlisting>
+<para>
+Checks if abstract unix domain socket names are supported.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if supported, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+<refsect1 id="GUnixSocketAddress.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GUnixSocketAddress--abstract" role="property"><title>The <literal>&quot;abstract&quot;</literal> property</title>
+<indexterm zone="GUnixSocketAddress--abstract"><primary sortas="UnixSocketAddress:abstract">GUnixSocketAddress:abstract</primary></indexterm><programlisting>  &quot;abstract&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
+<para>Whether or not this is an abstract address.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="GUnixSocketAddress--path" role="property"><title>The <literal>&quot;path&quot;</literal> property</title>
+<indexterm zone="GUnixSocketAddress--path"><primary sortas="UnixSocketAddress:path">GUnixSocketAddress:path</primary></indexterm><programlisting>  &quot;path&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para>UNIX socket path.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GUnixSocketAddress--path-as-array" role="property"><title>The <literal>&quot;path-as-array&quot;</literal> property</title>
+<indexterm zone="GUnixSocketAddress--path-as-array"><primary sortas="UnixSocketAddress:path-as-array">GUnixSocketAddress:path-as-array</primary></indexterm><programlisting>  &quot;path-as-array&quot;            <link linkend="GByteArray">GByteArray</link>*           : Read / Write / Construct Only</programlisting>
+<para>UNIX socket path, as byte array.</para></refsect2>
+</refsect1>
+
+
+
+
+</refentry>

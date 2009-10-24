@@ -1,0 +1,164 @@
+<refentry id="glib-Hostname-Utilities">
+<refmeta>
+<refentrytitle role="top_of_page" id="glib-Hostname-Utilities.top_of_page">Hostname Utilities</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GLIB Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Hostname Utilities</refname>
+<refpurpose>Internet hostname utilities</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="glib-Hostname-Utilities.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;glib.h&gt;
+
+<link linkend="gchar">gchar</link> *             <link linkend="g-hostname-to-ascii">g_hostname_to_ascii</link>                 (const <link linkend="gchar">gchar</link> *hostname);
+<link linkend="gchar">gchar</link> *             <link linkend="g-hostname-to-unicode">g_hostname_to_unicode</link>               (const <link linkend="gchar">gchar</link> *hostname);
+
+<link linkend="gboolean">gboolean</link>            <link linkend="g-hostname-is-non-ascii">g_hostname_is_non_ascii</link>             (const <link linkend="gchar">gchar</link> *hostname);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-hostname-is-ascii-encoded">g_hostname_is_ascii_encoded</link>         (const <link linkend="gchar">gchar</link> *hostname);
+
+<link linkend="gboolean">gboolean</link>            <link linkend="g-hostname-is-ip-address">g_hostname_is_ip_address</link>            (const <link linkend="gchar">gchar</link> *hostname);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="glib-Hostname-Utilities.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Functions for manipulating internet hostnames; in particular, for
+converting between Unicode and ASCII-encoded forms of
+Internationalized Domain Names (IDNs).
+</para>
+<para>
+The <ulink
+url="http://www.ietf.org/rfc/rfc3490.txt">Internationalized Domain
+Names for Applications (IDNA)</ulink> standards allow for the use
+of Unicode domain names in applications, while providing
+backward-compatibility with the old ASCII-only DNS, by defining an
+ASCII-Compatible Encoding of any given Unicode name, which can be
+used with non-IDN-aware applications and protocols. (For example,
+"Παν語.org" maps to "xn--4wa8awb4637h.org".)</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="glib-Hostname-Utilities.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="g-hostname-to-ascii" role="function" condition="since:2.22">
+<title>g_hostname_to_ascii ()</title>
+<indexterm zone="g-hostname-to-ascii" role="2.22"><primary sortas="hostname_to_ascii">g_hostname_to_ascii</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             g_hostname_to_ascii                 (const <link linkend="gchar">gchar</link> *hostname);</programlisting>
+<para>
+Converts <parameter>hostname</parameter> to its canonical ASCII form; an ASCII-only
+string containing no uppercase letters and not ending with a
+trailing dot.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hostname</parameter>&#160;:</term>
+<listitem><simpara> a valid UTF-8 or ASCII hostname
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> an ASCII hostname, which must be freed, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> if
+<parameter>hostname</parameter> is in some way invalid.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-hostname-to-unicode" role="function" condition="since:2.22">
+<title>g_hostname_to_unicode ()</title>
+<indexterm zone="g-hostname-to-unicode" role="2.22"><primary sortas="hostname_to_unicode">g_hostname_to_unicode</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             g_hostname_to_unicode               (const <link linkend="gchar">gchar</link> *hostname);</programlisting>
+<para>
+Converts <parameter>hostname</parameter> to its canonical presentation form; a UTF-8
+string in Unicode normalization form C, containing no uppercase
+letters, no forbidden characters, and no ASCII-encoded segments,
+and not ending with a trailing dot.
+</para>
+<para>
+Of course if <parameter>hostname</parameter> is not an internationalized hostname, then
+the canonical presentation form will be entirely ASCII.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hostname</parameter>&#160;:</term>
+<listitem><simpara> a valid UTF-8 or ASCII hostname
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a UTF-8 hostname, which must be freed, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> if
+<parameter>hostname</parameter> is in some way invalid.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-hostname-is-non-ascii" role="function" condition="since:2.22">
+<title>g_hostname_is_non_ascii ()</title>
+<indexterm zone="g-hostname-is-non-ascii" role="2.22"><primary sortas="hostname_is_non_ascii">g_hostname_is_non_ascii</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_hostname_is_non_ascii             (const <link linkend="gchar">gchar</link> *hostname);</programlisting>
+<para>
+Tests if <parameter>hostname</parameter> contains Unicode characters. If this returns
+<link linkend="TRUE--CAPS"><literal>TRUE</literal></link>, you need to encode the hostname with <link linkend="g-hostname-to-ascii"><function>g_hostname_to_ascii()</function></link>
+before using it in non-IDN-aware contexts.
+</para>
+<para>
+Note that a hostname might contain a mix of encoded and unencoded
+segments, and so it is possible for <link linkend="g-hostname-is-non-ascii"><function>g_hostname_is_non_ascii()</function></link> and
+<link linkend="g-hostname-is-ascii-encoded"><function>g_hostname_is_ascii_encoded()</function></link> to both return <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> for a name.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hostname</parameter>&#160;:</term>
+<listitem><simpara> a hostname
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>hostname</parameter> contains any non-ASCII characters
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-hostname-is-ascii-encoded" role="function" condition="since:2.22">
+<title>g_hostname_is_ascii_encoded ()</title>
+<indexterm zone="g-hostname-is-ascii-encoded" role="2.22"><primary sortas="hostname_is_ascii_encoded">g_hostname_is_ascii_encoded</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_hostname_is_ascii_encoded         (const <link linkend="gchar">gchar</link> *hostname);</programlisting>
+<para>
+Tests if <parameter>hostname</parameter> contains segments with an ASCII-compatible
+encoding of an Internationalized Domain Name. If this returns
+<link linkend="TRUE--CAPS"><literal>TRUE</literal></link>, you should decode the hostname with <link linkend="g-hostname-to-unicode"><function>g_hostname_to_unicode()</function></link>
+before displaying it to the user.
+</para>
+<para>
+Note that a hostname might contain a mix of encoded and unencoded
+segments, and so it is possible for <link linkend="g-hostname-is-non-ascii"><function>g_hostname_is_non_ascii()</function></link> and
+<link linkend="g-hostname-is-ascii-encoded"><function>g_hostname_is_ascii_encoded()</function></link> to both return <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> for a name.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hostname</parameter>&#160;:</term>
+<listitem><simpara> a hostname
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>hostname</parameter> contains any ASCII-encoded
+segments.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-hostname-is-ip-address" role="function" condition="since:2.22">
+<title>g_hostname_is_ip_address ()</title>
+<indexterm zone="g-hostname-is-ip-address" role="2.22"><primary sortas="hostname_is_ip_address">g_hostname_is_ip_address</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_hostname_is_ip_address            (const <link linkend="gchar">gchar</link> *hostname);</programlisting>
+<para>
+Tests if <parameter>hostname</parameter> is the string form of an IPv4 or IPv6 address.
+(Eg, "192.168.0.1".)</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hostname</parameter>&#160;:</term>
+<listitem><simpara> a hostname (or IP address in string form)
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>hostname</parameter> is an IP address
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

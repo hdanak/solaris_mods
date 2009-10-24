@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GSocketConnectable">
+<refmeta>
+<refentrytitle role="top_of_page" id="GSocketConnectable.top_of_page">GSocketConnectable</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GSocketConnectable</refname>
+<refpurpose>Interface for potential socket endpoints</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GSocketConnectable.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GSocketAddressEnumerator"/>
+<synopsis>
+                    <link linkend="GSocketConnectable-struct">GSocketConnectable</link>;
+                    <link linkend="GSocketConnectableIface">GSocketConnectableIface</link>;
+<link linkend="GSocketAddressEnumerator">GSocketAddressEnumerator</link> * <link linkend="g-socket-connectable-enumerate">g_socket_connectable_enumerate</link>
+                                                        (<link linkend="GSocketConnectable">GSocketConnectable</link> *connectable);
+
+                    <link linkend="GSocketAddressEnumerator-struct">GSocketAddressEnumerator</link>;
+<link linkend="GSocketAddress">GSocketAddress</link> *    <link linkend="g-socket-address-enumerator-next">g_socket_address_enumerator_next</link>    (<link linkend="GSocketAddressEnumerator">GSocketAddressEnumerator</link> *enumerator,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="g-socket-address-enumerator-next-async">g_socket_address_enumerator_next_async</link>
+                                                        (<link linkend="GSocketAddressEnumerator">GSocketAddressEnumerator</link> *enumerator,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GSocketAddress">GSocketAddress</link> *    <link linkend="g-socket-address-enumerator-next-finish">g_socket_address_enumerator_next_finish</link>
+                                                        (<link linkend="GSocketAddressEnumerator">GSocketAddressEnumerator</link> *enumerator,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **error);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GSocketConnectable.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GInterface">GInterface</link>
+   +----GSocketConnectable
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GSocketAddressEnumerator
+</synopsis>
+</refsect1>
+
+<refsect1 id="GSocketConnectable.prerequisites" role="prerequisites">
+<title role="prerequisites.title">Prerequisites</title>
+<para>
+GSocketConnectable requires
+ <link linkend="GObject">GObject</link>.</para>
+</refsect1>
+
+
+
+<refsect1 id="GSocketConnectable.implementations" role="implementations">
+<title role="implementations.title">Known Implementations</title>
+<para>
+GSocketConnectable is implemented by
+ <link linkend="GUnixSocketAddress">GUnixSocketAddress</link>,  <link linkend="GNetworkService">GNetworkService</link>,  <link linkend="GSocketAddress">GSocketAddress</link>,  <link linkend="GNetworkAddress">GNetworkAddress</link> and  <link linkend="GInetSocketAddress">GInetSocketAddress</link>.</para>
+</refsect1>
+
+
+
+
+<refsect1 id="GSocketConnectable.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Objects that describe one or more potential socket endpoints
+implement <link linkend="GSocketConnectable"><type>GSocketConnectable</type></link>. Callers can then use
+<link linkend="g-socket-connectable-enumerate"><function>g_socket_connectable_enumerate()</function></link> to get a <link linkend="GSocketAddressEnumerator"><type>GSocketAddressEnumerator</type></link>
+to try out each socket address in turn until one succeeds, as shown
+in the sample code below.
+</para>
+<para>
+<informalexample><programlisting>
+MyConnectionType *
+connect_to_host (const char    *hostname,
+                 guint16        port,
+                 GCancellable  *cancellable,
+                 GError       **error)
+{
+  MyConnection *conn = NULL;
+  GSocketConnectable *addr;
+  GSocketAddressEnumerator *enumerator;
+  GSocketAddress *sockaddr;
+  GError *conn_error = NULL;
+
+  addr = g_network_address_new ("www.gnome.org", 80);
+  enumerator = g_socket_connectable_enumerate (addr);
+  g_object_unref (addr);
+
+  /<!-- -->* Try each sockaddr until we succeed. Record the first
+   * connection error, but not any further ones (since they'll probably
+   * be basically the same as the first).
+   *<!-- -->/
+  while (!conn &amp;&amp; (sockaddr = g_socket_address_enumerator_next (enumerator, cancellable, error))
+    {
+      conn = connect_to_sockaddr (sockaddr, conn_error ? NULL : &amp;conn_error);
+      g_object_unref (sockaddr);
+    }
+  g_object_unref (enumerator);
+
+  if (conn)
+    {
+      if (conn_error)
+        {
+          /<!-- -->* We couldn't connect to the first address, but we succeeded
+           * in connecting to a later address.
+           *<!-- -->/
+          g_error_free (conn_error);
+        }
+      return conn;
+    }
+  else if (error)
+    {
+      /<!-- -->* Either the initial lookup failed, or else the caller
+       * cancelled us.
+       *<!-- -->/
+      if (conn_error)
+        g_error_free (conn_error);
+      return NULL;
+    }
+  else
+    {
+      g_error_propagate (error, conn_error);
+      return NULL;
+    }
+}
+</programlisting></informalexample></para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GSocketConnectable.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GSocketConnectable-struct" role="struct">
+<title>GSocketConnectable</title>
+<indexterm zone="GSocketConnectable-struct"><primary sortas="SocketConnectable">GSocketConnectable</primary></indexterm><programlisting>typedef struct _GSocketConnectable GSocketConnectable;</programlisting>
+<para>
+Interface for objects that contain or generate <link linkend="GSocketAddress"><type>GSocketAddress</type></link><!-- -->es.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GSocketConnectableIface" role="struct">
+<title>GSocketConnectableIface</title>
+<indexterm zone="GSocketConnectableIface"><primary sortas="SocketConnectableIface">GSocketConnectableIface</primary></indexterm><programlisting>typedef struct {
+  GTypeInterface g_iface;
+
+  /* Virtual Table */
+
+  GSocketAddressEnumerator * (* enumerate) (GSocketConnectable *connectable);
+} GSocketConnectableIface;
+</programlisting>
+<para>
+Provides an interface for returning a <link linkend="GSocketAddressEnumerator"><type>GSocketAddressEnumerator</type></link></para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="GTypeInterface">GTypeInterface</link>&#160;<structfield>g_iface</structfield>;</term>
+<listitem><simpara> The parent interface.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>enumerate</structfield>&#160;()</term>
+<listitem><simpara> Creates a <link linkend="GSocketAddressEnumerator"><type>GSocketAddressEnumerator</type></link>
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="g-socket-connectable-enumerate" role="function" condition="since:2.22">
+<title>g_socket_connectable_enumerate ()</title>
+<indexterm zone="g-socket-connectable-enumerate" role="2.22"><primary sortas="socket_connectable_enumerate">g_socket_connectable_enumerate</primary></indexterm><programlisting><link linkend="GSocketAddressEnumerator">GSocketAddressEnumerator</link> * g_socket_connectable_enumerate
+                                                        (<link linkend="GSocketConnectable">GSocketConnectable</link> *connectable);</programlisting>
+<para>
+Creates a <link linkend="GSocketAddressEnumerator"><type>GSocketAddressEnumerator</type></link> for <parameter>connectable</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>connectable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketConnectable"><type>GSocketConnectable</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GSocketAddressEnumerator"><type>GSocketAddressEnumerator</type></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="GSocketAddressEnumerator-struct" role="struct">
+<title>GSocketAddressEnumerator</title>
+<indexterm zone="GSocketAddressEnumerator-struct"><primary sortas="SocketAddressEnumerator">GSocketAddressEnumerator</primary></indexterm><programlisting>typedef struct _GSocketAddressEnumerator GSocketAddressEnumerator;</programlisting>
+<para>
+Enumerator type for objects that contain or generate
+<link linkend="GSocketAddress"><type>GSocketAddress</type></link><!-- -->es.</para>
+<para>
+</para></refsect2>
+<refsect2 id="g-socket-address-enumerator-next" role="function">
+<title>g_socket_address_enumerator_next ()</title>
+<indexterm zone="g-socket-address-enumerator-next"><primary sortas="socket_address_enumerator_next">g_socket_address_enumerator_next</primary></indexterm><programlisting><link linkend="GSocketAddress">GSocketAddress</link> *    g_socket_address_enumerator_next    (<link linkend="GSocketAddressEnumerator">GSocketAddressEnumerator</link> *enumerator,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Retrieves the next <link linkend="GSocketAddress"><type>GSocketAddress</type></link> from <parameter>enumerator</parameter>. Note that this
+may block for some amount of time. (Eg, a <link linkend="GNetworkAddress"><type>GNetworkAddress</type></link> may need
+to do a DNS lookup before it can return an address.) Use
+<link linkend="g-socket-address-enumerator-next-async"><function>g_socket_address_enumerator_next_async()</function></link> if you need to avoid
+blocking.
+</para>
+<para>
+If <parameter>enumerator</parameter> is expected to yield addresses, but for some reason
+is unable to (eg, because of a DNS error), then the first call to
+<link linkend="g-socket-address-enumerator-next"><function>g_socket_address_enumerator_next()</function></link> will return an appropriate error
+in *<parameter>error</parameter>. However, if the first call to
+<link linkend="g-socket-address-enumerator-next"><function>g_socket_address_enumerator_next()</function></link> succeeds, then any further
+internal errors (other than <parameter>cancellable</parameter> being triggered) will be
+ignored.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>enumerator</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketAddressEnumerator"><type>GSocketAddressEnumerator</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> (owned by the caller), or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on
+    error (in which case *<parameter>error</parameter> will be set) or if there are no
+    more addresses.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="g-socket-address-enumerator-next-async" role="function">
+<title>g_socket_address_enumerator_next_async ()</title>
+<indexterm zone="g-socket-address-enumerator-next-async"><primary sortas="socket_address_enumerator_next_async">g_socket_address_enumerator_next_async</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_address_enumerator_next_async
+                                                        (<link linkend="GSocketAddressEnumerator">GSocketAddressEnumerator</link> *enumerator,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Asynchronously retrieves the next <link linkend="GSocketAddress"><type>GSocketAddress</type></link> from <parameter>enumerator</parameter>
+and then calls <parameter>callback</parameter>, which must call
+<link linkend="g-socket-address-enumerator-next-finish"><function>g_socket_address_enumerator_next_finish()</function></link> to get the result.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>enumerator</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketAddressEnumerator"><type>GSocketAddressEnumerator</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GAsyncReadyCallback"><type>GAsyncReadyCallback</type></link> to call when the request is satisfied
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> the data to pass to callback function
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="g-socket-address-enumerator-next-finish" role="function">
+<title>g_socket_address_enumerator_next_finish ()</title>
+<indexterm zone="g-socket-address-enumerator-next-finish"><primary sortas="socket_address_enumerator_next_finish">g_socket_address_enumerator_next_finish</primary></indexterm><programlisting><link linkend="GSocketAddress">GSocketAddress</link> *    g_socket_address_enumerator_next_finish
+                                                        (<link linkend="GSocketAddressEnumerator">GSocketAddressEnumerator</link> *enumerator,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Retrieves the result of a completed call to
+<link linkend="g-socket-address-enumerator-next-async"><function>g_socket_address_enumerator_next_async()</function></link>. See
+<link linkend="g-socket-address-enumerator-next"><function>g_socket_address_enumerator_next()</function></link> for more information about
+error handling.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>enumerator</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketAddressEnumerator"><type>GSocketAddressEnumerator</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GAsyncResult"><type>GAsyncResult</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> (owned by the caller), or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on
+    error (in which case *<parameter>error</parameter> will be set) or if there are no
+    more addresses.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

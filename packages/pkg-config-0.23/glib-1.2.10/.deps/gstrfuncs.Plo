@@ -1,0 +1,80 @@
+gstrfuncs.lo gstrfuncs.o: gstrfuncs.c ./config.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdio.h \
+  /usr/include/sys/feature_tests.h /usr/include/sys/ccompile.h \
+  /usr/include/sys/isa_defs.h /usr/include/iso/stdio_iso.h \
+  /usr/include/sys/va_list.h /usr/include/stdio_tag.h \
+  /usr/include/stdio_impl.h /usr/include/iso/stdio_c99.h \
+  /usr/include/stdlib.h /usr/include/iso/stdlib_iso.h \
+  /usr/include/iso/stdlib_c99.h /usr/include/string.h \
+  /usr/include/iso/string_iso.h /usr/include/locale.h \
+  /usr/include/iso/locale_iso.h /usr/include/libintl.h \
+  /usr/include/errno.h /usr/include/sys/errno.h /usr/include/ctype.h \
+  /usr/include/iso/ctype_iso.h /usr/include/iso/ctype_c99.h glib.h \
+  ./glibconfig.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/limits.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/syslimits.h \
+  /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/float.h
+
+./config.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdio.h:
+
+/usr/include/sys/feature_tests.h:
+
+/usr/include/sys/ccompile.h:
+
+/usr/include/sys/isa_defs.h:
+
+/usr/include/iso/stdio_iso.h:
+
+/usr/include/sys/va_list.h:
+
+/usr/include/stdio_tag.h:
+
+/usr/include/stdio_impl.h:
+
+/usr/include/iso/stdio_c99.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/iso/stdlib_iso.h:
+
+/usr/include/iso/stdlib_c99.h:
+
+/usr/include/string.h:
+
+/usr/include/iso/string_iso.h:
+
+/usr/include/locale.h:
+
+/usr/include/iso/locale_iso.h:
+
+/usr/include/libintl.h:
+
+/usr/include/errno.h:
+
+/usr/include/sys/errno.h:
+
+/usr/include/ctype.h:
+
+/usr/include/iso/ctype_iso.h:
+
+/usr/include/iso/ctype_c99.h:
+
+glib.h:
+
+./glibconfig.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/limits.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/syslimits.h:
+
+/usr/include/iso/limits_iso.h:
+
+/usr/include/sys/int_limits.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/float.h:

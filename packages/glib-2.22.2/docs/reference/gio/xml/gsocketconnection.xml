@@ -1,0 +1,393 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GSocketConnection">
+<refmeta>
+<refentrytitle role="top_of_page" id="GSocketConnection.top_of_page">GSocketConnection</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GSocketConnection</refname>
+<refpurpose>A socket connection</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GSocketConnection.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GTcpConnection"/><anchor id="GUnixConnection"/>
+<synopsis>
+
+#include &lt;gio/gio.h&gt;
+
+                    <link linkend="GSocketConnection-struct">GSocketConnection</link>;
+<link linkend="GSocketAddress">GSocketAddress</link> *    <link linkend="g-socket-connection-get-local-address">g_socket_connection_get_local_address</link>
+                                                        (<link linkend="GSocketConnection">GSocketConnection</link> *connection,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="GSocketAddress">GSocketAddress</link> *    <link linkend="g-socket-connection-get-remote-address">g_socket_connection_get_remote_address</link>
+                                                        (<link linkend="GSocketConnection">GSocketConnection</link> *connection,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="GSocket">GSocket</link> *           <link linkend="g-socket-connection-get-socket">g_socket_connection_get_socket</link>      (<link linkend="GSocketConnection">GSocketConnection</link> *connection);
+
+                    <link linkend="GTcpConnection-struct">GTcpConnection</link>;
+<link linkend="void">void</link>                <link linkend="g-tcp-connection-set-graceful-disconnect">g_tcp_connection_set_graceful_disconnect</link>
+                                                        (<link linkend="GTcpConnection">GTcpConnection</link> *connection,
+                                                         <link linkend="gboolean">gboolean</link> graceful_disconnect);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-tcp-connection-get-graceful-disconnect">g_tcp_connection_get_graceful_disconnect</link>
+                                                        (<link linkend="GTcpConnection">GTcpConnection</link> *connection);
+
+                    <link linkend="GUnixConnection-struct">GUnixConnection</link>;
+<link linkend="gint">gint</link>                <link linkend="g-unix-connection-receive-fd">g_unix_connection_receive_fd</link>        (<link linkend="GUnixConnection">GUnixConnection</link> *connection,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="g-unix-connection-send-fd">g_unix_connection_send_fd</link>           (<link linkend="GUnixConnection">GUnixConnection</link> *connection,
+                                                         <link linkend="gint">gint</link> fd,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+
+<link linkend="GSocketConnection">GSocketConnection</link> * <link linkend="g-socket-connection-factory-create-connection">g_socket_connection_factory_create_connection</link>
+                                                        (<link linkend="GSocket">GSocket</link> *socket);
+<link linkend="GType">GType</link>               <link linkend="g-socket-connection-factory-lookup-type">g_socket_connection_factory_lookup_type</link>
+                                                        (<link linkend="GSocketFamily">GSocketFamily</link> family,
+                                                         <link linkend="GSocketType">GSocketType</link> type,
+                                                         <link linkend="gint">gint</link> protocol_id);
+<link linkend="void">void</link>                <link linkend="g-socket-connection-factory-register-type">g_socket_connection_factory_register_type</link>
+                                                        (<link linkend="GType">GType</link> g_type,
+                                                         <link linkend="GSocketFamily">GSocketFamily</link> family,
+                                                         <link linkend="GSocketType">GSocketType</link> type,
+                                                         <link linkend="gint">gint</link> protocol);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GSocketConnection.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GIOStream">GIOStream</link>
+         +----GSocketConnection
+               +----<link linkend="GTcpConnection">GTcpConnection</link>
+               +----<link linkend="GUnixConnection">GUnixConnection</link>
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GIOStream">GIOStream</link>
+         +----<link linkend="GSocketConnection">GSocketConnection</link>
+               +----GTcpConnection
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GIOStream">GIOStream</link>
+         +----<link linkend="GSocketConnection">GSocketConnection</link>
+               +----GUnixConnection
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="GSocketConnection.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GSocketConnection--socket">socket</link>&quot;                   <link linkend="GSocket">GSocket</link>*              : Read / Write / Construct Only
+  &quot;<link linkend="GTcpConnection--graceful-disconnect">graceful-disconnect</link>&quot;      <link linkend="gboolean">gboolean</link>              : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GSocketConnection.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="GSocketConnection"><type>GSocketConnection</type></link> is a <link linkend="GIOStream"><type>GIOStream</type></link> for a connected socket. They
+can be created either by <link linkend="GSocketClient"><type>GSocketClient</type></link> when connecting to a host,
+or by <link linkend="GSocketListener"><type>GSocketListener</type></link> when accepting a new client.
+</para>
+<para>
+The type of the <link linkend="GSocketConnection"><type>GSocketConnection</type></link> object returned from these calls
+depends on the type of the underlying socket that is in use. For
+instance, for a TCP/IP connection it will be a <link linkend="GTcpConnection"><type>GTcpConnection</type></link>.
+</para>
+<para>
+Chosing what type of object to construct is done with the socket
+connection factory, and it is possible for 3rd parties to register
+custom socket connection types for specific combination of socket
+family/type/protocol using <link linkend="g-socket-connection-factory-register-type"><function>g_socket_connection_factory_register_type()</function></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GSocketConnection.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GSocketConnection-struct" role="struct">
+<title>GSocketConnection</title>
+<indexterm zone="GSocketConnection-struct" role="2.22"><primary sortas="SocketConnection">GSocketConnection</primary></indexterm><programlisting>typedef struct _GSocketConnection GSocketConnection;</programlisting>
+<para>
+A socket connection GIOStream object for connection-oriented sockets.</para>
+<para>
+</para><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-connection-get-local-address" role="function" condition="since:2.22">
+<title>g_socket_connection_get_local_address ()</title>
+<indexterm zone="g-socket-connection-get-local-address" role="2.22"><primary sortas="socket_connection_get_local_address">g_socket_connection_get_local_address</primary></indexterm><programlisting><link linkend="GSocketAddress">GSocketAddress</link> *    g_socket_connection_get_local_address
+                                                        (<link linkend="GSocketConnection">GSocketConnection</link> *connection,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Try to get the local address of a socket connection.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>connection</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+    Free the returned object with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-connection-get-remote-address" role="function" condition="since:2.22">
+<title>g_socket_connection_get_remote_address ()</title>
+<indexterm zone="g-socket-connection-get-remote-address" role="2.22"><primary sortas="socket_connection_get_remote_address">g_socket_connection_get_remote_address</primary></indexterm><programlisting><link linkend="GSocketAddress">GSocketAddress</link> *    g_socket_connection_get_remote_address
+                                                        (<link linkend="GSocketConnection">GSocketConnection</link> *connection,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Try to get the remote address of a socket connection.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>connection</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+    Free the returned object with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-connection-get-socket" role="function" condition="since:2.22">
+<title>g_socket_connection_get_socket ()</title>
+<indexterm zone="g-socket-connection-get-socket" role="2.22"><primary sortas="socket_connection_get_socket">g_socket_connection_get_socket</primary></indexterm><programlisting><link linkend="GSocket">GSocket</link> *           g_socket_connection_get_socket      (<link linkend="GSocketConnection">GSocketConnection</link> *connection);</programlisting>
+<para>
+Gets the underlying <link linkend="GSocket"><type>GSocket</type></link> object of the connection.
+This can be useful if you want to do something unusual on it
+not supported by the <link linkend="GSocketConnection"><type>GSocketConnection</type></link> APIs.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>connection</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="GTcpConnection-struct" role="struct">
+<title>GTcpConnection</title>
+<indexterm zone="GTcpConnection-struct" role="2.22"><primary sortas="TcpConnection">GTcpConnection</primary></indexterm><programlisting>typedef struct _GTcpConnection GTcpConnection;</programlisting>
+<para>
+A <link linkend="GSocketConnection"><type>GSocketConnection</type></link> for UNIX domain socket connections.</para>
+<para>
+</para><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-tcp-connection-set-graceful-disconnect" role="function" condition="since:2.22">
+<title>g_tcp_connection_set_graceful_disconnect ()</title>
+<indexterm zone="g-tcp-connection-set-graceful-disconnect" role="2.22"><primary sortas="tcp_connection_set_graceful_disconnect">g_tcp_connection_set_graceful_disconnect</primary></indexterm><programlisting><link linkend="void">void</link>                g_tcp_connection_set_graceful_disconnect
+                                                        (<link linkend="GTcpConnection">GTcpConnection</link> *connection,
+                                                         <link linkend="gboolean">gboolean</link> graceful_disconnect);</programlisting>
+<para>
+This enabled graceful disconnects on close. A graceful disconnect
+means that we signal the recieving end that the connection is terminated
+and wait for it to close the connection before closing the connection.
+</para>
+<para>
+A graceful disconnect means that we can be sure that we successfully sent
+all the outstanding data to the other end, or get an error reported.
+However, it also means we have to wait for all the data to reach the
+other side and for it to acknowledge this by closing the socket, which may
+take a while. For this reason it is disabled by default.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>connection</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GTcpConnection"><type>GTcpConnection</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>graceful_disconnect</parameter>&#160;:</term>
+<listitem><simpara> Whether to do graceful disconnects or not
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-tcp-connection-get-graceful-disconnect" role="function" condition="since:2.22">
+<title>g_tcp_connection_get_graceful_disconnect ()</title>
+<indexterm zone="g-tcp-connection-get-graceful-disconnect" role="2.22"><primary sortas="tcp_connection_get_graceful_disconnect">g_tcp_connection_get_graceful_disconnect</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_tcp_connection_get_graceful_disconnect
+                                                        (<link linkend="GTcpConnection">GTcpConnection</link> *connection);</programlisting>
+<para>
+Checks if graceful disconnects are used. See
+<link linkend="g-tcp-connection-set-graceful-disconnect"><function>g_tcp_connection_set_graceful_disconnect()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>connection</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GTcpConnection"><type>GTcpConnection</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if graceful disconnect is used on close, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="GUnixConnection-struct" role="struct">
+<title>GUnixConnection</title>
+<indexterm zone="GUnixConnection-struct"><primary sortas="UnixConnection">GUnixConnection</primary></indexterm><programlisting>typedef struct _GUnixConnection GUnixConnection;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="g-unix-connection-receive-fd" role="function" condition="since:2.22">
+<title>g_unix_connection_receive_fd ()</title>
+<indexterm zone="g-unix-connection-receive-fd" role="2.22"><primary sortas="unix_connection_receive_fd">g_unix_connection_receive_fd</primary></indexterm><programlisting><link linkend="gint">gint</link>                g_unix_connection_receive_fd        (<link linkend="GUnixConnection">GUnixConnection</link> *connection,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Receives a file descriptor from the sending end of the connection.
+The sending end has to call <link linkend="g-unix-connection-send-fd"><function>g_unix_connection_send_fd()</function></link> for this
+to work.
+</para>
+<para>
+As well as reading the fd this also reads a single byte from the
+stream, as this is required for fd passing to work on some
+implementations.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>connection</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GUnixConnection"><type>GUnixConnection</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a file descriptor on success, -1 on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-unix-connection-send-fd" role="function" condition="since:2.22">
+<title>g_unix_connection_send_fd ()</title>
+<indexterm zone="g-unix-connection-send-fd" role="2.22"><primary sortas="unix_connection_send_fd">g_unix_connection_send_fd</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_unix_connection_send_fd           (<link linkend="GUnixConnection">GUnixConnection</link> *connection,
+                                                         <link linkend="gint">gint</link> fd,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Passes a file descriptor to the recieving side of the
+connection. The recieving end has to call <link linkend="g-unix-connection-receive-fd"><function>g_unix_connection_receive_fd()</function></link>
+to accept the file descriptor.
+</para>
+<para>
+As well as sending the fd this also writes a single byte to the
+stream, as this is required for fd passing to work on some
+implementations.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>connection</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GUnixConnection"><type>GUnixConnection</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>fd</parameter>&#160;:</term>
+<listitem><simpara> a file descriptor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> on success, <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-connection-factory-create-connection" role="function" condition="since:2.22">
+<title>g_socket_connection_factory_create_connection ()</title>
+<indexterm zone="g-socket-connection-factory-create-connection" role="2.22"><primary sortas="socket_connection_factory_create_connection">g_socket_connection_factory_create_connection</primary></indexterm><programlisting><link linkend="GSocketConnection">GSocketConnection</link> * g_socket_connection_factory_create_connection
+                                                        (<link linkend="GSocket">GSocket</link> *socket);</programlisting>
+<para>
+Creates a <link linkend="GSocketConnection"><type>GSocketConnection</type></link> subclass of the right type for
+<parameter>socket</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>socket</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocket"><type>GSocket</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-connection-factory-lookup-type" role="function" condition="since:2.22">
+<title>g_socket_connection_factory_lookup_type ()</title>
+<indexterm zone="g-socket-connection-factory-lookup-type" role="2.22"><primary sortas="socket_connection_factory_lookup_type">g_socket_connection_factory_lookup_type</primary></indexterm><programlisting><link linkend="GType">GType</link>               g_socket_connection_factory_lookup_type
+                                                        (<link linkend="GSocketFamily">GSocketFamily</link> family,
+                                                         <link linkend="GSocketType">GSocketType</link> type,
+                                                         <link linkend="gint">gint</link> protocol_id);</programlisting>
+<para>
+Looks up the <link linkend="GType"><type>GType</type></link> to be used when creating socket connections on
+sockets with the specified <parameter>family</parameter>,<parameter>type</parameter> and <parameter>protocol_id</parameter>.
+</para>
+<para>
+If no type is registered, the <link linkend="GSocketConnection"><type>GSocketConnection</type></link> base type is returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>family</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketFamily"><type>GSocketFamily</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketType"><type>GSocketType</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>protocol_id</parameter>&#160;:</term>
+<listitem><simpara> a protocol id
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GType"><type>GType</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-connection-factory-register-type" role="function" condition="since:2.22">
+<title>g_socket_connection_factory_register_type ()</title>
+<indexterm zone="g-socket-connection-factory-register-type" role="2.22"><primary sortas="socket_connection_factory_register_type">g_socket_connection_factory_register_type</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_connection_factory_register_type
+                                                        (<link linkend="GType">GType</link> g_type,
+                                                         <link linkend="GSocketFamily">GSocketFamily</link> family,
+                                                         <link linkend="GSocketType">GSocketType</link> type,
+                                                         <link linkend="gint">gint</link> protocol);</programlisting>
+<para>
+Looks up the <link linkend="GType"><type>GType</type></link> to be used when creating socket connections on
+sockets with the specified <parameter>family</parameter>,<parameter>type</parameter> and <parameter>protocol</parameter>.
+</para>
+<para>
+If no type is registered, the <link linkend="GSocketConnection"><type>GSocketConnection</type></link> base type is returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>g_type</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GType"><type>GType</type></link>, inheriting from <link linkend="G-TYPE-SOCKET-CONNECTION--CAPS"><literal>G_TYPE_SOCKET_CONNECTION</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>family</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketFamily"><type>GSocketFamily</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketType"><type>GSocketType</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>protocol</parameter>&#160;:</term>
+<listitem><simpara> a protocol id
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+<refsect1 id="GSocketConnection.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GSocketConnection--socket" role="property"><title>The <literal>&quot;socket&quot;</literal> property</title>
+<indexterm zone="GSocketConnection--socket"><primary sortas="SocketConnection:socket">GSocketConnection:socket</primary></indexterm><programlisting>  &quot;socket&quot;                   <link linkend="GSocket">GSocket</link>*              : Read / Write / Construct Only</programlisting>
+<para>The underlying GSocket.</para></refsect2>
+<refsect2 id="GTcpConnection--graceful-disconnect" role="property"><title>The <literal>&quot;graceful-disconnect&quot;</literal> property</title>
+<indexterm zone="GTcpConnection--graceful-disconnect"><primary sortas="TcpConnection:graceful-disconnect">GTcpConnection:graceful-disconnect</primary></indexterm><programlisting>  &quot;graceful-disconnect&quot;      <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Whether or not close does a graceful disconnect.</para><para>Default value: FALSE</para>
+</refsect2>
+</refsect1>
+
+
+
+<refsect1 id="GSocketConnection.see-also">
+<title>See Also</title>
+#GIOStream, <link linkend="GSocketClient"><type>GSocketClient</type></link>, <link linkend="GSocketListener"><type>GSocketListener</type></link>
+</refsect1>
+
+</refentry>

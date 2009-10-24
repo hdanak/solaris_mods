@@ -1,0 +1,279 @@
+pcre_exec.lo .libs/pcre_exec.o: pcre_exec.c ../../config.h \
+  pcre_internal.h /usr/include/ctype.h /usr/include/iso/ctype_iso.h \
+  /usr/include/sys/feature_tests.h /usr/include/sys/ccompile.h \
+  /usr/include/sys/isa_defs.h /usr/include/iso/ctype_c99.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/limits.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/syslimits.h \
+  /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+  /usr/include/sys/unistd.h /usr/include/setjmp.h \
+  /usr/include/iso/setjmp_iso.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stddef.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdio.h \
+  /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+  /usr/include/stdio_tag.h /usr/include/stdio_impl.h \
+  /usr/include/iso/stdio_c99.h /usr/include/stdlib.h \
+  /usr/include/iso/stdlib_iso.h /usr/include/iso/stdlib_c99.h \
+  /usr/include/sys/wait.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/sys/types.h \
+  /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+  /usr/include/sys/select.h /usr/include/sys/time_impl.h \
+  /usr/include/sys/time.h /usr/include/time.h /usr/include/iso/time_iso.h \
+  /usr/include/sys/resource.h /usr/include/sys/siginfo.h \
+  /usr/include/sys/machsig.h /usr/include/sys/procset.h \
+  /usr/include/sys/signal.h /usr/include/sys/iso/signal_iso.h \
+  /usr/include/sys/ucontext.h /usr/include/sys/regset.h \
+  /usr/include/v7/sys/privregs.h /usr/include/v7/sys/psr.h \
+  /usr/include/sys/fsr.h /usr/include/string.h \
+  /usr/include/iso/string_iso.h pcre.h ../../glib/glib.h \
+  ../../glib/galloca.h ../../glib/gtypes.h ../../glibconfig.h \
+  ../../glib/gmacros.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/float.h \
+  ../../glib/garray.h ../../glib/gasyncqueue.h ../../glib/gthread.h \
+  ../../glib/gerror.h ../../glib/gquark.h ../../glib/gutils.h \
+  ../../glib/gatomic.h ../../glib/gbacktrace.h /usr/include/signal.h \
+  /usr/include/iso/signal_iso.h ../../glib/gbase64.h \
+  ../../glib/gbookmarkfile.h ../../glib/gcache.h ../../glib/glist.h \
+  ../../glib/gmem.h ../../glib/gslice.h ../../glib/gchecksum.h \
+  ../../glib/gcompletion.h ../../glib/gconvert.h ../../glib/gdataset.h \
+  ../../glib/gdate.h ../../glib/gdir.h ../../glib/gfileutils.h \
+  ../../glib/ghash.h ../../glib/ghook.h ../../glib/ghostutils.h \
+  ../../glib/giochannel.h ../../glib/gmain.h ../../glib/gpoll.h \
+  ../../glib/gslist.h ../../glib/gstring.h ../../glib/gunicode.h \
+  ../../glib/gkeyfile.h ../../glib/gmappedfile.h ../../glib/gmarkup.h \
+  ../../glib/gmessages.h ../../glib/gnode.h ../../glib/goption.h \
+  ../../glib/gpattern.h ../../glib/gprimes.h ../../glib/gqsort.h \
+  ../../glib/gqueue.h ../../glib/grand.h ../../glib/grel.h \
+  ../../glib/gregex.h ../../glib/gscanner.h ../../glib/gsequence.h \
+  ../../glib/gshell.h ../../glib/gspawn.h ../../glib/gstrfuncs.h \
+  ../../glib/gtestutils.h ../../glib/glib.h ../../glib/gthreadpool.h \
+  ../../glib/gtimer.h ../../glib/gtree.h ../../glib/gurifuncs.h \
+  ../../glib/galias.h ucp.h ../glib.h
+
+../../config.h:
+
+pcre_internal.h:
+
+/usr/include/ctype.h:
+
+/usr/include/iso/ctype_iso.h:
+
+/usr/include/sys/feature_tests.h:
+
+/usr/include/sys/ccompile.h:
+
+/usr/include/sys/isa_defs.h:
+
+/usr/include/iso/ctype_c99.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/limits.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/syslimits.h:
+
+/usr/include/iso/limits_iso.h:
+
+/usr/include/sys/int_limits.h:
+
+/usr/include/sys/unistd.h:
+
+/usr/include/setjmp.h:
+
+/usr/include/iso/setjmp_iso.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stddef.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdio.h:
+
+/usr/include/iso/stdio_iso.h:
+
+/usr/include/sys/va_list.h:
+
+/usr/include/stdio_tag.h:
+
+/usr/include/stdio_impl.h:
+
+/usr/include/iso/stdio_c99.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/iso/stdlib_iso.h:
+
+/usr/include/iso/stdlib_c99.h:
+
+/usr/include/sys/wait.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/sys/types.h:
+
+/usr/include/sys/machtypes.h:
+
+/usr/include/sys/int_types.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/sys/time_impl.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/time.h:
+
+/usr/include/iso/time_iso.h:
+
+/usr/include/sys/resource.h:
+
+/usr/include/sys/siginfo.h:
+
+/usr/include/sys/machsig.h:
+
+/usr/include/sys/procset.h:
+
+/usr/include/sys/signal.h:
+
+/usr/include/sys/iso/signal_iso.h:
+
+/usr/include/sys/ucontext.h:
+
+/usr/include/sys/regset.h:
+
+/usr/include/v7/sys/privregs.h:
+
+/usr/include/v7/sys/psr.h:
+
+/usr/include/sys/fsr.h:
+
+/usr/include/string.h:
+
+/usr/include/iso/string_iso.h:
+
+pcre.h:
+
+../../glib/glib.h:
+
+../../glib/galloca.h:
+
+../../glib/gtypes.h:
+
+../../glibconfig.h:
+
+../../glib/gmacros.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/float.h:
+
+../../glib/garray.h:
+
+../../glib/gasyncqueue.h:
+
+../../glib/gthread.h:
+
+../../glib/gerror.h:
+
+../../glib/gquark.h:
+
+../../glib/gutils.h:
+
+../../glib/gatomic.h:
+
+../../glib/gbacktrace.h:
+
+/usr/include/signal.h:
+
+/usr/include/iso/signal_iso.h:
+
+../../glib/gbase64.h:
+
+../../glib/gbookmarkfile.h:
+
+../../glib/gcache.h:
+
+../../glib/glist.h:
+
+../../glib/gmem.h:
+
+../../glib/gslice.h:
+
+../../glib/gchecksum.h:
+
+../../glib/gcompletion.h:
+
+../../glib/gconvert.h:
+
+../../glib/gdataset.h:
+
+../../glib/gdate.h:
+
+../../glib/gdir.h:
+
+../../glib/gfileutils.h:
+
+../../glib/ghash.h:
+
+../../glib/ghook.h:
+
+../../glib/ghostutils.h:
+
+../../glib/giochannel.h:
+
+../../glib/gmain.h:
+
+../../glib/gpoll.h:
+
+../../glib/gslist.h:
+
+../../glib/gstring.h:
+
+../../glib/gunicode.h:
+
+../../glib/gkeyfile.h:
+
+../../glib/gmappedfile.h:
+
+../../glib/gmarkup.h:
+
+../../glib/gmessages.h:
+
+../../glib/gnode.h:
+
+../../glib/goption.h:
+
+../../glib/gpattern.h:
+
+../../glib/gprimes.h:
+
+../../glib/gqsort.h:
+
+../../glib/gqueue.h:
+
+../../glib/grand.h:
+
+../../glib/grel.h:
+
+../../glib/gregex.h:
+
+../../glib/gscanner.h:
+
+../../glib/gsequence.h:
+
+../../glib/gshell.h:
+
+../../glib/gspawn.h:
+
+../../glib/gstrfuncs.h:
+
+../../glib/gtestutils.h:
+
+../../glib/glib.h:
+
+../../glib/gthreadpool.h:
+
+../../glib/gtimer.h:
+
+../../glib/gtree.h:
+
+../../glib/gurifuncs.h:
+
+../../glib/galias.h:
+
+ucp.h:
+
+../glib.h:

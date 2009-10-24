@@ -1,0 +1,78 @@
+main.o main.o: main.c config.h pkg.h partial-glib.h glib-1.2.10/glib.h \
+  ./glib-1.2.10/glibconfig.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/limits.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/syslimits.h \
+  /usr/include/sys/feature_tests.h /usr/include/sys/ccompile.h \
+  /usr/include/sys/isa_defs.h /usr/include/iso/limits_iso.h \
+  /usr/include/sys/int_limits.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/float.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h \
+  parse.h popt.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdio.h \
+  /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+  /usr/include/stdio_tag.h /usr/include/stdio_impl.h \
+  /usr/include/iso/stdio_c99.h /usr/include/stdlib.h \
+  /usr/include/iso/stdlib_iso.h /usr/include/iso/stdlib_c99.h \
+  /usr/include/string.h /usr/include/iso/string_iso.h \
+  /usr/include/ctype.h /usr/include/iso/ctype_iso.h \
+  /usr/include/iso/ctype_c99.h
+
+config.h:
+
+pkg.h:
+
+partial-glib.h:
+
+glib-1.2.10/glib.h:
+
+./glib-1.2.10/glibconfig.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/limits.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/syslimits.h:
+
+/usr/include/sys/feature_tests.h:
+
+/usr/include/sys/ccompile.h:
+
+/usr/include/sys/isa_defs.h:
+
+/usr/include/iso/limits_iso.h:
+
+/usr/include/sys/int_limits.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/float.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h:
+
+parse.h:
+
+popt.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdio.h:
+
+/usr/include/iso/stdio_iso.h:
+
+/usr/include/sys/va_list.h:
+
+/usr/include/stdio_tag.h:
+
+/usr/include/stdio_impl.h:
+
+/usr/include/iso/stdio_c99.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/iso/stdlib_iso.h:
+
+/usr/include/iso/stdlib_c99.h:
+
+/usr/include/string.h:
+
+/usr/include/iso/string_iso.h:
+
+/usr/include/ctype.h:
+
+/usr/include/iso/ctype_iso.h:
+
+/usr/include/iso/ctype_c99.h:

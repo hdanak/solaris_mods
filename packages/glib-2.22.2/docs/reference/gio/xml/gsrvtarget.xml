@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gio-GSrvTarget">
+<refmeta>
+<refentrytitle role="top_of_page" id="gio-GSrvTarget.top_of_page">GSrvTarget</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GSrvTarget</refname>
+<refpurpose>DNS SRV record target</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gio-GSrvTarget.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;gio/gio.h&gt;
+
+                    <link linkend="GSrvTarget">GSrvTarget</link>;
+<link linkend="GSrvTarget">GSrvTarget</link> *        <link linkend="g-srv-target-new">g_srv_target_new</link>                    (const <link linkend="gchar">gchar</link> *hostname,
+                                                         <link linkend="guint16">guint16</link> port,
+                                                         <link linkend="guint16">guint16</link> priority,
+                                                         <link linkend="guint16">guint16</link> weight);
+<link linkend="GSrvTarget">GSrvTarget</link> *        <link linkend="g-srv-target-copy">g_srv_target_copy</link>                   (<link linkend="GSrvTarget">GSrvTarget</link> *target);
+<link linkend="void">void</link>                <link linkend="g-srv-target-free">g_srv_target_free</link>                   (<link linkend="GSrvTarget">GSrvTarget</link> *target);
+const <link linkend="gchar">gchar</link> *       <link linkend="g-srv-target-get-hostname">g_srv_target_get_hostname</link>           (<link linkend="GSrvTarget">GSrvTarget</link> *target);
+<link linkend="guint16">guint16</link>             <link linkend="g-srv-target-get-port">g_srv_target_get_port</link>               (<link linkend="GSrvTarget">GSrvTarget</link> *target);
+<link linkend="guint16">guint16</link>             <link linkend="g-srv-target-get-priority">g_srv_target_get_priority</link>           (<link linkend="GSrvTarget">GSrvTarget</link> *target);
+<link linkend="guint16">guint16</link>             <link linkend="g-srv-target-get-weight">g_srv_target_get_weight</link>             (<link linkend="GSrvTarget">GSrvTarget</link> *target);
+<link linkend="GList">GList</link> *             <link linkend="g-srv-target-list-sort">g_srv_target_list_sort</link>              (<link linkend="GList">GList</link> *targets);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gio-GSrvTarget.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+SRV (service) records are used by some network protocols to provide
+service-specific aliasing and load-balancing. For example, XMPP
+(Jabber) uses SRV records to locate the XMPP server for a domain;
+rather than connecting directly to "example.com" or assuming a
+specific server hostname like "xmpp.example.com", an XMPP client
+would look up the "xmpp-client" SRV record for "example.com", and
+then connect to whatever host was pointed to by that record.
+</para>
+<para>
+You can use <link linkend="g-resolver-lookup-service"><function>g_resolver_lookup_service()</function></link> or
+<link linkend="g-resolver-lookup-service-async"><function>g_resolver_lookup_service_async()</function></link> to find the <link linkend="GSrvTarget"><type>GSrvTarget</type></link><!-- -->s
+for a given service. However, if you are simply planning to connect
+to the remote service, you can use <link linkend="GNetworkService"><type>GNetworkService</type></link>'s
+<link linkend="GSocketConnectable"><type>GSocketConnectable</type></link> interface and not need to worry about
+<link linkend="GSrvTarget"><type>GSrvTarget</type></link> at all.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gio-GSrvTarget.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GSrvTarget" role="struct">
+<title>GSrvTarget</title>
+<indexterm zone="GSrvTarget"><primary sortas="SrvTarget">GSrvTarget</primary></indexterm><programlisting>typedef struct _GSrvTarget GSrvTarget;</programlisting>
+<para>
+A single target host/port that a network service is running on.</para>
+<para>
+</para></refsect2>
+<refsect2 id="g-srv-target-new" role="function" condition="since:2.22">
+<title>g_srv_target_new ()</title>
+<indexterm zone="g-srv-target-new" role="2.22"><primary sortas="srv_target_new">g_srv_target_new</primary></indexterm><programlisting><link linkend="GSrvTarget">GSrvTarget</link> *        g_srv_target_new                    (const <link linkend="gchar">gchar</link> *hostname,
+                                                         <link linkend="guint16">guint16</link> port,
+                                                         <link linkend="guint16">guint16</link> priority,
+                                                         <link linkend="guint16">guint16</link> weight);</programlisting>
+<para>
+Creates a new <link linkend="GSrvTarget"><type>GSrvTarget</type></link> with the given parameters.
+</para>
+<para>
+You should not need to use this; normally <link linkend="GSrvTarget"><type>GSrvTarget</type></link><!-- -->s are
+created by <link linkend="GResolver"><type>GResolver</type></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hostname</parameter>&#160;:</term>
+<listitem><simpara> the host that the service is running on
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara> the port that the service is running on
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>priority</parameter>&#160;:</term>
+<listitem><simpara> the target's priority
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>weight</parameter>&#160;:</term>
+<listitem><simpara> the target's weight
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new <link linkend="GSrvTarget"><type>GSrvTarget</type></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-srv-target-copy" role="function" condition="since:2.22">
+<title>g_srv_target_copy ()</title>
+<indexterm zone="g-srv-target-copy" role="2.22"><primary sortas="srv_target_copy">g_srv_target_copy</primary></indexterm><programlisting><link linkend="GSrvTarget">GSrvTarget</link> *        g_srv_target_copy                   (<link linkend="GSrvTarget">GSrvTarget</link> *target);</programlisting>
+<para>
+Copies <parameter>target</parameter></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>target</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSrvTarget"><type>GSrvTarget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a copy of <parameter>target</parameter>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-srv-target-free" role="function" condition="since:2.22">
+<title>g_srv_target_free ()</title>
+<indexterm zone="g-srv-target-free" role="2.22"><primary sortas="srv_target_free">g_srv_target_free</primary></indexterm><programlisting><link linkend="void">void</link>                g_srv_target_free                   (<link linkend="GSrvTarget">GSrvTarget</link> *target);</programlisting>
+<para>
+Frees <parameter>target</parameter></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>target</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSrvTarget"><type>GSrvTarget</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-srv-target-get-hostname" role="function" condition="since:2.22">
+<title>g_srv_target_get_hostname ()</title>
+<indexterm zone="g-srv-target-get-hostname" role="2.22"><primary sortas="srv_target_get_hostname">g_srv_target_get_hostname</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       g_srv_target_get_hostname           (<link linkend="GSrvTarget">GSrvTarget</link> *target);</programlisting>
+<para>
+Gets <parameter>target</parameter>'s hostname (in ASCII form; if you are going to present
+this to the user, you should use <link linkend="g-hostname-is-ascii-encoded"><function>g_hostname_is_ascii_encoded()</function></link> to
+check if it contains encoded Unicode segments, and use
+<link linkend="g-hostname-to-unicode"><function>g_hostname_to_unicode()</function></link> to convert it if it does.)</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>target</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSrvTarget"><type>GSrvTarget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <parameter>target</parameter>'s hostname
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-srv-target-get-port" role="function" condition="since:2.22">
+<title>g_srv_target_get_port ()</title>
+<indexterm zone="g-srv-target-get-port" role="2.22"><primary sortas="srv_target_get_port">g_srv_target_get_port</primary></indexterm><programlisting><link linkend="guint16">guint16</link>             g_srv_target_get_port               (<link linkend="GSrvTarget">GSrvTarget</link> *target);</programlisting>
+<para>
+Gets <parameter>target</parameter>'s port</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>target</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSrvTarget"><type>GSrvTarget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <parameter>target</parameter>'s port
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-srv-target-get-priority" role="function" condition="since:2.22">
+<title>g_srv_target_get_priority ()</title>
+<indexterm zone="g-srv-target-get-priority" role="2.22"><primary sortas="srv_target_get_priority">g_srv_target_get_priority</primary></indexterm><programlisting><link linkend="guint16">guint16</link>             g_srv_target_get_priority           (<link linkend="GSrvTarget">GSrvTarget</link> *target);</programlisting>
+<para>
+Gets <parameter>target</parameter>'s priority. You should not need to look at this;
+<link linkend="GResolver"><type>GResolver</type></link> already sorts the targets according to the algorithm in
+RFC 2782.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>target</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSrvTarget"><type>GSrvTarget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <parameter>target</parameter>'s priority
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-srv-target-get-weight" role="function" condition="since:2.22">
+<title>g_srv_target_get_weight ()</title>
+<indexterm zone="g-srv-target-get-weight" role="2.22"><primary sortas="srv_target_get_weight">g_srv_target_get_weight</primary></indexterm><programlisting><link linkend="guint16">guint16</link>             g_srv_target_get_weight             (<link linkend="GSrvTarget">GSrvTarget</link> *target);</programlisting>
+<para>
+Gets <parameter>target</parameter>'s weight. You should not need to look at this;
+<link linkend="GResolver"><type>GResolver</type></link> already sorts the targets according to the algorithm in
+RFC 2782.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>target</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSrvTarget"><type>GSrvTarget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <parameter>target</parameter>'s weight
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-srv-target-list-sort" role="function" condition="since:2.22">
+<title>g_srv_target_list_sort ()</title>
+<indexterm zone="g-srv-target-list-sort" role="2.22"><primary sortas="srv_target_list_sort">g_srv_target_list_sort</primary></indexterm><programlisting><link linkend="GList">GList</link> *             g_srv_target_list_sort              (<link linkend="GList">GList</link> *targets);</programlisting>
+<para>
+Sorts <parameter>targets</parameter> in place according to the algorithm in RFC 2782.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>targets</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GList"><type>GList</type></link> of <link linkend="GSrvTarget"><type>GSrvTarget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the head of the sorted list.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

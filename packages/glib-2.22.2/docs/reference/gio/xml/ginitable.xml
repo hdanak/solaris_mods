@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GInitable">
+<refmeta>
+<refentrytitle role="top_of_page" id="GInitable.top_of_page">GInitable</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GInitable</refname>
+<refpurpose>Failable object initialization interface</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GInitable.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;gio/gio.h&gt;
+
+                    <link linkend="GInitable-struct">GInitable</link>;
+                    <link linkend="GInitableIface">GInitableIface</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="g-initable-init">g_initable_init</link>                     (<link linkend="GInitable">GInitable</link> *initable,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gpointer">gpointer</link>            <link linkend="g-initable-new">g_initable_new</link>                      (<link linkend="GType">GType</link> object_type,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error,
+                                                         const <link linkend="gchar">gchar</link> *first_property_name,
+                                                         ...);
+<link linkend="GObject">GObject</link>*            <link linkend="g-initable-new-valist">g_initable_new_valist</link>               (<link linkend="GType">GType</link> object_type,
+                                                         const <link linkend="gchar">gchar</link> *first_property_name,
+                                                         <link linkend="va-list">va_list</link> var_args,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gpointer">gpointer</link>            <link linkend="g-initable-newv">g_initable_newv</link>                     (<link linkend="GType">GType</link> object_type,
+                                                         <link linkend="guint">guint</link> n_parameters,
+                                                         <link linkend="GParameter">GParameter</link> *parameters,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GInitable.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GInterface">GInterface</link>
+   +----GInitable
+</synopsis>
+</refsect1>
+
+<refsect1 id="GInitable.prerequisites" role="prerequisites">
+<title role="prerequisites.title">Prerequisites</title>
+<para>
+GInitable requires
+ <link linkend="GObject">GObject</link>.</para>
+</refsect1>
+
+
+
+<refsect1 id="GInitable.implementations" role="implementations">
+<title role="implementations.title">Known Implementations</title>
+<para>
+GInitable is implemented by
+ <link linkend="GSocket">GSocket</link>.</para>
+</refsect1>
+
+
+
+
+<refsect1 id="GInitable.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="GInitable"><type>GInitable</type></link> is implemented by objects that can fail during
+initialization. If an object implements this interface the
+<link linkend="g-initable-init"><function>g_initable_init()</function></link> function must be called as the first thing
+after construction. If <link linkend="g-initable-init"><function>g_initable_init()</function></link> is not called, or if
+it returns an error, all further operations on the object
+should fail, generally with a <link linkend="G-IO-ERROR-NOT-INITIALIZED--CAPS"><literal>G_IO_ERROR_NOT_INITIALIZED</literal></link> error.
+</para>
+<para>
+Users of objects implementing this are not intended to use
+the interface method directly, instead it will be used automatically
+in various ways. For C applications you generally just call
+<link linkend="g-initable-new"><function>g_initable_new()</function></link> directly, or indirectly via a <link linkend="foo-thing-new"><function>foo_thing_new()</function></link> wrapper.
+This will call <link linkend="g-initable-init"><function>g_initable_init()</function></link> under the cover, returning <link linkend="NULL--CAPS"><literal>NULL</literal></link> and
+setting a <link linkend="GError"><literal>GError</literal></link> on failure.
+</para>
+<para>
+For bindings in languages where the native constructor supports
+exceptions the binding could check for objects implemention <link linkend="GInitable"><literal>GInitable</literal></link>
+during normal construction and automatically initialize them, throwing
+an exception on failure.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GInitable.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GInitable-struct" role="struct">
+<title>GInitable</title>
+<indexterm zone="GInitable-struct" role="2.22"><primary sortas="Initable">GInitable</primary></indexterm><programlisting>typedef struct _GInitable GInitable;</programlisting>
+<para>
+Interface for initializable objects.</para>
+<para>
+</para><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="GInitableIface" role="struct" condition="since:2.22">
+<title>GInitableIface</title>
+<indexterm zone="GInitableIface" role="2.22"><primary sortas="InitableIface">GInitableIface</primary></indexterm><programlisting>typedef struct {
+  GTypeInterface g_iface;
+
+  /* Virtual Table */
+
+  gboolean    (* init) (GInitable    *initable,
+			GCancellable *cancellable,
+			GError      **error);
+} GInitableIface;
+</programlisting>
+<para>
+Provides an interface for initializing object such that initialization
+may fail.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="GTypeInterface">GTypeInterface</link>&#160;<structfield>g_iface</structfield>;</term>
+<listitem><simpara> The parent interface.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>init</structfield>&#160;()</term>
+<listitem><simpara> Initializes the object.
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-initable-init" role="function" condition="since:2.22">
+<title>g_initable_init ()</title>
+<indexterm zone="g-initable-init" role="2.22"><primary sortas="initable_init">g_initable_init</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            g_initable_init                     (<link linkend="GInitable">GInitable</link> *initable,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Initializes the object implementing the interface. This must be
+done before any real use of the object after initial construction.
+</para>
+<para>
+Implementations may also support cancellation. If <parameter>cancellable</parameter> is not <link linkend="NULL--CAPS"><literal>NULL</literal></link>,
+then initialization can be cancelled by triggering the cancellable object
+from another thread. If the operation was cancelled, the error
+<link linkend="G-IO-ERROR-CANCELLED--CAPS"><literal>G_IO_ERROR_CANCELLED</literal></link> will be returned. If <parameter>cancellable</parameter> is not <link linkend="NULL--CAPS"><literal>NULL</literal></link> and
+the object doesn't support cancellable initialization the error
+<link linkend="G-IO-ERROR-NOT-SUPPORTED--CAPS"><literal>G_IO_ERROR_NOT_SUPPORTED</literal></link> will be returned.
+</para>
+<para>
+If this function is not called, or returns with an error then all
+operations on the object should fail, generally returning the
+error <link linkend="G-IO-ERROR-NOT-INITIALIZED--CAPS"><literal>G_IO_ERROR_NOT_INITIALIZED</literal></link>.
+</para>
+<para>
+Implementations of this method must be idempotent, i.e. multiple calls
+to this function with the same argument should return the same results.
+Only the first call initializes the object, further calls return the result
+of the first call. This is so that its safe to implement the singleton
+pattern in the GObject constructor function.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>initable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GInitable"><type>GInitable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link> location to store the error occuring, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to
+ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if successful. If an error has occurred, this function will
+    return <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> and set <parameter>error</parameter> appropriately if present.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-initable-new" role="function" condition="since:2.22">
+<title>g_initable_new ()</title>
+<indexterm zone="g-initable-new" role="2.22"><primary sortas="initable_new">g_initable_new</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            g_initable_new                      (<link linkend="GType">GType</link> object_type,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error,
+                                                         const <link linkend="gchar">gchar</link> *first_property_name,
+                                                         ...);</programlisting>
+<para>
+Helper function for constructing <link linkend="GInitiable"><type>GInitiable</type></link> object. This is
+similar to <link linkend="g-object-new"><function>g_object_new()</function></link> but also initializes the object
+and returns <link linkend="NULL--CAPS"><literal>NULL</literal></link>, setting an error on failure.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>object_type</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GType"><type>GType</type></link> supporting <link linkend="GInitable"><type>GInitable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link> location to store the error occuring, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to
+   ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_property_name</parameter>&#160;:</term>
+<listitem><simpara> the name of the first property, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> if no
+    properties
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>  the value if the first property, followed by and other property
+   value pairs, and ended by <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a newly allocated <link linkend="GObject"><type>GObject</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-initable-new-valist" role="function" condition="since:2.22">
+<title>g_initable_new_valist ()</title>
+<indexterm zone="g-initable-new-valist" role="2.22"><primary sortas="initable_new_valist">g_initable_new_valist</primary></indexterm><programlisting><link linkend="GObject">GObject</link>*            g_initable_new_valist               (<link linkend="GType">GType</link> object_type,
+                                                         const <link linkend="gchar">gchar</link> *first_property_name,
+                                                         <link linkend="va-list">va_list</link> var_args,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Helper function for constructing <link linkend="GInitiable"><type>GInitiable</type></link> object. This is
+similar to <link linkend="g-object-new-valist"><function>g_object_new_valist()</function></link> but also initializes the object
+and returns <link linkend="NULL--CAPS"><literal>NULL</literal></link>, setting an error on failure.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>object_type</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GType"><type>GType</type></link> supporting <link linkend="GInitable"><type>GInitable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_property_name</parameter>&#160;:</term>
+<listitem><simpara> the name of the first property, followed by
+the value, and other property value pairs, and ended by <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>var_args</parameter>&#160;:</term>
+<listitem><simpara> The var args list generated from <parameter>first_property_name</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link> location to store the error occuring, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to
+    ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a newly allocated <link linkend="GObject"><type>GObject</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-initable-newv" role="function" condition="since:2.22">
+<title>g_initable_newv ()</title>
+<indexterm zone="g-initable-newv" role="2.22"><primary sortas="initable_newv">g_initable_newv</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            g_initable_newv                     (<link linkend="GType">GType</link> object_type,
+                                                         <link linkend="guint">guint</link> n_parameters,
+                                                         <link linkend="GParameter">GParameter</link> *parameters,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Helper function for constructing <link linkend="GInitiable"><type>GInitiable</type></link> object. This is
+similar to <link linkend="g-object-newv"><function>g_object_newv()</function></link> but also initializes the object
+and returns <link linkend="NULL--CAPS"><literal>NULL</literal></link>, setting an error on failure.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>object_type</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GType"><type>GType</type></link> supporting <link linkend="GInitable"><type>GInitable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_parameters</parameter>&#160;:</term>
+<listitem><simpara> the number of parameters in <parameter>parameters</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parameters</parameter>&#160;:</term>
+<listitem><simpara> the parameters to use to construct the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link> location to store the error occuring, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to
+    ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a newly allocated <link linkend="GObject"><type>GObject</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+
+
+
+<refsect1 id="GInitable.see-also">
+<title>See Also</title>
+#GAsyncInitable
+</refsect1>
+
+</refentry>

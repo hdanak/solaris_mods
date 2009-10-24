@@ -1,0 +1,664 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GSocketClient">
+<refmeta>
+<refentrytitle role="top_of_page" id="GSocketClient.top_of_page">GSocketClient</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GSocketClient</refname>
+<refpurpose>Helper for connecting to a network service</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GSocketClient.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;gio/gio.h&gt;
+
+                    <link linkend="GSocketClient-struct">GSocketClient</link>;
+<link linkend="GSocketClient">GSocketClient</link> *     <link linkend="g-socket-client-new">g_socket_client_new</link>                 (void);
+<link linkend="GSocketConnection">GSocketConnection</link> * <link linkend="g-socket-client-connect">g_socket_client_connect</link>             (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketConnectable">GSocketConnectable</link> *connectable,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="g-socket-client-connect-async">g_socket_client_connect_async</link>       (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketConnectable">GSocketConnectable</link> *connectable,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GSocketConnection">GSocketConnection</link> * <link linkend="g-socket-client-connect-finish">g_socket_client_connect_finish</link>      (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="GSocketConnection">GSocketConnection</link> * <link linkend="g-socket-client-connect-to-host">g_socket_client_connect_to_host</link>     (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         const <link linkend="gchar">gchar</link> *host_and_port,
+                                                         <link linkend="guint16">guint16</link> default_port,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="g-socket-client-connect-to-host-async">g_socket_client_connect_to_host_async</link>
+                                                        (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         const <link linkend="gchar">gchar</link> *host_and_port,
+                                                         <link linkend="guint16">guint16</link> default_port,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GSocketConnection">GSocketConnection</link> * <link linkend="g-socket-client-connect-to-host-finish">g_socket_client_connect_to_host_finish</link>
+                                                        (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="GSocketConnection">GSocketConnection</link> * <link linkend="g-socket-client-connect-to-service">g_socket_client_connect_to_service</link>  (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         const <link linkend="gchar">gchar</link> *domain,
+                                                         const <link linkend="gchar">gchar</link> *service,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="g-socket-client-connect-to-service-async">g_socket_client_connect_to_service_async</link>
+                                                        (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         const <link linkend="gchar">gchar</link> *domain,
+                                                         const <link linkend="gchar">gchar</link> *service,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GSocketConnection">GSocketConnection</link> * <link linkend="g-socket-client-connect-to-service-finish">g_socket_client_connect_to_service_finish</link>
+                                                        (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="g-socket-client-set-family">g_socket_client_set_family</link>          (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketFamily">GSocketFamily</link> family);
+<link linkend="void">void</link>                <link linkend="g-socket-client-set-local-address">g_socket_client_set_local_address</link>   (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> *address);
+<link linkend="void">void</link>                <link linkend="g-socket-client-set-protocol">g_socket_client_set_protocol</link>        (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketProtocol">GSocketProtocol</link> protocol);
+<link linkend="void">void</link>                <link linkend="g-socket-client-set-socket-type">g_socket_client_set_socket_type</link>     (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketType">GSocketType</link> type);
+<link linkend="GSocketFamily">GSocketFamily</link>       <link linkend="g-socket-client-get-family">g_socket_client_get_family</link>          (<link linkend="GSocketClient">GSocketClient</link> *client);
+<link linkend="GSocketAddress">GSocketAddress</link> *    <link linkend="g-socket-client-get-local-address">g_socket_client_get_local_address</link>   (<link linkend="GSocketClient">GSocketClient</link> *client);
+<link linkend="GSocketProtocol">GSocketProtocol</link>     <link linkend="g-socket-client-get-protocol">g_socket_client_get_protocol</link>        (<link linkend="GSocketClient">GSocketClient</link> *client);
+<link linkend="GSocketType">GSocketType</link>         <link linkend="g-socket-client-get-socket-type">g_socket_client_get_socket_type</link>     (<link linkend="GSocketClient">GSocketClient</link> *client);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GSocketClient.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GSocketClient
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="GSocketClient.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GSocketClient--family">family</link>&quot;                   <link linkend="GSocketFamily">GSocketFamily</link>         : Read / Write / Construct
+  &quot;<link linkend="GSocketClient--local-address">local-address</link>&quot;            <link linkend="GSocketAddress">GSocketAddress</link>*       : Read / Write / Construct
+  &quot;<link linkend="GSocketClient--protocol">protocol</link>&quot;                 <link linkend="GSocketProtocol">GSocketProtocol</link>       : Read / Write / Construct
+  &quot;<link linkend="GSocketClient--type">type</link>&quot;                     <link linkend="GSocketType">GSocketType</link>           : Read / Write / Construct
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GSocketClient.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="GSocketClient"><type>GSocketClient</type></link> is a high-level utility class for connecting to a
+network host using a connection oriented socket type.
+</para>
+<para>
+You create a <link linkend="GSocketClient"><type>GSocketClient</type></link> object, set any options you want, then
+call a sync or async connect operation, which returns a <link linkend="GSocketConnection"><type>GSocketConnection</type></link>
+subclass on success.
+</para>
+<para>
+The type of the <link linkend="GSocketConnection"><type>GSocketConnection</type></link> object returned depends on the type of
+the underlying socket that is in use. For instance, for a TCP/IP connection
+it will be a <link linkend="GTcpConnection"><type>GTcpConnection</type></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GSocketClient.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GSocketClient-struct" role="struct">
+<title>GSocketClient</title>
+<indexterm zone="GSocketClient-struct" role="2.22"><primary sortas="SocketClient">GSocketClient</primary></indexterm><programlisting>typedef struct _GSocketClient GSocketClient;</programlisting>
+<para>
+A helper class for network servers to listen for and accept connections.</para>
+<para>
+</para><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-new" role="function" condition="since:2.22">
+<title>g_socket_client_new ()</title>
+<indexterm zone="g-socket-client-new" role="2.22"><primary sortas="socket_client_new">g_socket_client_new</primary></indexterm><programlisting><link linkend="GSocketClient">GSocketClient</link> *     g_socket_client_new                 (void);</programlisting>
+<para>
+Creates a new <link linkend="GSocketClient"><type>GSocketClient</type></link> with the default options.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+    Free the returned object with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-connect" role="function" condition="since:2.22">
+<title>g_socket_client_connect ()</title>
+<indexterm zone="g-socket-client-connect" role="2.22"><primary sortas="socket_client_connect">g_socket_client_connect</primary></indexterm><programlisting><link linkend="GSocketConnection">GSocketConnection</link> * g_socket_client_connect             (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketConnectable">GSocketConnectable</link> *connectable,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Tries to resolve the <parameter>connectable</parameter> and make a network connection to it..
+</para>
+<para>
+Upon a successful connection, a new <link linkend="GSocketConnection"><type>GSocketConnection</type></link> is constructed
+and returned.  The caller owns this new object and must drop their
+reference to it when finished with it.
+</para>
+<para>
+The type of the <link linkend="GSocketConnection"><type>GSocketConnection</type></link> object returned depends on the type of
+the underlying socket that is used. For instance, for a TCP/IP connection
+it will be a <link linkend="GTcpConnection"><type>GTcpConnection</type></link>.
+</para>
+<para>
+The socket created will be the same family as the the address that the
+<parameter>connectable</parameter> resolves to, unless family is set with <link linkend="g-socket-client-set-family"><function>g_socket_client_set_family()</function></link>
+or indirectly via <link linkend="g-socket-client-set-local-address"><function>g_socket_client_set_local_address()</function></link>. The socket type
+defaults to <link linkend="G-SOCKET-TYPE-STREAM--CAPS"><literal>G_SOCKET_TYPE_STREAM</literal></link> but can be set with
+<link linkend="g-socket-client-set-socket-type"><function>g_socket_client_set_socket_type()</function></link>.
+</para>
+<para>
+If a local address is specified with <link linkend="g-socket-client-set-local-address"><function>g_socket_client_set_local_address()</function></link> the
+socket will be bound to this address before connecting.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>connectable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketConnectable"><type>GSocketConnectable</type></link> specifying the remote address.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> optional <link linkend="GCancellable"><type>GCancellable</type></link> object, <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link> for error reporting, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link> on success, <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-connect-async" role="function" condition="since:2.22">
+<title>g_socket_client_connect_async ()</title>
+<indexterm zone="g-socket-client-connect-async" role="2.22"><primary sortas="socket_client_connect_async">g_socket_client_connect_async</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_client_connect_async       (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketConnectable">GSocketConnectable</link> *connectable,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+This is the asynchronous version of <link linkend="g-socket-client-connect"><function>g_socket_client_connect()</function></link>.
+</para>
+<para>
+When the operation is finished <parameter>callback</parameter> will be
+called. You can then call <link linkend="g-socket-client-connect-finish"><function>g_socket_client_connect_finish()</function></link> to get
+the result of the operation.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GTcpClient"><type>GTcpClient</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>connectable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketConnectable"><type>GSocketConnectable</type></link> specifying the remote address.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><type>GCancellable</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GAsyncReadyCallback"><type>GAsyncReadyCallback</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> user data for the callback
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-connect-finish" role="function" condition="since:2.22">
+<title>g_socket_client_connect_finish ()</title>
+<indexterm zone="g-socket-client-connect-finish" role="2.22"><primary sortas="socket_client_connect_finish">g_socket_client_connect_finish</primary></indexterm><programlisting><link linkend="GSocketConnection">GSocketConnection</link> * g_socket_client_connect_finish      (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Finishes an async connect operation. See <link linkend="g-socket-client-connect-async"><function>g_socket_client_connect_async()</function></link></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GAsyncResult"><type>GAsyncResult</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link> location to store the error occuring, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to
+ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link> on success, <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-connect-to-host" role="function" condition="since:2.22">
+<title>g_socket_client_connect_to_host ()</title>
+<indexterm zone="g-socket-client-connect-to-host" role="2.22"><primary sortas="socket_client_connect_to_host">g_socket_client_connect_to_host</primary></indexterm><programlisting><link linkend="GSocketConnection">GSocketConnection</link> * g_socket_client_connect_to_host     (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         const <link linkend="gchar">gchar</link> *host_and_port,
+                                                         <link linkend="guint16">guint16</link> default_port,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+This is a helper function for <link linkend="g-socket-client-connect"><function>g_socket_client_connect()</function></link>.
+</para>
+<para>
+Attempts to create a TCP connection to the named host.
+</para>
+<para>
+<parameter>host_and_port</parameter> may be in any of a number of recognised formats: an IPv6
+address, an IPv4 address, or a domain name (in which case a DNS
+lookup is performed).  Quoting with [] is supported for all address
+types.  A port override may be specified in the usual way with a
+colon.  Ports may be given as decimal numbers or symbolic names (in
+which case an /etc/services lookup is performed).
+</para>
+<para>
+If no port override is given in <parameter>host_and_port</parameter> then <parameter>default_port</parameter> will be
+used as the port number to connect to.
+</para>
+<para>
+In general, <parameter>host_and_port</parameter> is expected to be provided by the user (allowing
+them to give the hostname, and a port overide if necessary) and
+<parameter>default_port</parameter> is expected to be provided by the application.
+</para>
+<para>
+In the case that an IP address is given, a single connection
+attempt is made.  In the case that a name is given, multiple
+connection attempts may be made, in turn and according to the
+number of address records in DNS, until a connection succeeds.
+</para>
+<para>
+Upon a successful connection, a new <link linkend="GSocketConnection"><type>GSocketConnection</type></link> is constructed
+and returned.  The caller owns this new object and must drop their
+reference to it when finished with it.
+</para>
+<para>
+In the event of any failure (DNS error, service not found, no hosts
+connectable) <link linkend="NULL--CAPS"><literal>NULL</literal></link> is returned and <parameter>error</parameter> (if non-<link linkend="NULL--CAPS"><literal>NULL</literal></link>) is set
+accordingly.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="SocketClient"><type>SocketClient</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>host_and_port</parameter>&#160;:</term>
+<listitem><simpara> the name and optionally port of the host to connect to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>default_port</parameter>&#160;:</term>
+<listitem><simpara> the default port to connect to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><type>GCancellable</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a pointer to a <link linkend="GError"><type>GError</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link> on success, <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-connect-to-host-async" role="function" condition="since:2.22">
+<title>g_socket_client_connect_to_host_async ()</title>
+<indexterm zone="g-socket-client-connect-to-host-async" role="2.22"><primary sortas="socket_client_connect_to_host_async">g_socket_client_connect_to_host_async</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_client_connect_to_host_async
+                                                        (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         const <link linkend="gchar">gchar</link> *host_and_port,
+                                                         <link linkend="guint16">guint16</link> default_port,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+This is the asynchronous version of <link linkend="g-socket-client-connect-to-host"><function>g_socket_client_connect_to_host()</function></link>.
+</para>
+<para>
+When the operation is finished <parameter>callback</parameter> will be
+called. You can then call <link linkend="g-socket-client-connect-to-host-finish"><function>g_socket_client_connect_to_host_finish()</function></link> to get
+the result of the operation.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GTcpClient"><type>GTcpClient</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>host_and_port</parameter>&#160;:</term>
+<listitem><simpara> the name and optionally the port of the host to connect to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>default_port</parameter>&#160;:</term>
+<listitem><simpara> the default port to connect to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><type>GCancellable</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GAsyncReadyCallback"><type>GAsyncReadyCallback</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> user data for the callback
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-connect-to-host-finish" role="function" condition="since:2.22">
+<title>g_socket_client_connect_to_host_finish ()</title>
+<indexterm zone="g-socket-client-connect-to-host-finish" role="2.22"><primary sortas="socket_client_connect_to_host_finish">g_socket_client_connect_to_host_finish</primary></indexterm><programlisting><link linkend="GSocketConnection">GSocketConnection</link> * g_socket_client_connect_to_host_finish
+                                                        (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Finishes an async connect operation. See <link linkend="g-socket-client-connect-to-host-async"><function>g_socket_client_connect_to_host_async()</function></link></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GAsyncResult"><type>GAsyncResult</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link> location to store the error occuring, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to
+ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link> on success, <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-connect-to-service" role="function">
+<title>g_socket_client_connect_to_service ()</title>
+<indexterm zone="g-socket-client-connect-to-service"><primary sortas="socket_client_connect_to_service">g_socket_client_connect_to_service</primary></indexterm><programlisting><link linkend="GSocketConnection">GSocketConnection</link> * g_socket_client_connect_to_service  (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         const <link linkend="gchar">gchar</link> *domain,
+                                                         const <link linkend="gchar">gchar</link> *service,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Attempts to create a TCP connection to a service.
+</para>
+<para>
+This call looks up the SRV record for <parameter>service</parameter> at <parameter>domain</parameter> for the
+"tcp" protocol.  It then attempts to connect, in turn, to each of
+the hosts providing the service until either a connection succeeds
+or there are no hosts remaining.
+</para>
+<para>
+Upon a successful connection, a new <link linkend="GSocketConnection"><type>GSocketConnection</type></link> is constructed
+and returned.  The caller owns this new object and must drop their
+reference to it when finished with it.
+</para>
+<para>
+In the event of any failure (DNS error, service not found, no hosts
+connectable) <link linkend="NULL--CAPS"><literal>NULL</literal></link> is returned and <parameter>error</parameter> (if non-<link linkend="NULL--CAPS"><literal>NULL</literal></link>) is set
+accordingly.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara> a domain name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>service</parameter>&#160;:</term>
+<listitem><simpara> the name of the service to connect to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><type>GCancellable</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a pointer to a <link linkend="GError"><type>GError</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link> if successful, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="g-socket-client-connect-to-service-async" role="function" condition="since:2.22">
+<title>g_socket_client_connect_to_service_async ()</title>
+<indexterm zone="g-socket-client-connect-to-service-async" role="2.22"><primary sortas="socket_client_connect_to_service_async">g_socket_client_connect_to_service_async</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_client_connect_to_service_async
+                                                        (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         const <link linkend="gchar">gchar</link> *domain,
+                                                         const <link linkend="gchar">gchar</link> *service,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+This is the asynchronous version of
+<link linkend="g-socket-client-connect-to-service"><function>g_socket_client_connect_to_service()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara> a domain name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>service</parameter>&#160;:</term>
+<listitem><simpara> the name of the service to connect to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GCancellable"><type>GCancellable</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GAsyncReadyCallback"><type>GAsyncReadyCallback</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> user data for the callback
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-connect-to-service-finish" role="function" condition="since:2.22">
+<title>g_socket_client_connect_to_service_finish ()</title>
+<indexterm zone="g-socket-client-connect-to-service-finish" role="2.22"><primary sortas="socket_client_connect_to_service_finish">g_socket_client_connect_to_service_finish</primary></indexterm><programlisting><link linkend="GSocketConnection">GSocketConnection</link> * g_socket_client_connect_to_service_finish
+                                                        (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Finishes an async connect operation. See <link linkend="g-socket-client-connect-to-service-async"><function>g_socket_client_connect_to_service_async()</function></link></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GAsyncResult"><type>GAsyncResult</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link> location to store the error occuring, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> to
+ignore.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketConnection"><type>GSocketConnection</type></link> on success, <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-set-family" role="function" condition="since:2.22">
+<title>g_socket_client_set_family ()</title>
+<indexterm zone="g-socket-client-set-family" role="2.22"><primary sortas="socket_client_set_family">g_socket_client_set_family</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_client_set_family          (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketFamily">GSocketFamily</link> family);</programlisting>
+<para>
+Sets the socket family of the socket client.
+If this is set to something other than <link linkend="G-SOCKET-FAMILY-INVALID--CAPS"><literal>G_SOCKET_FAMILY_INVALID</literal></link>
+then the sockets created by this object will be of the specified
+family.
+</para>
+<para>
+This might be useful for instance if you want to force the local
+connection to be an ipv4 socket, even though the address might
+be an ipv6 mapped to ipv4 address.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>family</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketFamily"><type>GSocketFamily</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-set-local-address" role="function" condition="since:2.22">
+<title>g_socket_client_set_local_address ()</title>
+<indexterm zone="g-socket-client-set-local-address" role="2.22"><primary sortas="socket_client_set_local_address">g_socket_client_set_local_address</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_client_set_local_address   (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketAddress">GSocketAddress</link> *address);</programlisting>
+<para>
+Sets the local address of the socket client.
+The sockets created by this object will bound to the
+specified address (if not <link linkend="NULL--CAPS"><literal>NULL</literal></link>) before connecting.
+</para>
+<para>
+This is useful if you want to ensure the the local
+side of the connection is on a specific port, or on
+a specific interface.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>address</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketAddress"><type>GSocketAddress</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-set-protocol" role="function" condition="since:2.22">
+<title>g_socket_client_set_protocol ()</title>
+<indexterm zone="g-socket-client-set-protocol" role="2.22"><primary sortas="socket_client_set_protocol">g_socket_client_set_protocol</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_client_set_protocol        (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketProtocol">GSocketProtocol</link> protocol);</programlisting>
+<para>
+Sets the protocol of the socket client.
+The sockets created by this object will use of the specified
+protocol.
+</para>
+<para>
+If <parameter>protocol</parameter> is <link linkend="0--CAPS"><literal>0</literal></link> that means to use the default
+protocol for the socket family and type.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>protocol</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketProtocol"><type>GSocketProtocol</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-set-socket-type" role="function" condition="since:2.22">
+<title>g_socket_client_set_socket_type ()</title>
+<indexterm zone="g-socket-client-set-socket-type" role="2.22"><primary sortas="socket_client_set_socket_type">g_socket_client_set_socket_type</primary></indexterm><programlisting><link linkend="void">void</link>                g_socket_client_set_socket_type     (<link linkend="GSocketClient">GSocketClient</link> *client,
+                                                         <link linkend="GSocketType">GSocketType</link> type);</programlisting>
+<para>
+Sets the socket type of the socket client.
+The sockets created by this object will be of the specified
+type.
+</para>
+<para>
+It doesn't make sense to specify a type of <link linkend="G-SOCKET-TYPE-DATAGRAM--CAPS"><literal>G_SOCKET_TYPE_DATAGRAM</literal></link>,
+as GSocketClient is used for connection oriented services.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketType"><type>GSocketType</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-get-family" role="function" condition="since:2.22">
+<title>g_socket_client_get_family ()</title>
+<indexterm zone="g-socket-client-get-family" role="2.22"><primary sortas="socket_client_get_family">g_socket_client_get_family</primary></indexterm><programlisting><link linkend="GSocketFamily">GSocketFamily</link>       g_socket_client_get_family          (<link linkend="GSocketClient">GSocketClient</link> *client);</programlisting>
+<para>
+Gets the socket family of the socket client.
+</para>
+<para>
+See <link linkend="g-socket-client-set-family"><function>g_socket_client_set_family()</function></link> for details.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketFamily"><type>GSocketFamily</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-get-local-address" role="function" condition="since:2.22">
+<title>g_socket_client_get_local_address ()</title>
+<indexterm zone="g-socket-client-get-local-address" role="2.22"><primary sortas="socket_client_get_local_address">g_socket_client_get_local_address</primary></indexterm><programlisting><link linkend="GSocketAddress">GSocketAddress</link> *    g_socket_client_get_local_address   (<link linkend="GSocketClient">GSocketClient</link> *client);</programlisting>
+<para>
+Gets the local address of the socket client.
+</para>
+<para>
+See <link linkend="g-socket-client-set-local-address"><function>g_socket_client_set_local_address()</function></link> for details.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketAddres"><type>GSocketAddres</type></link> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>. don't free
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-get-protocol" role="function" condition="since:2.22">
+<title>g_socket_client_get_protocol ()</title>
+<indexterm zone="g-socket-client-get-protocol" role="2.22"><primary sortas="socket_client_get_protocol">g_socket_client_get_protocol</primary></indexterm><programlisting><link linkend="GSocketProtocol">GSocketProtocol</link>     g_socket_client_get_protocol        (<link linkend="GSocketClient">GSocketClient</link> *client);</programlisting>
+<para>
+Gets the protocol name type of the socket client.
+</para>
+<para>
+See <link linkend="g-socket-client-set-protocol"><function>g_socket_client_set_protocol()</function></link> for details.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketProtocol"><type>GSocketProtocol</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-socket-client-get-socket-type" role="function" condition="since:2.22">
+<title>g_socket_client_get_socket_type ()</title>
+<indexterm zone="g-socket-client-get-socket-type" role="2.22"><primary sortas="socket_client_get_socket_type">g_socket_client_get_socket_type</primary></indexterm><programlisting><link linkend="GSocketType">GSocketType</link>         g_socket_client_get_socket_type     (<link linkend="GSocketClient">GSocketClient</link> *client);</programlisting>
+<para>
+Gets the socket type of the socket client.
+</para>
+<para>
+See <link linkend="g-socket-client-set-socket-type"><function>g_socket_client_set_socket_type()</function></link> for details.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>client</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GSocketClient"><type>GSocketClient</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GSocketFamily"><type>GSocketFamily</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+<refsect1 id="GSocketClient.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GSocketClient--family" role="property"><title>The <literal>&quot;family&quot;</literal> property</title>
+<indexterm zone="GSocketClient--family"><primary sortas="SocketClient:family">GSocketClient:family</primary></indexterm><programlisting>  &quot;family&quot;                   <link linkend="GSocketFamily">GSocketFamily</link>         : Read / Write / Construct</programlisting>
+<para>The sockets address family to use for socket construction.</para><para>Default value: G_SOCKET_FAMILY_INVALID</para>
+</refsect2>
+<refsect2 id="GSocketClient--local-address" role="property"><title>The <literal>&quot;local-address&quot;</literal> property</title>
+<indexterm zone="GSocketClient--local-address"><primary sortas="SocketClient:local-address">GSocketClient:local-address</primary></indexterm><programlisting>  &quot;local-address&quot;            <link linkend="GSocketAddress">GSocketAddress</link>*       : Read / Write / Construct</programlisting>
+<para>The local address constructed sockets will be bound to.</para></refsect2>
+<refsect2 id="GSocketClient--protocol" role="property"><title>The <literal>&quot;protocol&quot;</literal> property</title>
+<indexterm zone="GSocketClient--protocol"><primary sortas="SocketClient:protocol">GSocketClient:protocol</primary></indexterm><programlisting>  &quot;protocol&quot;                 <link linkend="GSocketProtocol">GSocketProtocol</link>       : Read / Write / Construct</programlisting>
+<para>The protocol to use for socket construction, or 0 for default.</para><para>Default value: G_SOCKET_PROTOCOL_DEFAULT</para>
+</refsect2>
+<refsect2 id="GSocketClient--type" role="property"><title>The <literal>&quot;type&quot;</literal> property</title>
+<indexterm zone="GSocketClient--type"><primary sortas="SocketClient:type">GSocketClient:type</primary></indexterm><programlisting>  &quot;type&quot;                     <link linkend="GSocketType">GSocketType</link>           : Read / Write / Construct</programlisting>
+<para>The sockets type to use for socket construction.</para><para>Default value: G_SOCKET_TYPE_STREAM</para>
+</refsect2>
+</refsect1>
+
+
+
+<refsect1 id="GSocketClient.see-also">
+<title>See Also</title>
+#GSocketConnection, <link linkend="GSocketListener"><type>GSocketListener</type></link>
+</refsect1>
+
+</refentry>

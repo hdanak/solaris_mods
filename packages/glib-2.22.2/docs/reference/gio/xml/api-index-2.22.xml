@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+<!DOCTYPE indexdiv PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<indexdiv>
+<indexdiv><title>A</title>
+<indexentry><primaryie linkends="GAsyncInitable-struct"><link linkend="GAsyncInitable-struct">GAsyncInitable</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GAsyncInitableIface"><link linkend="GAsyncInitableIface">GAsyncInitableIface</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-async-initable-init-async"><link linkend="g-async-initable-init-async">g_async_initable_init_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-async-initable-init-finish"><link linkend="g-async-initable-init-finish">g_async_initable_init_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-async-initable-newv-async"><link linkend="g-async-initable-newv-async">g_async_initable_newv_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-async-initable-new-async"><link linkend="g-async-initable-new-async">g_async_initable_new_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-async-initable-new-finish"><link linkend="g-async-initable-new-finish">g_async_initable_new_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-async-initable-new-valist-async"><link linkend="g-async-initable-new-valist-async">g_async_initable_new_valist_async</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>C</title>
+<indexentry><primaryie linkends="g-cancellable-connect"><link linkend="g-cancellable-connect">g_cancellable_connect</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-cancellable-disconnect"><link linkend="g-cancellable-disconnect">g_cancellable_disconnect</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-cancellable-make-pollfd"><link linkend="g-cancellable-make-pollfd">g_cancellable_make_pollfd</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-cancellable-release-fd"><link linkend="g-cancellable-release-fd">g_cancellable_release_fd</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>D</title>
+<indexentry><primaryie linkends="GDrive-stop-button"><link linkend="GDrive-stop-button">GDrive::stop-button</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GDriveStartFlags"><link linkend="GDriveStartFlags">GDriveStartFlags</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GDriveStartStopType"><link linkend="GDriveStartStopType">GDriveStartStopType</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-drive-can-start"><link linkend="g-drive-can-start">g_drive_can_start</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-drive-can-start-degraded"><link linkend="g-drive-can-start-degraded">g_drive_can_start_degraded</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-drive-can-stop"><link linkend="g-drive-can-stop">g_drive_can_stop</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-drive-eject-with-operation"><link linkend="g-drive-eject-with-operation">g_drive_eject_with_operation</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-drive-eject-with-operation-finish"><link linkend="g-drive-eject-with-operation-finish">g_drive_eject_with_operation_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-drive-get-start-stop-type"><link linkend="g-drive-get-start-stop-type">g_drive_get_start_stop_type</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-drive-start"><link linkend="g-drive-start">g_drive_start</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-drive-start-finish"><link linkend="g-drive-start-finish">g_drive_start_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-drive-stop"><link linkend="g-drive-stop">g_drive_stop</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-drive-stop-finish"><link linkend="g-drive-stop-finish">g_drive_stop_finish</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>F</title>
+<indexentry><primaryie linkends="G-FILE-ATTRIBUTE-MOUNTABLE-CAN-POLL--CAPS"><link linkend="G-FILE-ATTRIBUTE-MOUNTABLE-CAN-POLL--CAPS">G_FILE_ATTRIBUTE_MOUNTABLE_CAN_POLL</link></primaryie></indexentry>
+<indexentry><primaryie linkends="G-FILE-ATTRIBUTE-MOUNTABLE-CAN-START--CAPS"><link linkend="G-FILE-ATTRIBUTE-MOUNTABLE-CAN-START--CAPS">G_FILE_ATTRIBUTE_MOUNTABLE_CAN_START</link></primaryie></indexentry>
+<indexentry><primaryie linkends="G-FILE-ATTRIBUTE-MOUNTABLE-CAN-START-DEGRADED--CAPS"><link linkend="G-FILE-ATTRIBUTE-MOUNTABLE-CAN-START-DEGRADED--CAPS">G_FILE_ATTRIBUTE_MOUNTABLE_CAN_START_DEGRADED</link></primaryie></indexentry>
+<indexentry><primaryie linkends="G-FILE-ATTRIBUTE-MOUNTABLE-CAN-STOP--CAPS"><link linkend="G-FILE-ATTRIBUTE-MOUNTABLE-CAN-STOP--CAPS">G_FILE_ATTRIBUTE_MOUNTABLE_CAN_STOP</link></primaryie></indexentry>
+<indexentry><primaryie linkends="G-FILE-ATTRIBUTE-MOUNTABLE-IS-MEDIA-CHECK-AUTOMATIC--CAPS"><link linkend="G-FILE-ATTRIBUTE-MOUNTABLE-IS-MEDIA-CHECK-AUTOMATIC--CAPS">G_FILE_ATTRIBUTE_MOUNTABLE_IS_MEDIA_CHECK_AUTOMATIC</link></primaryie></indexentry>
+<indexentry><primaryie linkends="G-FILE-ATTRIBUTE-MOUNTABLE-START-STOP-TYPE--CAPS"><link linkend="G-FILE-ATTRIBUTE-MOUNTABLE-START-STOP-TYPE--CAPS">G_FILE_ATTRIBUTE_MOUNTABLE_START_STOP_TYPE</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-create-readwrite"><link linkend="g-file-create-readwrite">g_file_create_readwrite</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-create-readwrite-async"><link linkend="g-file-create-readwrite-async">g_file_create_readwrite_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-create-readwrite-finish"><link linkend="g-file-create-readwrite-finish">g_file_create_readwrite_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-eject-mountable-with-operation"><link linkend="g-file-eject-mountable-with-operation">g_file_eject_mountable_with_operation</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-eject-mountable-with-operation-finish"><link linkend="g-file-eject-mountable-with-operation-finish">g_file_eject_mountable_with_operation_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-info-get-attribute-stringv"><link linkend="g-file-info-get-attribute-stringv">g_file_info_get_attribute_stringv</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-info-has-namespace"><link linkend="g-file-info-has-namespace">g_file_info_has_namespace</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-info-set-attribute-status"><link linkend="g-file-info-set-attribute-status">g_file_info_set_attribute_status</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-io-stream-get-etag"><link linkend="g-file-io-stream-get-etag">g_file_io_stream_get_etag</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-io-stream-query-info"><link linkend="g-file-io-stream-query-info">g_file_io_stream_query_info</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-io-stream-query-info-async"><link linkend="g-file-io-stream-query-info-async">g_file_io_stream_query_info_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-io-stream-query-info-finish"><link linkend="g-file-io-stream-query-info-finish">g_file_io_stream_query_info_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-open-readwrite"><link linkend="g-file-open-readwrite">g_file_open_readwrite</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-open-readwrite-async"><link linkend="g-file-open-readwrite-async">g_file_open_readwrite_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-open-readwrite-finish"><link linkend="g-file-open-readwrite-finish">g_file_open_readwrite_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-poll-mountable"><link linkend="g-file-poll-mountable">g_file_poll_mountable</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-poll-mountable-finish"><link linkend="g-file-poll-mountable-finish">g_file_poll_mountable_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-replace-readwrite"><link linkend="g-file-replace-readwrite">g_file_replace_readwrite</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-replace-readwrite-async"><link linkend="g-file-replace-readwrite-async">g_file_replace_readwrite_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-replace-readwrite-finish"><link linkend="g-file-replace-readwrite-finish">g_file_replace_readwrite_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-start-mountable"><link linkend="g-file-start-mountable">g_file_start_mountable</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-start-mountable-finish"><link linkend="g-file-start-mountable-finish">g_file_start_mountable_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-stop-mountable"><link linkend="g-file-stop-mountable">g_file_stop_mountable</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-stop-mountable-finish"><link linkend="g-file-stop-mountable-finish">g_file_stop_mountable_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-supports-thread-contexts"><link linkend="g-file-supports-thread-contexts">g_file_supports_thread_contexts</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-unmount-mountable-with-operation"><link linkend="g-file-unmount-mountable-with-operation">g_file_unmount_mountable_with_operation</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-file-unmount-mountable-with-operation-finish"><link linkend="g-file-unmount-mountable-with-operation-finish">g_file_unmount_mountable_with_operation_finish</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>I</title>
+<indexentry><primaryie linkends="GInetAddress--is-any"><link linkend="GInetAddress--is-any">GInetAddress:is-any</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInetAddress--is-link-local"><link linkend="GInetAddress--is-link-local">GInetAddress:is-link-local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInetAddress--is-loopback"><link linkend="GInetAddress--is-loopback">GInetAddress:is-loopback</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInetAddress--is-mc-global"><link linkend="GInetAddress--is-mc-global">GInetAddress:is-mc-global</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInetAddress--is-mc-link-local"><link linkend="GInetAddress--is-mc-link-local">GInetAddress:is-mc-link-local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInetAddress--is-mc-node-local"><link linkend="GInetAddress--is-mc-node-local">GInetAddress:is-mc-node-local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInetAddress--is-mc-org-local"><link linkend="GInetAddress--is-mc-org-local">GInetAddress:is-mc-org-local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInetAddress--is-mc-site-local"><link linkend="GInetAddress--is-mc-site-local">GInetAddress:is-mc-site-local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInetAddress--is-multicast"><link linkend="GInetAddress--is-multicast">GInetAddress:is-multicast</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInetAddress--is-site-local"><link linkend="GInetAddress--is-site-local">GInetAddress:is-site-local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-family"><link linkend="g-inet-address-get-family">g_inet_address_get_family</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-is-any"><link linkend="g-inet-address-get-is-any">g_inet_address_get_is_any</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-is-link-local"><link linkend="g-inet-address-get-is-link-local">g_inet_address_get_is_link_local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-is-loopback"><link linkend="g-inet-address-get-is-loopback">g_inet_address_get_is_loopback</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-is-mc-global"><link linkend="g-inet-address-get-is-mc-global">g_inet_address_get_is_mc_global</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-is-mc-link-local"><link linkend="g-inet-address-get-is-mc-link-local">g_inet_address_get_is_mc_link_local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-is-mc-node-local"><link linkend="g-inet-address-get-is-mc-node-local">g_inet_address_get_is_mc_node_local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-is-mc-org-local"><link linkend="g-inet-address-get-is-mc-org-local">g_inet_address_get_is_mc_org_local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-is-mc-site-local"><link linkend="g-inet-address-get-is-mc-site-local">g_inet_address_get_is_mc_site_local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-is-multicast"><link linkend="g-inet-address-get-is-multicast">g_inet_address_get_is_multicast</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-is-site-local"><link linkend="g-inet-address-get-is-site-local">g_inet_address_get_is_site_local</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-get-native-size"><link linkend="g-inet-address-get-native-size">g_inet_address_get_native_size</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-new-any"><link linkend="g-inet-address-new-any">g_inet_address_new_any</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-new-from-bytes"><link linkend="g-inet-address-new-from-bytes">g_inet_address_new_from_bytes</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-new-from-string"><link linkend="g-inet-address-new-from-string">g_inet_address_new_from_string</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-new-loopback"><link linkend="g-inet-address-new-loopback">g_inet_address_new_loopback</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-to-bytes"><link linkend="g-inet-address-to-bytes">g_inet_address_to_bytes</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-address-to-string"><link linkend="g-inet-address-to-string">g_inet_address_to_string</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-socket-address-get-address"><link linkend="g-inet-socket-address-get-address">g_inet_socket_address_get_address</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-socket-address-get-port"><link linkend="g-inet-socket-address-get-port">g_inet_socket_address_get_port</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-inet-socket-address-new"><link linkend="g-inet-socket-address-new">g_inet_socket_address_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInitable-struct"><link linkend="GInitable-struct">GInitable</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInitableIface"><link linkend="GInitableIface">GInitableIface</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-initable-init"><link linkend="g-initable-init">g_initable_init</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-initable-new"><link linkend="g-initable-new">g_initable_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-initable-newv"><link linkend="g-initable-newv">g_initable_newv</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-initable-new-valist"><link linkend="g-initable-new-valist">g_initable_new_valist</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GInputVector"><link linkend="GInputVector">GInputVector</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-io-stream-clear-pending"><link linkend="g-io-stream-clear-pending">g_io_stream_clear_pending</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-io-stream-close"><link linkend="g-io-stream-close">g_io_stream_close</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-io-stream-close-async"><link linkend="g-io-stream-close-async">g_io_stream_close_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-io-stream-close-finish"><link linkend="g-io-stream-close-finish">g_io_stream_close_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-io-stream-get-input-stream"><link linkend="g-io-stream-get-input-stream">g_io_stream_get_input_stream</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-io-stream-get-output-stream"><link linkend="g-io-stream-get-output-stream">g_io_stream_get_output_stream</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-io-stream-has-pending"><link linkend="g-io-stream-has-pending">g_io_stream_has_pending</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-io-stream-is-closed"><link linkend="g-io-stream-is-closed">g_io_stream_is_closed</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-io-stream-set-pending"><link linkend="g-io-stream-set-pending">g_io_stream_set_pending</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>M</title>
+<indexentry><primaryie linkends="GMount-pre-unmount"><link linkend="GMount-pre-unmount">GMount::pre-unmount</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GMountOperation-show-processes"><link linkend="GMountOperation-show-processes">GMountOperation::show-processes</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-mount-eject-with-operation"><link linkend="g-mount-eject-with-operation">g_mount_eject_with_operation</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-mount-eject-with-operation-finish"><link linkend="g-mount-eject-with-operation-finish">g_mount_eject_with_operation_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-mount-unmount-with-operation"><link linkend="g-mount-unmount-with-operation">g_mount_unmount_with_operation</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-mount-unmount-with-operation-finish"><link linkend="g-mount-unmount-with-operation-finish">g_mount_unmount_with_operation_finish</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>N</title>
+<indexentry><primaryie linkends="g-network-address-get-hostname"><link linkend="g-network-address-get-hostname">g_network_address_get_hostname</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-network-address-get-port"><link linkend="g-network-address-get-port">g_network_address_get_port</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-network-address-new"><link linkend="g-network-address-new">g_network_address_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-network-address-parse"><link linkend="g-network-address-parse">g_network_address_parse</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-network-service-get-domain"><link linkend="g-network-service-get-domain">g_network_service_get_domain</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-network-service-get-protocol"><link linkend="g-network-service-get-protocol">g_network_service_get_protocol</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-network-service-get-service"><link linkend="g-network-service-get-service">g_network_service_get_service</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-network-service-new"><link linkend="g-network-service-new">g_network_service_new</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>O</title>
+<indexentry><primaryie linkends="GOutputVector"><link linkend="GOutputVector">GOutputVector</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>R</title>
+<indexentry><primaryie linkends="GResolverError"><link linkend="GResolverError">GResolverError</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-free-addresses"><link linkend="g-resolver-free-addresses">g_resolver_free_addresses</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-free-targets"><link linkend="g-resolver-free-targets">g_resolver_free_targets</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-get-default"><link linkend="g-resolver-get-default">g_resolver_get_default</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-lookup-by-address"><link linkend="g-resolver-lookup-by-address">g_resolver_lookup_by_address</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-lookup-by-address-async"><link linkend="g-resolver-lookup-by-address-async">g_resolver_lookup_by_address_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-lookup-by-address-finish"><link linkend="g-resolver-lookup-by-address-finish">g_resolver_lookup_by_address_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-lookup-by-name"><link linkend="g-resolver-lookup-by-name">g_resolver_lookup_by_name</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-lookup-by-name-async"><link linkend="g-resolver-lookup-by-name-async">g_resolver_lookup_by_name_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-lookup-by-name-finish"><link linkend="g-resolver-lookup-by-name-finish">g_resolver_lookup_by_name_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-lookup-service"><link linkend="g-resolver-lookup-service">g_resolver_lookup_service</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-lookup-service-async"><link linkend="g-resolver-lookup-service-async">g_resolver_lookup_service_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-lookup-service-finish"><link linkend="g-resolver-lookup-service-finish">g_resolver_lookup_service_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-resolver-set-default"><link linkend="g-resolver-set-default">g_resolver_set_default</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>S</title>
+<indexentry><primaryie linkends="GSocket-struct"><link linkend="GSocket-struct">GSocket</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GSocketClient-struct"><link linkend="GSocketClient-struct">GSocketClient</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GSocketConnection-struct"><link linkend="GSocketConnection-struct">GSocketConnection</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GSocketFamily"><link linkend="GSocketFamily">GSocketFamily</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GSocketMsgFlags"><link linkend="GSocketMsgFlags">GSocketMsgFlags</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GSocketProtocol"><link linkend="GSocketProtocol">GSocketProtocol</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GSocketService-struct"><link linkend="GSocketService-struct">GSocketService</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GSocketService-incoming"><link linkend="GSocketService-incoming">GSocketService::incoming</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GSocketSourceFunc"><link linkend="GSocketSourceFunc">GSocketSourceFunc</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GSocketType"><link linkend="GSocketType">GSocketType</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-accept"><link linkend="g-socket-accept">g_socket_accept</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-address-get-family"><link linkend="g-socket-address-get-family">g_socket_address_get_family</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-address-get-native-size"><link linkend="g-socket-address-get-native-size">g_socket_address_get_native_size</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-address-new-from-native"><link linkend="g-socket-address-new-from-native">g_socket_address_new_from_native</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-address-to-native"><link linkend="g-socket-address-to-native">g_socket_address_to_native</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-bind"><link linkend="g-socket-bind">g_socket_bind</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-check-connect-result"><link linkend="g-socket-check-connect-result">g_socket_check_connect_result</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-connect"><link linkend="g-socket-client-connect">g_socket_client_connect</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-connect-async"><link linkend="g-socket-client-connect-async">g_socket_client_connect_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-connect-finish"><link linkend="g-socket-client-connect-finish">g_socket_client_connect_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-connect-to-host"><link linkend="g-socket-client-connect-to-host">g_socket_client_connect_to_host</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-connect-to-host-async"><link linkend="g-socket-client-connect-to-host-async">g_socket_client_connect_to_host_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-connect-to-host-finish"><link linkend="g-socket-client-connect-to-host-finish">g_socket_client_connect_to_host_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-connect-to-service-async"><link linkend="g-socket-client-connect-to-service-async">g_socket_client_connect_to_service_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-connect-to-service-finish"><link linkend="g-socket-client-connect-to-service-finish">g_socket_client_connect_to_service_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-get-family"><link linkend="g-socket-client-get-family">g_socket_client_get_family</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-get-local-address"><link linkend="g-socket-client-get-local-address">g_socket_client_get_local_address</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-get-protocol"><link linkend="g-socket-client-get-protocol">g_socket_client_get_protocol</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-get-socket-type"><link linkend="g-socket-client-get-socket-type">g_socket_client_get_socket_type</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-new"><link linkend="g-socket-client-new">g_socket_client_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-set-family"><link linkend="g-socket-client-set-family">g_socket_client_set_family</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-set-local-address"><link linkend="g-socket-client-set-local-address">g_socket_client_set_local_address</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-set-protocol"><link linkend="g-socket-client-set-protocol">g_socket_client_set_protocol</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-client-set-socket-type"><link linkend="g-socket-client-set-socket-type">g_socket_client_set_socket_type</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-close"><link linkend="g-socket-close">g_socket_close</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-condition-check"><link linkend="g-socket-condition-check">g_socket_condition_check</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-condition-wait"><link linkend="g-socket-condition-wait">g_socket_condition_wait</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-connect"><link linkend="g-socket-connect">g_socket_connect</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-connectable-enumerate"><link linkend="g-socket-connectable-enumerate">g_socket_connectable_enumerate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-connection-factory-create-connection"><link linkend="g-socket-connection-factory-create-connection">g_socket_connection_factory_create_connection</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-connection-factory-lookup-type"><link linkend="g-socket-connection-factory-lookup-type">g_socket_connection_factory_lookup_type</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-connection-factory-register-type"><link linkend="g-socket-connection-factory-register-type">g_socket_connection_factory_register_type</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-connection-get-local-address"><link linkend="g-socket-connection-get-local-address">g_socket_connection_get_local_address</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-connection-get-remote-address"><link linkend="g-socket-connection-get-remote-address">g_socket_connection_get_remote_address</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-connection-get-socket"><link linkend="g-socket-connection-get-socket">g_socket_connection_get_socket</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-control-message-deserialize"><link linkend="g-socket-control-message-deserialize">g_socket_control_message_deserialize</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-control-message-get-level"><link linkend="g-socket-control-message-get-level">g_socket_control_message_get_level</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-control-message-get-msg-type"><link linkend="g-socket-control-message-get-msg-type">g_socket_control_message_get_msg_type</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-control-message-get-size"><link linkend="g-socket-control-message-get-size">g_socket_control_message_get_size</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-control-message-serialize"><link linkend="g-socket-control-message-serialize">g_socket_control_message_serialize</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-create-source"><link linkend="g-socket-create-source">g_socket_create_source</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-get-blocking"><link linkend="g-socket-get-blocking">g_socket_get_blocking</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-get-family"><link linkend="g-socket-get-family">g_socket_get_family</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-get-fd"><link linkend="g-socket-get-fd">g_socket_get_fd</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-get-keepalive"><link linkend="g-socket-get-keepalive">g_socket_get_keepalive</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-get-listen-backlog"><link linkend="g-socket-get-listen-backlog">g_socket_get_listen_backlog</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-get-local-address"><link linkend="g-socket-get-local-address">g_socket_get_local_address</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-get-protocol"><link linkend="g-socket-get-protocol">g_socket_get_protocol</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-get-remote-address"><link linkend="g-socket-get-remote-address">g_socket_get_remote_address</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-get-socket-type"><link linkend="g-socket-get-socket-type">g_socket_get_socket_type</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-is-closed"><link linkend="g-socket-is-closed">g_socket_is_closed</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-is-connected"><link linkend="g-socket-is-connected">g_socket_is_connected</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listen"><link linkend="g-socket-listen">g_socket_listen</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-accept"><link linkend="g-socket-listener-accept">g_socket_listener_accept</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-accept-async"><link linkend="g-socket-listener-accept-async">g_socket_listener_accept_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-accept-finish"><link linkend="g-socket-listener-accept-finish">g_socket_listener_accept_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-accept-socket"><link linkend="g-socket-listener-accept-socket">g_socket_listener_accept_socket</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-accept-socket-async"><link linkend="g-socket-listener-accept-socket-async">g_socket_listener_accept_socket_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-accept-socket-finish"><link linkend="g-socket-listener-accept-socket-finish">g_socket_listener_accept_socket_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-add-address"><link linkend="g-socket-listener-add-address">g_socket_listener_add_address</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-add-inet-port"><link linkend="g-socket-listener-add-inet-port">g_socket_listener_add_inet_port</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-add-socket"><link linkend="g-socket-listener-add-socket">g_socket_listener_add_socket</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-close"><link linkend="g-socket-listener-close">g_socket_listener_close</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-new"><link linkend="g-socket-listener-new">g_socket_listener_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-listener-set-backlog"><link linkend="g-socket-listener-set-backlog">g_socket_listener_set_backlog</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-new"><link linkend="g-socket-new">g_socket_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-new-from-fd"><link linkend="g-socket-new-from-fd">g_socket_new_from_fd</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-receive"><link linkend="g-socket-receive">g_socket_receive</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-receive-from"><link linkend="g-socket-receive-from">g_socket_receive_from</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-receive-message"><link linkend="g-socket-receive-message">g_socket_receive_message</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-send"><link linkend="g-socket-send">g_socket_send</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-send-message"><link linkend="g-socket-send-message">g_socket_send_message</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-send-to"><link linkend="g-socket-send-to">g_socket_send_to</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-service-is-active"><link linkend="g-socket-service-is-active">g_socket_service_is_active</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-service-new"><link linkend="g-socket-service-new">g_socket_service_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-service-start"><link linkend="g-socket-service-start">g_socket_service_start</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-service-stop"><link linkend="g-socket-service-stop">g_socket_service_stop</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-set-blocking"><link linkend="g-socket-set-blocking">g_socket_set_blocking</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-set-keepalive"><link linkend="g-socket-set-keepalive">g_socket_set_keepalive</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-set-listen-backlog"><link linkend="g-socket-set-listen-backlog">g_socket_set_listen_backlog</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-socket-shutdown"><link linkend="g-socket-shutdown">g_socket_shutdown</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-srv-target-copy"><link linkend="g-srv-target-copy">g_srv_target_copy</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-srv-target-free"><link linkend="g-srv-target-free">g_srv_target_free</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-srv-target-get-hostname"><link linkend="g-srv-target-get-hostname">g_srv_target_get_hostname</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-srv-target-get-port"><link linkend="g-srv-target-get-port">g_srv_target_get_port</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-srv-target-get-priority"><link linkend="g-srv-target-get-priority">g_srv_target_get_priority</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-srv-target-get-weight"><link linkend="g-srv-target-get-weight">g_srv_target_get_weight</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-srv-target-list-sort"><link linkend="g-srv-target-list-sort">g_srv_target_list_sort</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-srv-target-new"><link linkend="g-srv-target-new">g_srv_target_new</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>T</title>
+<indexentry><primaryie linkends="GTcpConnection-struct"><link linkend="GTcpConnection-struct">GTcpConnection</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-tcp-connection-get-graceful-disconnect"><link linkend="g-tcp-connection-get-graceful-disconnect">g_tcp_connection_get_graceful_disconnect</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-tcp-connection-set-graceful-disconnect"><link linkend="g-tcp-connection-set-graceful-disconnect">g_tcp_connection_set_graceful_disconnect</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GThreadedSocketService-struct"><link linkend="GThreadedSocketService-struct">GThreadedSocketService</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-threaded-socket-service-new"><link linkend="g-threaded-socket-service-new">g_threaded_socket_service_new</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>U</title>
+<indexentry><primaryie linkends="g-unix-connection-receive-fd"><link linkend="g-unix-connection-receive-fd">g_unix_connection_receive_fd</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-unix-connection-send-fd"><link linkend="g-unix-connection-send-fd">g_unix_connection_send_fd</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-unix-fd-message-append-fd"><link linkend="g-unix-fd-message-append-fd">g_unix_fd_message_append_fd</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-unix-fd-message-new"><link linkend="g-unix-fd-message-new">g_unix_fd_message_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-unix-fd-message-steal-fds"><link linkend="g-unix-fd-message-steal-fds">g_unix_fd_message_steal_fds</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-unix-socket-address-abstract-names-supported"><link linkend="g-unix-socket-address-abstract-names-supported">g_unix_socket_address_abstract_names_supported</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-unix-socket-address-get-is-abstract"><link linkend="g-unix-socket-address-get-is-abstract">g_unix_socket_address_get_is_abstract</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-unix-socket-address-get-path"><link linkend="g-unix-socket-address-get-path">g_unix_socket_address_get_path</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-unix-socket-address-get-path-len"><link linkend="g-unix-socket-address-get-path-len">g_unix_socket_address_get_path_len</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-unix-socket-address-new"><link linkend="g-unix-socket-address-new">g_unix_socket_address_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-unix-socket-address-new-abstract"><link linkend="g-unix-socket-address-new-abstract">g_unix_socket_address_new_abstract</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>V</title>
+<indexentry><primaryie linkends="GVolumeMonitor-drive-stop-button"><link linkend="GVolumeMonitor-drive-stop-button">GVolumeMonitor::drive-stop-button</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-volume-eject-with-operation"><link linkend="g-volume-eject-with-operation">g_volume_eject_with_operation</link></primaryie></indexentry>
+<indexentry><primaryie linkends="g-volume-eject-with-operation-finish"><link linkend="g-volume-eject-with-operation-finish">g_volume_eject_with_operation_finish</link></primaryie></indexentry>
+</indexdiv>
+</indexdiv>

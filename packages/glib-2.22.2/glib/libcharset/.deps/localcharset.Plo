@@ -1,0 +1,105 @@
+localcharset.lo .libs/localcharset.o: localcharset.c ../../config.h \
+  localcharset.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stddef.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdio.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h \
+  /usr/include/sys/feature_tests.h /usr/include/sys/ccompile.h \
+  /usr/include/sys/isa_defs.h /usr/include/iso/stdio_iso.h \
+  /usr/include/sys/va_list.h /usr/include/stdio_tag.h \
+  /usr/include/stdio_impl.h /usr/include/iso/stdio_c99.h \
+  /usr/include/string.h /usr/include/iso/string_iso.h \
+  /usr/include/stdlib.h /usr/include/iso/stdlib_iso.h \
+  /usr/include/iso/stdlib_c99.h /usr/include/sys/wait.h \
+  /usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/sys/types.h \
+  /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+  /usr/include/sys/select.h /usr/include/sys/time_impl.h \
+  /usr/include/sys/time.h /usr/include/time.h /usr/include/iso/time_iso.h \
+  /usr/include/sys/resource.h /usr/include/sys/siginfo.h \
+  /usr/include/sys/machsig.h /usr/include/sys/procset.h \
+  /usr/include/sys/signal.h /usr/include/sys/iso/signal_iso.h \
+  /usr/include/sys/unistd.h /usr/include/sys/ucontext.h \
+  /usr/include/sys/regset.h /usr/include/v7/sys/privregs.h \
+  /usr/include/v7/sys/psr.h /usr/include/sys/fsr.h \
+  /usr/include/langinfo.h /usr/include/nl_types.h
+
+../../config.h:
+
+localcharset.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stddef.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdio.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/stdarg.h:
+
+/usr/include/sys/feature_tests.h:
+
+/usr/include/sys/ccompile.h:
+
+/usr/include/sys/isa_defs.h:
+
+/usr/include/iso/stdio_iso.h:
+
+/usr/include/sys/va_list.h:
+
+/usr/include/stdio_tag.h:
+
+/usr/include/stdio_impl.h:
+
+/usr/include/iso/stdio_c99.h:
+
+/usr/include/string.h:
+
+/usr/include/iso/string_iso.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/iso/stdlib_iso.h:
+
+/usr/include/iso/stdlib_c99.h:
+
+/usr/include/sys/wait.h:
+
+/usr/sww/pkg/gcc-3.4.4/lib/gcc/sparc-sun-solaris2.10/3.4.4/include/sys/types.h:
+
+/usr/include/sys/machtypes.h:
+
+/usr/include/sys/int_types.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/sys/time_impl.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/time.h:
+
+/usr/include/iso/time_iso.h:
+
+/usr/include/sys/resource.h:
+
+/usr/include/sys/siginfo.h:
+
+/usr/include/sys/machsig.h:
+
+/usr/include/sys/procset.h:
+
+/usr/include/sys/signal.h:
+
+/usr/include/sys/iso/signal_iso.h:
+
+/usr/include/sys/unistd.h:
+
+/usr/include/sys/ucontext.h:
+
+/usr/include/sys/regset.h:
+
+/usr/include/v7/sys/privregs.h:
+
+/usr/include/v7/sys/psr.h:
+
+/usr/include/sys/fsr.h:
+
+/usr/include/langinfo.h:
+
+/usr/include/nl_types.h:

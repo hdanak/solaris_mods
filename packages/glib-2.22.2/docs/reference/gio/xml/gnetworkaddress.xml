@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GNetworkAddress">
+<refmeta>
+<refentrytitle role="top_of_page" id="GNetworkAddress.top_of_page">GNetworkAddress</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GIO Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GNetworkAddress</refname>
+<refpurpose>A GSocketConnectable for resolving hostnames</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GNetworkAddress.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;gio/gio.h&gt;
+
+                    <link linkend="GNetworkAddress-struct">GNetworkAddress</link>;
+<link linkend="GSocketConnectable">GSocketConnectable</link> * <link linkend="g-network-address-new">g_network_address_new</link>              (const <link linkend="gchar">gchar</link> *hostname,
+                                                         <link linkend="guint16">guint16</link> port);
+const <link linkend="gchar">gchar</link> *       <link linkend="g-network-address-get-hostname">g_network_address_get_hostname</link>      (<link linkend="GNetworkAddress">GNetworkAddress</link> *addr);
+<link linkend="guint16">guint16</link>             <link linkend="g-network-address-get-port">g_network_address_get_port</link>          (<link linkend="GNetworkAddress">GNetworkAddress</link> *addr);
+<link linkend="GSocketConnectable">GSocketConnectable</link> * <link linkend="g-network-address-parse">g_network_address_parse</link>            (const <link linkend="gchar">gchar</link> *host_and_port,
+                                                         <link linkend="guint16">guint16</link> default_port,
+                                                         <link linkend="GError">GError</link> **error);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GNetworkAddress.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GNetworkAddress
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GNetworkAddress.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GNetworkAddress implements
+ <link linkend="GSocketConnectable">GSocketConnectable</link>.</para>
+</refsect1>
+
+
+<refsect1 id="GNetworkAddress.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GNetworkAddress--hostname">hostname</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="GNetworkAddress--port">port</link>&quot;                     <link linkend="guint">guint</link>                 : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GNetworkAddress.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="GNetworkAddress"><type>GNetworkAddress</type></link> provides an easy way to resolve a hostname and
+then attempt to connect to that host, handling the possibility of
+multiple IP addresses and multiple address families.
+</para>
+<para>
+See <link linkend="GSocketConnectable"><type>GSocketConnectable</type></link> for and example of using the connectable
+interface.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GNetworkAddress.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GNetworkAddress-struct" role="struct">
+<title>GNetworkAddress</title>
+<indexterm zone="GNetworkAddress-struct"><primary sortas="NetworkAddress">GNetworkAddress</primary></indexterm><programlisting>typedef struct _GNetworkAddress GNetworkAddress;</programlisting>
+<para>
+A <link linkend="GSocketConnectable"><type>GSocketConnectable</type></link> for resolving a hostname and connecting to
+that host.</para>
+<para>
+</para></refsect2>
+<refsect2 id="g-network-address-new" role="function" condition="since:2.22">
+<title>g_network_address_new ()</title>
+<indexterm zone="g-network-address-new" role="2.22"><primary sortas="network_address_new">g_network_address_new</primary></indexterm><programlisting><link linkend="GSocketConnectable">GSocketConnectable</link> * g_network_address_new              (const <link linkend="gchar">gchar</link> *hostname,
+                                                         <link linkend="guint16">guint16</link> port);</programlisting>
+<para>
+Creates a new <link linkend="GSocketConnectable"><type>GSocketConnectable</type></link> for connecting to the given
+<parameter>hostname</parameter> and <parameter>port</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hostname</parameter>&#160;:</term>
+<listitem><simpara> the hostname
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara> the port
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the new <link linkend="GNetworkAddress"><type>GNetworkAddress</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-network-address-get-hostname" role="function" condition="since:2.22">
+<title>g_network_address_get_hostname ()</title>
+<indexterm zone="g-network-address-get-hostname" role="2.22"><primary sortas="network_address_get_hostname">g_network_address_get_hostname</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       g_network_address_get_hostname      (<link linkend="GNetworkAddress">GNetworkAddress</link> *addr);</programlisting>
+<para>
+Gets <parameter>addr</parameter>'s hostname. This might be either UTF-8 or ASCII-encoded,
+depending on what <parameter>addr</parameter> was created with.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>addr</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GNetworkAddress"><type>GNetworkAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <parameter>addr</parameter>'s hostname
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-network-address-get-port" role="function" condition="since:2.22">
+<title>g_network_address_get_port ()</title>
+<indexterm zone="g-network-address-get-port" role="2.22"><primary sortas="network_address_get_port">g_network_address_get_port</primary></indexterm><programlisting><link linkend="guint16">guint16</link>             g_network_address_get_port          (<link linkend="GNetworkAddress">GNetworkAddress</link> *addr);</programlisting>
+<para>
+Gets <parameter>addr</parameter>'s port number</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>addr</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GNetworkAddress"><type>GNetworkAddress</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <parameter>addr</parameter>'s port (which may be 0)
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+<refsect2 id="g-network-address-parse" role="function" condition="since:2.22">
+<title>g_network_address_parse ()</title>
+<indexterm zone="g-network-address-parse" role="2.22"><primary sortas="network_address_parse">g_network_address_parse</primary></indexterm><programlisting><link linkend="GSocketConnectable">GSocketConnectable</link> * g_network_address_parse            (const <link linkend="gchar">gchar</link> *host_and_port,
+                                                         <link linkend="guint16">guint16</link> default_port,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Creates a new <link linkend="GSocketConnectable"><type>GSocketConnectable</type></link> for connecting to the given
+<parameter>hostname</parameter> and <parameter>port</parameter>. May fail and return <link linkend="NULL--CAPS"><literal>NULL</literal></link> in case
+parsing <parameter>host_and_port</parameter> fails.
+</para>
+<para>
+<parameter>host_and_port</parameter> may be in any of a number of recognised formats: an IPv6
+address, an IPv4 address, or a domain name (in which case a DNS
+lookup is performed). Quoting with [] is supported for all address
+types. A port override may be specified in the usual way with a
+colon. Ports may be given as decimal numbers or symbolic names (in
+which case an /etc/services lookup is performed).
+</para>
+<para>
+If no port is specified in <parameter>host_and_port</parameter> then <parameter>default_port</parameter> will be
+used as the port number to connect to.
+</para>
+<para>
+In general, <parameter>host_and_port</parameter> is expected to be provided by the user
+(allowing them to give the hostname, and a port overide if necessary)
+and <parameter>default_port</parameter> is expected to be provided by the application.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>host_and_port</parameter>&#160;:</term>
+<listitem><simpara> the hostname and optionally a port
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>default_port</parameter>&#160;:</term>
+<listitem><simpara> the default port if not in <parameter>host_and_port</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> a pointer to a <link linkend="GError"><type>GError</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the new <link linkend="GNetworkAddress"><type>GNetworkAddress</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> on error
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.22</para></refsect2>
+
+</refsect1>
+<refsect1 id="GNetworkAddress.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GNetworkAddress--hostname" role="property"><title>The <literal>&quot;hostname&quot;</literal> property</title>
+<indexterm zone="GNetworkAddress--hostname"><primary sortas="NetworkAddress:hostname">GNetworkAddress:hostname</primary></indexterm><programlisting>  &quot;hostname&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para>Hostname to resolve.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GNetworkAddress--port" role="property"><title>The <literal>&quot;port&quot;</literal> property</title>
+<indexterm zone="GNetworkAddress--port"><primary sortas="NetworkAddress:port">GNetworkAddress:port</primary></indexterm><programlisting>  &quot;port&quot;                     <link linkend="guint">guint</link>                 : Read / Write / Construct Only</programlisting>
+<para>Network port.</para><para>Allowed values: &lt;= 65535</para>
+<para>Default value: 0</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>
